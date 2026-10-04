@@ -5,3 +5,15 @@ best_practices_pdf
 credentials/
 *.json
 raw
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+.jupyter/
+*.db
+*.sqlite
+
+# Quarto
+.quarto/
+*_files/
+_freeze/
