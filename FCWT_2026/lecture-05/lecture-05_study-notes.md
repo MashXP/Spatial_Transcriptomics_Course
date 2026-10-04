@@ -1,8 +1,8 @@
-# Lesson 5: R Programming Fundamentals
+# Lecture 5: R Programming Fundamentals
 
 ### Core Syntax, Data Types & Computational Logic
 
-> 🚀 **Interactive Google Colab Notebook:** [lesson-05_practice.ipynb](./lesson-05_practice.ipynb)  
+> 🚀 **Interactive Google Colab Notebook:** [lecture-05_r_fundamentals_practice.ipynb](./lecture-05_r_fundamentals_practice.ipynb)  
 > 💡 **Environment Setup:** For instructions on configuring R locally with Micromamba and VS Code, see [Environment_Setup.md](../Environment_Setup.md).
 >
 > 🤖 **How to Use AI in This Course:**  

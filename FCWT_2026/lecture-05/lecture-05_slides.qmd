@@ -1,6 +1,6 @@
 ---
 title: "🧬 R Programming Fundamentals"
-subtitle: "Lesson 5: Core Syntax, Data Types & Computational Logic"
+subtitle: "Lecture 5: Core Syntax, Data Types & Computational Logic"
 author: "Fighting Cancer with Transcriptomics 2026"
 date: "October 7, 2026"
 format:
@@ -14,7 +14,7 @@ format:
     code-line-numbers: true
     highlight-style: github-dark
     preview-links: auto
-    footer: "Fighting Cancer with Transcriptomics - Lesson 5"
+    footer: "Fighting Cancer with Transcriptomics - Lecture 5"
 engine: knitr
 execute:
   echo: true
@@ -74,7 +74,7 @@ Modern cancer transcriptomics produces **massive, high-dimensional datasets**:
 :::
 
 ::: {.column width="55%"}
-![](_assets/visium_spots_to_matrix.png){fig-align="center" width="100%"}
+![](../_assets/visium_spots_to_matrix.png){fig-align="center" width="100%"}
 
 ::: {style="font-size: 0.5em; text-align: center; color: #888;"}
 Source: [spatialdata.scverse.org](https://spatialdata.scverse.org/en/latest/tutorials/notebooks/notebooks/examples/technology_visium.html)
@@ -122,11 +122,11 @@ Source: [spatialdata.scverse.org](https://spatialdata.scverse.org/en/latest/tuto
 * **Cancer & spatial standards:** Standardized data structures for bulk, single-cell, and spatial transcriptomics.
 
 ::: {style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 30px;"}
-![](_assets/bioconductor.png){width="145px"}
-![](_assets/deseq2.png){width="145px"}
-![](_assets/edger.png){width="145px"}
-![](_assets/spatialexperiment.png){width="145px"}
-![](_assets/seurat.png){width="145px"}
+![](../_assets/bioconductor.png){width="145px"}
+![](../_assets/deseq2.png){width="145px"}
+![](../_assets/edger.png){width="145px"}
+![](../_assets/spatialexperiment.png){width="145px"}
+![](../_assets/seurat.png){width="145px"}
 :::
 
 ---
@@ -145,7 +145,7 @@ Source: [spatialdata.scverse.org](https://spatialdata.scverse.org/en/latest/tuto
 :::
 
 ::: {.column width="55%"}
-![](_assets/reproducible_script.png){fig-align="center" width="100%"}
+![](../_assets/reproducible_script.png){fig-align="center" width="100%"}
 :::
 
 ::::
@@ -166,7 +166,7 @@ Source: [spatialdata.scverse.org](https://spatialdata.scverse.org/en/latest/tuto
 :::
 
 ::: {.column width="55%"}
-![](_assets/publication_visualization.png){fig-align="center" width="100%"}
+![](../_assets/publication_visualization.png){fig-align="center" width="100%"}
 
 ::: {style="font-size: 0.5em; text-align: center; color: #888;"}
 Source: [benwhalley.github.io](https://benwhalley.github.io/just-enough-r/layered-graphics.html)
@@ -1570,7 +1570,7 @@ for (cnt in spot_counts) {
 
 ::: {.callout-tip}
 ### 📓 Interactive Notebook
-*coming soon*
+Launch the companion notebook: [lecture-05_r_fundamentals_practice.ipynb](./lecture-05_r_fundamentals_practice.ipynb){preview-link="false"}
 :::
 
 ---

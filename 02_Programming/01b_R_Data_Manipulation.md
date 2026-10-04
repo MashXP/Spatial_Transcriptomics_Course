@@ -291,5 +291,5 @@ apply(test_data, 2, median) # Output: 5 8 1
 ---
 
 ### Next Modules
-- Predecessor: [Lesson 5: R Programming Fundamentals](../FCWT_2026/lesson-05/lesson-05_study-notes.md)
+- Predecessor: [Lecture 5: R Programming Fundamentals](../FCWT_2026/lecture-05/lecture-05_study-notes.md)
 - Continuation: [Module 1c: R Graphics and Statistics](./01c_R_Graphics_and_Statistics.md)
