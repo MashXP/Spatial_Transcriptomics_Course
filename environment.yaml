@@ -22,6 +22,8 @@ dependencies:
   - r-irkernel                # R Kernel for Jupyter Notebooks & VS Code
   - jupyter_client            # Jupyter protocol client to manage kernels
   - jupyter_core              # Core Jupyter filesystem and spec utilities
+  - r-knitr                   # Dynamic report generation and Quarto engine
+  - r-rmarkdown               # R Markdown document conversion
 
   # # Course Module Dependencies
   # - r-here                    # Path resolution (Module 5: Project Structure)
