@@ -17,3 +17,4 @@ raw
 .quarto/
 *_files/
 _freeze/
+_environment
