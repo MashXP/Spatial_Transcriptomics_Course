@@ -161,18 +161,37 @@ dependencies:
 ```
 
 ### B. Commands to Manage Environments (Fish Shell Compatible)
-Here are the commands to create and enter your toolbox:
+Here are the essential commands to create, update, and remove your toolbox:
 
 ```fish
 # 1. Create your toolbox using the environment file
-micromamba create -f environment.yml
+micromamba create -f environment.yaml
 
-# 2. Enter (activate) your toolbox
+# 2. Register the R kernel for Jupyter & VS Code (run once after creation)
+micromamba run -n spatial_basics R -e 'IRkernel::installspec(user = TRUE)'
+
+# 3. Enter (activate) your toolbox
 micromamba activate spatial_basics
 
-# 3. Leave (deactivate) your toolbox when you are done
+# 3. Update an existing environment when you add new packages to environment.yaml
+micromamba update -n spatial_basics -f environment.yaml --prune
+
+# 4. Leave (deactivate) your toolbox when you are done
 micromamba deactivate
+
+# 5. List all environments installed on your system
+micromamba env list
+
+# 6. Remove (delete) an environment completely when no longer needed
+micromamba env remove -n spatial_basics
+
+# 7. Remove unused packages and cached archives (⚠️ ONLY USE IF RUNNING OUT OF SPACE!)
+micromamba clean --all
 ```
+
+> [!CAUTION]
+> **Disk Space Emergency Cleanup (`micromamba clean --all`):**  
+> **Only use this if you are running out of storage space!** This command deletes all cached installer tarballs and unused packages from your drive. While it frees up gigabytes of disk space, any future environment setups will need to re-download packages over the internet instead of reusing local caches.
 
 ---
 

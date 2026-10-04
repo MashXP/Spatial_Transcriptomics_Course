@@ -1,0 +1,44 @@
+/* Custom typography scaling for Reveal.js slides */
+
+.reveal {
+  font-size: 32px; /* Scales down from default 40px */
+}
+
+.reveal .slides > section,
+.reveal .slides > section > section {
+  padding-top: 50px !important;
+}
+
+.reveal h1 {
+  font-size: 1.8em;
+  margin-top: 0.5em;
+}
+
+.reveal h2 {
+  font-size: 1.35em;
+  margin-top: 0.4em;
+  margin-bottom: 0.7em;
+}
+
+.reveal h3 {
+  font-size: 1.1em;
+}
+
+.reveal p, 
+.reveal li {
+  font-size: 0.85em;
+  line-height: 1.45;
+}
+
+.reveal table {
+  font-size: 0.65em;
+}
+
+.reveal .callout {
+  font-size: 0.8em;
+}
+
+.reveal pre code {
+  font-size: 0.8em;
+  line-height: 1.4;
+}

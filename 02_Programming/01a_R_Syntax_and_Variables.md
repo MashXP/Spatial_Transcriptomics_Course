@@ -1,10 +1,55 @@
 # Module 1a: R Programming Fundamentals
 
-> 🚀 **Interactive Google Colab Notebook:** [01a_R_Syntax_and_Variables.ipynb](./01a_R_Syntax_and_Variables.ipynb)
+> 🚀 **Interactive Google Colab Notebooks:** [Part 1: Syntax & Variables](./01a1_R_Syntax_and_Variables.ipynb) | [Part 2: Logic & Conditionals](./01a2_R_Logic_and_Conditionals.ipynb)
+>
+> 🤖 **How to Use AI in This Course:**  
+> You are welcome to use AI as a tutor. You can ask AI: *"Can you explain what this line of code does in simple terms?"* or *"Why did I get this error?"*  
+> Please do **not** use AI to copy-paste answers to the exercises. You are here to learn how to code, and you only learn by typing it yourself!
 
-Imagine you have a spreadsheet with gene expression measurements for 20,000 genes across 50 samples. You need to calculate the average expression of each gene under a treatment condition. Doing this by hand or clicking through cells in Excel is slow, error-prone, and impossible to scale.
+### 🎯 What You Will Learn Today (In Simple Words):
+1. **Running Code:** How to run R code and write notes to yourself (comments).
+2. **Variables:** How to save numbers and names into containers using `<-`.
+3. **Data Types:** How R works with numbers, text (words), and TRUE / FALSE values.
+4. **Bio-Math:** How to calculate basic cell numbers and gene counts.
+5. **File Paths:** How to find where your files live on your computer.
 
-**R** is a programming language designed to solve this. Instead of clicking menus, you write simple, clear instructions (code) that process millions of data points in seconds. This chapter introduces the absolute basics of how to speak R, covering core syntax, variables, operators, and control flow structures.
+## 🧬 0. Why Do Biologists Need R?
+
+### Why Not Just Use Microsoft Excel?
+Most people start analyzing data in Microsoft Excel. But in spatial transcriptomics—where we measure 20,000 genes across thousands of tissue spots—Excel causes serious problems:
+
+1. **Excel Freezes and Crashes:** Excel can only hold ~1 million rows. Spatial data has tens of millions of data points. Excel simply cannot open these files without crashing.
+2. **Excel Ruining Gene Names:** Excel tries to be "smart" and automatically converts gene names into dates! For example, the gene `SEPT2` (Septin 2) gets permanently converted into `2-Sep` (September 2nd). This error has corrupted thousands of published scientific papers!
+3. **The "Click" Problem:** If you clean data by clicking buttons in menus, you cannot remember all 50 clicks you made two weeks from now. Your experiment cannot be repeated by others.
+
+### Why R is Our Superpower:
+* 🚀 **Handles Huge Data:** R easily processes millions of cells and gene measurements without slowing down.
+* 📦 **Built for Biology (Bioconductor):** Biologists around the world have already written thousands of free, specialized tools for spatial data (like `SpatialExperiment`, `Seurat`, and `Voyager`).
+* 📜 **A Reusable Recipe:** In R, your code is an exact recipe. You can re-run your entire analysis on a new patient sample in seconds with one click.
+
+---
+
+## 💻 Setting Up Your R Environment
+
+You have two simple ways to run the code in this course:
+
+### Option A: Google Colab (Zero Installation — Recommended for Beginners)
+* Run R directly inside your web browser on Google cloud servers.
+* Click the **[Open In Colab](./01a1_R_Syntax_and_Variables.ipynb)** badge at the top of this guide.
+* Works instantly on any operating system without installing local software.
+
+### Option B: Local Setup (On Your Own Computer with Micromamba & VS Code)
+If you prefer running notebooks on your personal computer:
+1. Open your terminal in the course directory.
+2. Create the environment from `environment.yaml`:
+   ```bash
+   micromamba create -f environment.yaml
+   ```
+3. Register the R Jupyter kernel:
+   ```bash
+   micromamba run -n R_tutorial R -e 'IRkernel::installspec(prefix = Sys.getenv("CONDA_PREFIX"))'
+   ```
+4. Open the notebook in VS Code, click the **kernel button** in the top-right corner, and select **`R`**.
 
 ---
 
@@ -135,23 +180,22 @@ vec1 + vec2
 
 ---
 
-## 4. R Math Functions
+## 4. R Math Functions & Arithmetic Operators
 
-R has built-in math functions to calculate numbers quickly:
+R comes equipped with standard mathematical operators and built-in functions:
 
-*   `min()` and `max()`: Find the lowest and highest values in a group.
-*   `sqrt()`: Calculate the square root of a positive number.
-*   `abs()`: Find the absolute (positive) value of a number.
-*   `ceiling()` and `floor()`: Round a decimal number up or down to the nearest integer.
-
-```R
-min(5, 12, 3)     # Output: 3
-max(5, 12, 3)     # Output: 12
-sqrt(16)          # Output: 4
-abs(-7.5)         # Output: 7.5
-ceiling(1.4)      # Output: 2
-floor(1.4)        # Output: 1
-```
+| Operator / Function | What It Does | Biological Code Example |
+| :--- | :--- | :--- |
+| `+` | Addition | `tot_reads <- 12000 + 3500` |
+| `-` | Subtraction | `bg_spots <- 4992 - 3820` |
+| `*` | Multiplication | `mito_pct <- 0.074 * 100` |
+| `/` | Division | `depth_scale <- 45 / 15000` |
+| `^` | Exponentiation (power) | `fc <- 2^3` |
+| `%%` | Modulo (remainder) | `batch_rem <- 10 %% 3` |
+| `%/%` | Integer division | `cohort_grp <- 10 %/% 3` |
+| `sqrt()` | Square root | `spot_dist <- sqrt(144)` |
+| `log2()` | Log base 2 | `log2_fc <- log2(8)` |
+| `round()` | Round decimals | `pval <- round(0.003412, 3)` |
 
 ---
 

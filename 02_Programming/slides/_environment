@@ -1,0 +1,2 @@
+PATH=/home/mashxp/.conda/envs/R_tutorial/bin:${PATH}
+QUARTO_R=/home/mashxp/.conda/envs/R_tutorial/bin/R

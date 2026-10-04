@@ -1,0 +1,36 @@
+# ==============================================================================
+# Environment Configuration: Programming for Spatial Transcriptomics
+# ==============================================================================
+# This file defines the exact tools and package versions needed for this course.
+# To create this environment using micromamba, run:
+#     micromamba create -f environment.yaml
+#
+# To activate it:
+#     micromamba activate R
+# ==============================================================================
+
+name: R_tutorial # Anything you want!
+
+channels:
+  - conda-forge # Has to be this exact order!
+  - bioconda
+  - nodefaults
+
+dependencies:
+  # Core Language & Jupyter Kernel
+  - r-base=4.3                # Base R statistical computing engine
+  - r-irkernel                # R Kernel for Jupyter Notebooks & VS Code
+  - jupyter_client            # Jupyter protocol client to manage kernels
+  - jupyter_core              # Core Jupyter filesystem and spec utilities
+
+  # # Course Module Dependencies
+  # - r-here                    # Path resolution (Module 5: Project Structure)
+  # - r-data.table              # High-performance biological table I/O (Module 1b)
+  # - r-reshape2                # Wide-to-long table reshaping (Module 1c)
+  # - r-ggplot2                 # Publication-grade data visualization (Module 1c)
+  # - r-matrix                  # Dense and sparse count matrices (Module 1b)
+  # - r-roxygen2                # In-line function documentation (Module 3)
+
+  # # Recommended Spatial Genomics Dependencies (Upstream / Downstream)
+  # - r-seurat                  # Single-cell & Spatial transcriptomics toolkit
+  # - r-patchwork               # Multi-panel plot arrangement
