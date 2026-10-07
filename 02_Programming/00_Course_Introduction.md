@@ -18,7 +18,7 @@ This module contains six core chapters, structured sequentially to take you from
    * Establish a solid version control workflow. Learn to track changes, manage branches (create, checkout, merge, delete), authenticate securely using SSH keys or PAT tokens, and protect large datasets with `.gitignore` files.
 3. **[03. Good Coding Practices](./03_Good_Coding_Practices.md)**
    * Transition from writing "spaghetti code" to clean, modular, and well-documented scripts. Learn naming conventions, Roxygen2, and basic defensive programming.
-4. **[04. Environment Setup & Google Colab](./04_Environment_Setup.md)**
+4. **[04. Environment Setup & Google Colab](../FCWT_2026/Environment_Setup.md)**
    * Build reproducible computing environments using `micromamba` and `uv`, run terminal commands in the cloud using Google Colab's shell operator (`!`), format equations in LaTeX, and run multi-language R code magic (`%%R`).
 5. **[05. Project Structure & Timeline](./05_Project_Structure.md)**
    * Design standardized directories for your raw data, scripts, and results, 
@@ -47,7 +47,7 @@ Here is the weekly agenda for our 2-week course:
         *   **Hour 1: Reshaping, Scientific Plotting & Assumptive Statistics** (corresponds to [Module 1c](./01c_R_Graphics_and_Statistics.md))
             *   Data reshaping (`melt`), exploratory Base R plotting (step/both lines, dot charts, density curves), ggplot2 volcano plots, and FDR corrections (`p.adjust(method="BH")`).
             *   Descriptive statistics, normality checking (Shapiro-Wilk test, QQ-plots), test selection logic (parametric t-test/ANOVA vs Wilcoxon/Kruskal-Wallis), correlation coefficients, linear regression modeling, and PCA/unsupervised clustering (`prcomp()`, `kmeans()`, `hclust()`).
-        *   **Hour 2: Version Control, Good Code, and Setup** (corresponds to [Module 2](./02_Git_and_GitHub.md), [Module 3](./03_Good_Coding_Practices.md), and [Module 4](./04_Environment_Setup.md))
+        *   **Hour 2: Version Control, Good Code, and Setup** (corresponds to [Module 2](./02_Git_and_GitHub.md), [Module 3](./03_Good_Coding_Practices.md), and [Module 4](../FCWT_2026/Environment_Setup.md))
             *   Git version control (Working, Staging, commits, remote push/pull) and branching/merge collaboration strategy (pointer, local/remote branch deletion).
             *   SSH keys and PAT security tokens authentication; `.gitignore` rules for biological files.
             *   snake_case naming, Roxygen2 docs, Google Colab notebooks (Bash shell commands `!`, R magic `%%R`, LaTeX equations), Micromamba, `uv` environments, and path resolution using `here`.

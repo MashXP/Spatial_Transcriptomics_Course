@@ -14,7 +14,7 @@ format:
     code-line-numbers: true
     highlight-style: github-dark
     preview-links: auto
-    footer: "Fighting Cancer with Transcriptomics - Lecture 5"
+    footer: "Fighting Cancer with Transcriptomics - Lecture 05"
 engine: knitr
 execute:
   echo: true
@@ -25,6 +25,13 @@ filters:
 webr:
   show-startup-message: false
   show-header-message: false
+
+---
+
+## 🗺️ Where We Are in the Course
+
+![](../_assets/course_map.png){fig-align="center" width="88%"}
+
 ---
 
 ## Why R?
@@ -41,7 +48,11 @@ Modern cancer transcriptomics produces **massive, high-dimensional datasets**:
 
 ---
 
-## 📊 Example: Bulk RNA-Seq Count Matrix
+::: {.section-tag}
+🧬 The REAL Scale of Transcriptomics
+:::
+
+### Example: Bulk RNA-Seq Count Matrix
 
 How raw transcriptomic data looks in a computational matrix
 
@@ -61,9 +72,13 @@ Notice how `GAPDH` (housekeeping) is steady across all samples, while oncogenes 
 
 ---
 
-## 🧬 The REAL Scale of Transcriptomics
+::: {.section-tag}
+🧬 The REAL Scale of Transcriptomics
+:::
 
-Modern cancer transcriptomics produces **massive, high-dimensional datasets**:
+### Modern cancer transcriptomics
+
+produces **massive, high-dimensional datasets**:
 
 :::: {.columns}
 
@@ -86,6 +101,13 @@ Source: [spatialdata.scverse.org](https://spatialdata.scverse.org/en/latest/tuto
 ---
 
 ## ⚠️ Why Excel isn't the tool?
+
+---
+
+::: {.section-tag}
+⚠️ Why Excel isn't the tool?
+:::
+
 ### 1. Gene Date Corruption
 
 * **Silent auto-conversion:**
@@ -96,7 +118,9 @@ Source: [spatialdata.scverse.org](https://spatialdata.scverse.org/en/latest/tuto
 
 ---
 
-## ⚠️ Why Excel isn't the tool?
+::: {.section-tag}
+⚠️ Why Excel isn't the tool?
+:::
 ### 2. Hard Capacity Limits
 
 * **1,048,576 rows** hard ceiling per sheet.
@@ -105,7 +129,9 @@ Source: [spatialdata.scverse.org](https://spatialdata.scverse.org/en/latest/tuto
 
 ---
 
-## ⚠️ Why Excel isn't the tool?
+::: {.section-tag}
+⚠️ Why Excel isn't the tool?
+:::
 ### 3. Lack of Reproducibility
 
 * **No audit trail:** Point-and-click edits leave no record.
@@ -114,7 +140,25 @@ Source: [spatialdata.scverse.org](https://spatialdata.scverse.org/en/latest/tuto
 
 ---
 
-## 💡 Instead... We use R! (and Bioconductor) 
+## 💡 Instead... We use R! (and Bioconductor)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![]( ../_assets/r_logo.png ){fig-align="center" width="210px"}
+:::
+
+::: {.column width="50%"}
+![]( ../_assets/bioconductor.png ){fig-align="center" width="185px"}
+:::
+
+::::
+
+---
+
+::: {.section-tag}
+💡 Instead... We use R! (and Bioconductor)
+:::
 
 ### 1. The Bioconductor Ecosystem
 
@@ -131,7 +175,9 @@ Source: [spatialdata.scverse.org](https://spatialdata.scverse.org/en/latest/tuto
 
 ---
 
-## 💡 Instead... We use R! (and Bioconductor) 
+::: {.section-tag}
+💡 Instead... We use R! (and Bioconductor)
+:::
 
 ### 2. 100% Reproducible Research
 
@@ -152,7 +198,9 @@ Source: [spatialdata.scverse.org](https://spatialdata.scverse.org/en/latest/tuto
 
 ---
 
-## 💡 Instead... We use R! (and Bioconductor) 
+::: {.section-tag}
+💡 Instead... We use R! (and Bioconductor)
+:::
 
 ### 3. Publication-Grade Visualizations
 
@@ -177,7 +225,142 @@ Source: [benwhalley.github.io](https://benwhalley.github.io/just-enough-r/layere
 
 ---
 
-## 📋 Table of Contents
+## 🛠️ How to Install R?
+
+---
+
+::: {.section-tag}
+🛠️ How to Install R?
+:::
+
+### 4 Ways to Get R Running
+
+* **1. Local install** — R from **CRAN** + **RStudio Desktop** on your own machine
+* **2. Google Colab** — R on Google's servers, nothing to install: [colab.to/r](https://colab.to/r)
+* **3. Micromamba** — a reproducible `environment.yml` toolbox (our course standard)
+* **4. Posit Cloud** — hosted RStudio in your browser, nothing to install
+
+::: {.callout-tip}
+### 🎯 Pick one for today
+Any of the four runs the exact same R. Start with the easiest, add the others when you need them.
+:::
+
+---
+
+::: {.section-tag}
+🛠️ How to Install R?
+:::
+
+### The Local Route: CRAN + RStudio
+
+R is **free and open source**: install **R** (the engine that runs your code), then **RStudio** (the editor you work in).
+
+:::: {.columns}
+
+::: {.column width="48%"}
+### Install R
+
+* **CRAN for Linux**: [cloud.r-project.org/bin/linux](https://cloud.r-project.org/bin/linux) → pick your distro
+* Debian/Ubuntu shortcut: `sudo apt install r-base r-base-dev`
+
+Check what you actually got:
+
+```{webr-r}
+R.version.string
+```
+:::
+
+::: {.column width="48%"}
+### Install RStudio
+
+* **Posit**: [posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop/) — `.deb` for Debian/Ubuntu, `.rpm` for Fedora
+* Auto-detects your R on launch
+
+::: {.callout-note}
+### 🧩 Engine vs. Editor
+R is the language; RStudio is the cockpit. Keep `Rscript` for cluster pipelines.
+:::
+:::
+
+::::
+
+---
+
+::: {.section-tag}
+🛠️ How to Install R?
+:::
+
+### RStudio IDE
+
+![](../_assets/rstudio.png){fig-align="center"}
+
+::: {.callout-tip}
+### 🧭 Never lose your work
+An unsaved script is lost forever — use `File → Save` (`Ctrl/Cmd + S`) after every edit.
+:::
+
+---
+
+::: {.section-tag}
+🛠️ How to Install R?
+:::
+
+### VS Code Works Too!
+
+:::: {.columns}
+
+::: {.column width="48%"}
+#### Install & Extend
+
+* Download → [code.visualstudio.com](https://code.visualstudio.com)
+* Extensions (`Ctrl/Cmd + Shift + X`):
+  * **R** (by *Posit*) → REPL, highlighting, debugger, plot pane.
+:::
+
+::: {.column width="48%"}
+#### Point It at Your R
+
+* `R: Select R interpreter` → choose your R
+* Type in the **R Terminal**, `Ctrl + Enter` runs the line — just like RStudio's console.
+* Shell: `code analysis.R` · headless: `Rscript analysis.R`
+:::
+::::
+
+::: {.callout-tip}
+### 🤝 Either Editor Is Fine
+RStudio is all-in-one; VS Code wins when you work across languages. Both run the exact same R.
+:::
+
+---
+
+::: {.section-tag}
+🛠️ How to Install R?
+:::
+
+### R in Google Colab - Skip Installation Entirely!
+
+[Google Colab](https://colab.research.google.com) runs **R on Google's servers in your browser** — nothing to install, and the notebook lives in your Drive.
+
+* Open an R notebook at **[colab.to/r](https://colab.to/r)**, or set `Runtime → Change runtime type → R`
+* Type code in a **code cell**, then press **`Ctrl + Enter`** (`Cmd + Enter` on Mac)
+* Missing a package? Install it once, then load it:
+
+```r
+# 1. Install (once per session)
+install.packages("ggplot2")
+
+# 2. Load it so your code can use it
+library(ggplot2)
+```
+
+::: {.callout-important}
+### ⚠️ Colab Is Not Persistent
+Colab runs on a temporary server — when the session disconnects or goes idle it is wiped clean, and every installed package and uploaded file disappears. Save anything you want to keep to your Drive before you close the tab.
+:::
+
+---
+
+## 📋 1. Syntax, Comments & Output
 
 :::: {.columns}
 
@@ -199,7 +382,9 @@ Source: [benwhalley.github.io](https://benwhalley.github.io/just-enough-r/layere
 
 ---
 
-## 1. Syntax, Comments & Output
+::: {.section-tag}
+1. Syntax, Comments & Output
+:::
 ### Hello World! 🌏
 
 In R, code executes sequentially from top to bottom.
@@ -216,7 +401,9 @@ print("Hello, Transcriptomics!")
 
 ---
 
-## 1. Syntax, Comments & Output
+::: {.section-tag}
+1. Syntax, Comments & Output
+:::
 ### Let's do some math! 🔢
 
 In R, bare expressions evaluate and print their result automatically.
@@ -231,7 +418,9 @@ You do not need to wrap math inside `print()`.
 
 ---
 
-## 1. Syntax, Comments & Output
+::: {.section-tag}
+1. Syntax, Comments & Output
+:::
 ### Displaying Values with `print()` 🖨️
 
 Use `print()` to display text messages and numeric values to the console:
@@ -248,7 +437,9 @@ Notice that `print()` outputs `[1]` before the value. This indicates that the ou
 
 ---
 
-## 1. Syntax, Comments & Output
+::: {.section-tag}
+1. Syntax, Comments & Output
+:::
 ### Uh oh! ⁉️ Mistakes Happen... A LOT!
 
 
@@ -268,20 +459,28 @@ Press **`Escape`** or **`Ctrl + C`** to cancel and recover your prompt `>`!
 
 ---
 
-## 1. Syntax, Comments & Output
+::: {.section-tag}
+1. Syntax, Comments & Output
+:::
 ### ✍️ Exercise 1.1: Spot Count Check
 
-### Your Turn!
+::: {.slide-kicker}
+Your Turn!
+:::
 1. Write a comment with your name and today's date.
 2. Print the message: `"Preprocessing..."`
 3. Calculate the total spots on a slide by adding `4992 + 1200` using `print()`.
 
 ---
 
-## 1. Syntax, Comments & Output
-### ✍️ Exercise 1.1: Spot Count Check
+::: {.section-tag}
+1. Syntax, Comments & Output
+:::
+### ✅ Exercise 1.1: Spot Count Check
 
-### Solution:
+::: {.slide-kicker}
+Solution:
+:::
 
 ```{webr-r}
 print("Preprocessing...")
@@ -294,7 +493,7 @@ In 10x Visium, each standard capture area contains exactly **4,992** barcoded sp
 
 ---
 
-## 📋 Table of Contents
+## 📋 2. Variables & The Assignment Operator (`<-`)
 
 :::: {.columns}
 
@@ -316,7 +515,9 @@ In 10x Visium, each standard capture area contains exactly **4,992** barcoded sp
 
 ---
 
-## 2. Variables & The Assignment Operator (`<-`)
+::: {.section-tag}
+2. Variables & The Assignment Operator (&lt;-)
+:::
 ### Named Storage Containers in Memory
 
 A **variable** is a named storage container in your computer's memory.
@@ -338,7 +539,9 @@ While `=` works, R and Bioconductor standards strictly recommend **`<-`** for va
 
 ---
 
-## 2. Variables & The Assignment Operator (`<-`)
+::: {.section-tag}
+2. Variables & The Assignment Operator (&lt;-)
+:::
 ### Rules for Variable Names
 
 :::: {.columns}
@@ -365,7 +568,9 @@ While `=` works, R and Bioconductor standards strictly recommend **`<-`** for va
 
 ---
 
-## 2. Variables & The Assignment Operator (`<-`)
+::: {.section-tag}
+2. Variables & The Assignment Operator (&lt;-)
+:::
 ### 🔍 Spot the Error!
 
 ```{webr-r}
@@ -374,8 +579,10 @@ project-id <- "V1"
 
 ---
 
-## 2. Variables & The Assignment Operator (`<-`)
-### 🔍 Spot the Error!
+::: {.section-tag}
+2. Variables & The Assignment Operator (&lt;-)
+:::
+### ✅ Solution: Hyphens in names
 
 ```{webr-r}
 # FIX: Use an underscore '_' instead of a hyphen '-'
@@ -386,13 +593,15 @@ print(project_id)
 ```
 
 ::: {.callout-note}
-### 💡 Why this works
+### 💡 Why underscores work
 R variable names cannot contain math operators like `-`. Use `snake_case` instead.
 :::
 
 ---
 
-## 2. Variables & The Assignment Operator (`<-`)
+::: {.section-tag}
+2. Variables & The Assignment Operator (&lt;-)
+:::
 ### 🔍 Spot the Error!
 
 ```{webr-r}
@@ -401,8 +610,10 @@ R variable names cannot contain math operators like `-`. Use `snake_case` instea
 
 ---
 
-## 2. Variables & The Assignment Operator (`<-`)
-### 🔍 Spot the Error!
+::: {.section-tag}
+2. Variables & The Assignment Operator (&lt;-)
+:::
+### ✅ Solution: Leading digits
 
 ```{webr-r}
 # FIX: Start with a letter instead of a number
@@ -413,15 +624,16 @@ print(sample_1)
 ```
 
 ::: {.callout-note}
-### 💡 Why this works
+### 💡 Why names must start with a letter
 R requires variable names to begin with an alphabetic letter.
 :::
 
 ---
 
-## 2. Variables & The Assignment Operator (`<-`)
+::: {.section-tag}
+2. Variables & The Assignment Operator (&lt;-)
+:::
 ### 🔍 Spot the Error!
-
 ```{webr-r}
 target_gene <- "EPCAM"
 
@@ -430,8 +642,10 @@ print(Target_gene)
 
 ---
 
-## 2. Variables & The Assignment Operator (`<-`)
-### 🔍 Spot the Error!
+::: {.section-tag}
+2. Variables & The Assignment Operator (&lt;-)
+:::
+### ✅ Solution: Variables are Case-sensitive
 
 ```{webr-r}
 # FIX: Match the exact casing (R is case-sensitive!)
@@ -442,13 +656,15 @@ print(target_gene)
 ```
 
 ::: {.callout-note}
-### 💡 Why this works
+### 💡 Why casing matters
 `target_gene` and `Target_gene` refer to two completely different memory locations!
 :::
 
 ---
 
-## 2. Variables & The Assignment Operator (`<-`)
+::: {.section-tag}
+2. Variables & The Assignment Operator (&lt;-)
+:::
 ### Use `snake_case` for Readability
 
 In standard bioinformatics and tidy R workflows, use **`snake_case`** (all lowercase words separated by underscores):
@@ -467,10 +683,14 @@ Using lowercase with underscores avoids accidental typos, prevents case-sensitiv
 
 ---
 
-## 2. Variables & The Assignment Operator (`<-`)
+::: {.section-tag}
+2. Variables & The Assignment Operator (&lt;-)
+:::
 ### ✍️ Exercise 1.2: Calculating Background Spots
 
-### Your Turn!
+::: {.slide-kicker}
+Your Turn!
+:::
 1. A 10x Visium slide has `4992` total capture spots. Assign this number to a variable named `total_spots`.
 2. Microscope imaging reveals that `3820` spots are covered by tissue. Assign this to `tissue_spots`.
 3. Calculate the number of background (empty) spots and store it in `background_spots`.
@@ -478,10 +698,14 @@ Using lowercase with underscores avoids accidental typos, prevents case-sensitiv
 
 ---
 
-## 2. Variables & The Assignment Operator (`<-`)
-### ✍️ Exercise 1.2: Calculating Background Spots
+::: {.section-tag}
+2. Variables & The Assignment Operator (&lt;-)
+:::
+### ✅ Exercise 1.2: Calculating Background Spots
 
-### Solution:
+::: {.slide-kicker}
+Solution:
+:::
 
 ```{webr-r}
 total_spots  <- 4992
@@ -499,7 +723,7 @@ In spatial analysis, tissue spots capture cellular mRNA, while background spots 
 
 ---
 
-## 📋 Table of Contents
+## 📋 3. Core Data Types & Values
 
 :::: {.columns}
 
@@ -521,7 +745,9 @@ In spatial analysis, tissue spots capture cellular mRNA, while background spots 
 
 ---
 
-## 3. Core Data Types & Values
+::: {.section-tag}
+3. Core Data Types & Values
+:::
 
 Every piece of data in R belongs to a specific atomic type:
 
@@ -538,7 +764,9 @@ In R, numbers default to `numeric` (double). To explicitly store an integer (e.g
 
 ---
 
-## 3. Core Data Types & Values
+::: {.section-tag}
+3. Core Data Types & Values
+:::
 
 Inspect any variable with `typeof()` or `class()`:
 
@@ -557,7 +785,9 @@ class(vector)
 
 ---
 
-## 3. Core Data Types & Values
+::: {.section-tag}
+3. Core Data Types & Values
+:::
 ### 🧬 Bioinformatics Pitfall: Type Coercion
 
 Vectors can hold only **one** type! If you mix types, R silently coerces everything to the most flexible type (**character**):
@@ -577,7 +807,9 @@ Because `"NA"` is text, R converted all numbers into character strings (`"120"`,
 
 ---
 
-## 3. Core Data Types & Values
+::: {.section-tag}
+3. Core Data Types & Values
+:::
 ### ⚠️ Special Values: `NA` (Not Available)
 
 * **`NA`** represents missing data, unmeasured spots, or biological dropouts.
@@ -599,7 +831,9 @@ is.na(spot_read_count)
 
 ---
 
-## 3. Core Data Types & Values
+::: {.section-tag}
+3. Core Data Types & Values
+:::
 ### ⚠️ Special Values: `NaN` (Not a Number)
 
 * **`NaN`** stands for **"Not a Number"**.
@@ -620,7 +854,9 @@ In single-cell normalization, dividing a gene count of 0 by an empty spot's libr
 
 ---
 
-## 3. Core Data Types & Values
+::: {.section-tag}
+3. Core Data Types & Values
+:::
 ### ⚠️ Special Values: `Inf` & `-Inf` (Infinity)
 
 * **`Inf`** and **`-Inf`** represent values exceeding numerical bounds.
@@ -641,7 +877,7 @@ Gene count matrices contain many zeros. Taking $\log_2(0) = -\infty$ crashes sta
 
 ---
 
-## 📋 Table of Contents
+## 📋 4. R Math Functions & Arithmetic Operators
 
 :::: {.columns}
 
@@ -663,7 +899,9 @@ Gene count matrices contain many zeros. Taking $\log_2(0) = -\infty$ crashes sta
 
 ---
 
-## 4. R Math Functions & Arithmetic Operators
+::: {.section-tag}
+4. R Math Functions & Arithmetic Operators
+:::
 ### Standard Math Operators in Genomics
 
 | Operator | Action | Real Genomics Example |
@@ -674,15 +912,17 @@ Gene count matrices contain many zeros. Taking $\log_2(0) = -\infty$ crashes sta
 | `/` | Division | `depth_scale <- 45 / 15000` |
 | `^` | Exponentiation | `fc <- 2^3` (8-fold change) |
 | `%%` | Modulo (remainder) | `batch_rem <- 10 %% 3` (1) |
-| `%/%` | Integer division | `cohort_grp <- 10 %/% 3` (3) |
+| `%/%` | Floor division | `cohort_grp <- 10 %/% 3` (3) |
 
 ::: {.callout-note}
-In R, `%%` returns the remainder (e.g. testing for even/odd samples), while `%/%` performs integer division discarding fractions.
+In R, `%%` returns the remainder (e.g. testing for even/odd samples), while `%/%` performs floor division, discarding the fractional part.
 :::
 
 ---
 
-## 4. R Math Functions & Arithmetic Operators
+::: {.section-tag}
+4. R Math Functions & Arithmetic Operators
+:::
 
 1. Square root:
 ```{webr-r}
@@ -698,7 +938,9 @@ ceiling(12.1)
 
 ---
 
-## 4. R Math Functions & Arithmetic Operators
+::: {.section-tag}
+4. R Math Functions & Arithmetic Operators
+:::
 
 3. Logarithms (base 2 for fold change):
 ```{webr-r}
@@ -711,7 +953,9 @@ In transcriptomics, $\log_2$ is standard because a 1-unit increase represents a 
 
 ---
 
-## 4. R Math Functions & Arithmetic Operators
+::: {.section-tag}
+4. R Math Functions & Arithmetic Operators
+:::
 ### The Problem: Sequencing Depth Differences
 
 ```r
@@ -730,7 +974,9 @@ Which gene is actually expressed at a **higher relative rate**?
 
 ---
 
-## 4. R Math Functions & Arithmetic Operators
+::: {.section-tag}
+4. R Math Functions & Arithmetic Operators
+:::
 ### The Solution: Counts Per Million (CPM)
 
 $$\text{CPM} = \left( \frac{\text{Gene Read Count}}{\text{Total Library Size}} \right) \times 10^6$$
@@ -766,7 +1012,7 @@ Although Spot A has more reads (450 vs 200), Spot B actually expresses the gene 
 
 ---
 
-## 📋 Table of Contents
+## 📋 5. Strings & Escape Characters
 
 :::: {.columns}
 
@@ -788,7 +1034,9 @@ Although Spot A has more reads (450 vs 200), Spot B actually expresses the gene 
 
 ---
 
-## 5. Strings & Escape Characters
+::: {.section-tag}
+5. Strings & Escape Characters
+:::
 ### Single vs. Double Quotes
 
 A **string** stores text data. In R, strings can be created using matching double (`"`) or single (`'`) quotes:
@@ -824,7 +1072,9 @@ Never mix opening and closing types (e.g., `"text'` will throw a syntax error)!
 
 ---
 
-## 5. Strings & Escape Characters
+::: {.section-tag}
+5. Strings & Escape Characters
+:::
 ### Quotes Inside Quotes
 
 What happens when your text itself contains quotation marks or apostrophes?
@@ -860,7 +1110,9 @@ If you don't use the opposite quote type, R gets confused about where the string
 
 ---
 
-## 5. Strings & Escape Characters
+::: {.section-tag}
+5. Strings & Escape Characters
+:::
 ### Concatenations! 😺
 
 To print clean sentences and combine text smoothly with variables, R provides **`cat()`** (short for con-**cat**-enate):
@@ -893,7 +1145,9 @@ Notice that `"\n"` at the end? That is an **escape character**! Let's explore wh
 
 ---
 
-## 5. Strings & Escape Characters
+::: {.section-tag}
+5. Strings & Escape Characters
+:::
 ### Escape Characters (`\n`, `\t`, `\"`)
 
 The backslash **`\`** is a special signal in R that modifies the character following it:
@@ -932,7 +1186,9 @@ Because `cat()` interprets escape sequences, `\"` renders as real quotes on scre
 
 ---
 
-## 5. Strings & Escape Characters
+::: {.section-tag}
+5. Strings & Escape Characters
+:::
 ### 🔍 Trivia
 
 :::: {.columns}
@@ -953,7 +1209,9 @@ print(count_file)
 
 ---
 
-## 5. Strings & Escape Characters
+::: {.section-tag}
+5. Strings & Escape Characters
+:::
 ### 🔍 The Windows Path Trap — Solution
 
 :::: {.columns}
@@ -984,7 +1242,7 @@ cat("Loading matrix from:", count_file, "\n")
 
 ---
 
-## 📋 Table of Contents
+## 📋 6. R Operators
 
 :::: {.columns}
 
@@ -1006,7 +1264,9 @@ cat("Loading matrix from:", count_file, "\n")
 
 ---
 
-## 6. R Operators
+::: {.section-tag}
+6. R Operators
+:::
 ### Comparison Operators
 
 Comparison operators test relationships between values. The result is always a **`logical`** (`TRUE` or `FALSE`).
@@ -1046,7 +1306,9 @@ spot_region != "Stroma"
 
 ---
 
-## 6. R Operators
+::: {.section-tag}
+6. R Operators
+:::
 ### Logical AND (`&`)
 
 Returns `TRUE` **only if both** conditions are `TRUE`.
@@ -1091,7 +1353,9 @@ Use parentheses `(...)` around each comparison to keep compound logic clear.
 
 ---
 
-## 6. R Operators
+::: {.section-tag}
+6. R Operators
+:::
 ### Logical OR (`|`)
 
 Returns `TRUE` if **at least one** condition is `TRUE`.
@@ -1129,7 +1393,9 @@ cat("Flagged for review:", flag_spot, "\n")
 
 ---
 
-## 6. R Operators
+::: {.section-tag}
+6. R Operators
+:::
 ### Logical NOT (`!`)
 
 Inverts any truth value (`TRUE` $\rightarrow$ `FALSE`, `FALSE` $\rightarrow$ `TRUE`).
@@ -1165,7 +1431,9 @@ cat("Valid for analysis:", is_valid, "\n")
 
 ---
 
-## 6. R Operators
+::: {.section-tag}
+6. R Operators
+:::
 ### 🔍 Practice: Spot Quality Filter
 
 :::: {.columns}
@@ -1201,8 +1469,10 @@ cat("Retain spot for clustering?", keep_spot, "\n")
 
 ---
 
-## 6. R Operators
-### 🔍 Practice: Solution
+::: {.section-tag}
+6. R Operators
+:::
+### ✅ Solution — Spot Quality Filter
 
 :::: {.columns}
 
@@ -1241,7 +1511,7 @@ In R, you cannot write `500 <= gene_count <= 2500`. You must write two separate 
 
 ---
 
-## 📋 Table of Contents
+## 📋 7. Control Flow (If...Else, Loops)
 
 :::: {.columns}
 
@@ -1263,7 +1533,9 @@ In R, you cannot write `500 <= gene_count <= 2500`. You must write two separate 
 
 ---
 
-## 7. Control Flow (If...Else, Loops)
+::: {.section-tag}
+7. Control Flow (If...Else, Loops)
+:::
 ### Conditional Branching (`if...else`)
 
 :::: {.columns}
@@ -1297,7 +1569,9 @@ if (reads >= 500) {
 
 ---
 
-## 7. Control Flow (If...Else, Loops)
+::: {.section-tag}
+7. Control Flow (If...Else, Loops)
+:::
 
 :::: {.columns}
 
@@ -1330,7 +1604,9 @@ if (expression_val > 500) {
 
 ---
 
-## 7. Control Flow (If...Else, Loops)
+::: {.section-tag}
+7. Control Flow (If...Else, Loops)
+:::
 ### `for` Loops (Iterating Vectors)
 
 A `for` loop executes a block of code once for each element in a vector:
@@ -1360,7 +1636,9 @@ for (gene in marker_genes) {
 
 ---
 
-## 7. Control Flow (If...Else, Loops)
+::: {.section-tag}
+7. Control Flow (If...Else, Loops)
+:::
 ### Skip with `next`
 
 :::: {.columns}
@@ -1393,7 +1671,9 @@ for (cnt in counts) {
 
 ---
 
-## 7. Control Flow (If...Else, Loops)
+::: {.section-tag}
+7. Control Flow (If...Else, Loops)
+:::
 ### Take a `break`!
 
 :::: {.columns}
@@ -1427,7 +1707,9 @@ for (cnt in counts) {
 
 ---
 
-## 7. Control Flow (If...Else, Loops)
+::: {.section-tag}
+7. Control Flow (If...Else, Loops)
+:::
 ### `while` TRUE?
 
 Repeats code block as long as a condition stays `TRUE`:
@@ -1465,7 +1747,9 @@ print("Loop finished!")
 
 ---
 
-## 7. Control Flow (If...Else, Loops)
+::: {.section-tag}
+7. Control Flow (If...Else, Loops)
+:::
 ### 🔍 Practice: Filter & Tier Spots
 
 :::: {.columns}
@@ -1501,8 +1785,10 @@ for (cnt in spot_counts) {
 
 ---
 
-## 7. Control Flow (If...Else, Loops)
-### 🔍 Practice: Solution
+::: {.section-tag}
+7. Control Flow (If...Else, Loops)
+:::
+### ✅ Solution — Filter and Tier Spots
 
 :::: {.columns}
 
@@ -1543,7 +1829,7 @@ for (cnt in spot_counts) {
 
 ---
 
-## 📋 Table of Contents
+## 📋 8. Practice Exercises
 
 :::: {.columns}
 
@@ -1565,7 +1851,9 @@ for (cnt in spot_counts) {
 
 ---
 
-## 8. Practice Exercises
+::: {.section-tag}
+8. Practice Exercises
+:::
 ### 🧑‍💻 Hands-on!
 
 ::: {.callout-tip}

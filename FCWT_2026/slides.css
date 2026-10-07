@@ -43,3 +43,33 @@
   line-height: 1.4;
 }
 
+/* Non-heading labels.
+   Chrome's presentation view builds its outline from every h1-h6 on the
+   page, so repeating `##` on every slide filled the navigation pane with
+   duplicates. Section names are now `.section-tag` labels on continuation
+   slides; only the first slide of each section keeps its `##` heading. */
+.reveal .section-tag,
+.reveal .slide-kicker {
+  font-size: 0.72em;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #98a3c7;
+  margin: 0 0 0.35em 0;
+}
+
+/* Divider slides that hold nothing but an `##` heading: centre the heading
+   vertically inside the slide, keep it left aligned. `:has()` matches only
+   sections whose single child is the h2, so content slides are untouched. */
+.reveal .slides > section:has(> h2:only-child),
+.reveal .slides > section > section:has(> h2:only-child) {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  height: 100% !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  text-align: left;
+}
+
