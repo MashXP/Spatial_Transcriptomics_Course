@@ -233,16 +233,15 @@ Source: [benwhalley.github.io](https://benwhalley.github.io/just-enough-r/layere
 🛠️ How to Install R?
 :::
 
-### 4 Ways to Get R Running
+### 3 Ways to Get R Running
 
 * **1. Local install** — R from **CRAN** + **RStudio Desktop** on your own machine
 * **2. Google Colab** — R on Google's servers, nothing to install: [colab.to/r](https://colab.to/r)
 * **3. Micromamba** — a reproducible `environment.yml` toolbox (our course standard)
-* **4. Posit Cloud** — hosted RStudio in your browser, nothing to install
 
 ::: {.callout-tip}
 ### 🎯 Pick one for today
-Any of the four runs the exact same R. Start with the easiest, add the others when you need them.
+Any of these allows you to run the exact same R. Start with the easiest, add the others when you need them.
 :::
 
 ---
@@ -310,11 +309,18 @@ An unsaved script is lost forever — use `File → Save` (`Ctrl/Cmd + S`) after
 :::: {.columns}
 
 ::: {.column width="48%"}
-#### Install & Extend
+#### Install on Ubuntu
 
-* Download → [code.visualstudio.com](https://code.visualstudio.com)
-* Extensions (`Ctrl/Cmd + Shift + X`):
-  * **R** (by *Posit*) → REPL, highlighting, debugger, plot pane.
+```bash
+# Easiest — snap:
+sudo snap install code --classic
+
+# Or grab the .deb from code.visualstudio.com, then:
+sudo apt install ./code_*.deb
+```
+
+* Extensions (`Ctrl/Cmd + Shift + X`) → **R Extension** by *REditorSupport*: REPL, highlighting, debugger, plot pane.
+  * Or from the terminal: `code --install-extension REditorSupport.r`
 :::
 
 ::: {.column width="48%"}
