@@ -187,7 +187,7 @@ micromamba run -n spatial_basics R -e 'IRkernel::installspec(user = TRUE)'
 micromamba activate spatial_basics
 
 # 3. Update an existing environment when you add new packages to environment.yaml
-micromamba update -n spatial_basics -f environment.yaml --prune
+micromamba env update -n spatial_basics -f environment.yaml --prune
 
 # 4. Leave (deactivate) your toolbox when you are done
 micromamba deactivate

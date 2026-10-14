@@ -24,9 +24,11 @@ dependencies:
   - jupyter_core              # Core Jupyter filesystem and spec utilities
   - r-knitr                   # Dynamic report generation and Quarto engine
   - r-rmarkdown               # R Markdown document conversion
+  - matplotlib                # Python plotting for course figures (scratch/ scripts)
 
-  # # Course Module Dependencies
-  # - r-here                    # Path resolution (Module 5: Project Structure)
+  # Course Module Dependencies
+  - r-tibble                  # Enhanced modern data frames (Module 1b)
+  - r-here                    # Path resolution (Module 5: Project Structure)
   # - r-data.table              # High-performance biological table I/O (Module 1b)
   # - r-reshape2                # Wide-to-long table reshaping (Module 1c)
   # - r-ggplot2                 # Publication-grade data visualization (Module 1c)
