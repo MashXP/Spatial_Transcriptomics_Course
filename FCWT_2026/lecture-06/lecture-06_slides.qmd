@@ -19,8 +19,19 @@ engine: knitr
 execute:
   echo: true
   eval: false
+# agenda.lua (one level up, shared by every lecture) turns each
+# ::: {.agenda data-section="N"} ::: into the list above.
+sections:
+  - R Data Structures
+  - Reading, Writing & Merging Files
+  - Vectorization & the apply Family
+  - Strings & Regular Expressions
+  - Cleaning Missing Data (NA)
+  - Custom Functions
+  - Practice Exercises
 filters:
   - webr
+  - ../agenda.lua
 # WebR configuration v3
 webr:
   show-startup-message: false
@@ -337,28 +348,10 @@ You have the count matrix. It is not yet *useful* information:
 
 ## 📋 1. R Data Structures
 
-:::: {.columns}
-
-::: {.column width="50%"}
-* **1. R Data Structures**
-* 2. Vectorization & the apply Family
-* 3. Reading, Writing & Merging Files
-* 4. Strings & Regular Expressions
+::: {.agenda data-section="1"}
 :::
-
-::: {.column width="50%"}
-* 5. Cleaning Missing Data (NA)
-* 6. Custom Functions
-* 7. Practice Exercises
-:::
-
-::::
 
 ---
-
-::: {.section-tag}
-1. R Data Structures
-:::
 
 ### The Family Tree
 
@@ -374,10 +367,6 @@ Vectors and data frames every single day. Matrices for count matrices and images
 :::
 
 ---
-
-::: {.section-tag}
-1. R Data Structures
-:::
 
 ### Vectors — Same Type, One Dimension
 
@@ -398,11 +387,8 @@ vals
 
 ::::
 
----
 
-::: {.section-tag}
-1. R Data Structures
-:::
+---
 
 ### Vectors — Same Type, One Dimension
 
@@ -428,11 +414,8 @@ rep(1, 10) # repeat 1 ten times
 Once a vector exists, every function in R expects one. `mean()`, `sum()`, `length()` all take vectors.
 :::
 
----
 
-::: {.section-tag}
-1. R Data Structures
-:::
+---
 
 ### Subsetting Vectors
 
@@ -461,11 +444,8 @@ gene_reads[-2]    # negative index REMOVES element 2
 `gene_reads[gene_reads > 500]` keeps only the highly expressed genes — the R version of filtering a column in Excel. Index `0` does not exist, so the first element is `[1]`, never `[0]`.
 :::
 
----
 
-::: {.section-tag}
-1. R Data Structures
-:::
+---
 
 ### Matrices — Same Type, Two Dimensions
 
@@ -501,11 +481,8 @@ count_mat[1, 2]     # Row 1 (Gene 1), Col 2 (Cohort 2)
 
 ::::
 
----
 
-::: {.section-tag}
-1. R Data Structures
-:::
+---
 
 ### Naming Rows and Columns
 
@@ -531,11 +508,8 @@ count_mat["EPCAM", ]     # Entire 'EPCAM' row across all cohorts
 Labelled matrices print like a real annotation table — always name them before you show anyone your numbers.
 :::
 
----
 
-::: {.section-tag}
-1. R Data Structures
-:::
+---
 
 ### Arrays — Matrices Stacked
 
@@ -570,11 +544,8 @@ layers[1, 2, 1]   # Row 1, Col 2, Slice 1
 
 ::::
 
----
 
-::: {.section-tag}
-1. R Data Structures
-:::
+---
 
 ### Lists — A Box of Anything
 
@@ -611,11 +582,8 @@ spot["qc_pass"]     # Extracts a sublist
 
 ::::
 
----
 
-::: {.section-tag}
-1. R Data Structures
-:::
+---
 
 ### Data Frames — The Workhorse
 
@@ -647,11 +615,8 @@ spots
 
 ::::
 
----
 
-::: {.section-tag}
-1. R Data Structures
-:::
+---
 
 ### Getting Oriented in a Data Frame
 
@@ -678,11 +643,8 @@ str(spots)           # Structure: types + preview of values
 Run `head()`, `dim()`, `str()` on **every** dataset you meet. Ninety seconds here saves an hour of confused errors later.
 :::
 
----
 
-::: {.section-tag}
-1. R Data Structures
-:::
+---
 
 ### Subsetting Data Frames
 
@@ -777,31 +739,89 @@ my_spots
 ---
 
 ::: {.section-tag}
-1. R Data Structures · Checkpoint
+1. R Data Structures · Exercise
 :::
 
-### ✍️ Checkpoint 1: What Shape Is `counts`?
+### ✍️ Exercise 6.1: What Kind of Object Should This Table Be?
 
-```r
-counts <- read.delim("counts/counts.tsv", row.names = 1)
-```
+Four genes, three samples:
 
-What does `dim(counts)` give you?
+| gene_id | S1 | S2 | S3 |
+|:---|---:|---:|---:|
+| gene_A | 2 | 3 | 1 |
+| gene_B | 0 | 45 | 12 |
+| gene_C | 310 | 85 | 0 |
+| gene_D | 89 | 12 | 640 |
 
-* a) `12 39376`
-* b) `39376 12`
-* c) `1 12`
-* d) `39376 18`
+Two data types live here: gene IDs (**text**) and read counts (**numbers**).
+
+* a) Vector
+* b) Matrix
+* c) Array
+* d) List
+* e) Data frame
 
 ---
 
 ::: {.section-tag}
-1. R Data Structures · Checkpoint
+1. R Data Structures · Exercise
 :::
 
-### ✅ Checkpoint 1 — Solutions
+### ✅ Exercise 6.1: What Kind of Object Should This Table Be?
 
-**b) `39376 12`**
+**e) Data frame** — the only structure that is both rectangular *and* lets each column keep its own type.
+
+```r
+counts <- data.frame(
+  gene_id = c("gene_A", "gene_B", "gene_C", "gene_D"),
+  S1 = c(2, 0, 310, 89),
+  S2 = c(3, 45, 85, 12),
+  S3 = c(1, 12, 0, 640),
+  row.names = 1
+)
+```
+
+| Structure | Why it fails |
+|:---|:---|
+| a) Vector | One long line. No rows, no columns, no way to ask for "S1". |
+| b) Matrix | One type for everything. The `gene_id` column is text. |
+| c) Array | Same one-type rule, plus a third dimension this table does not have. |
+| d) List | Holds anything, but has no row/column order — `tbl[, 1]` means nothing. |
+
+---
+
+::: {.section-tag}
+1. R Data Structures · Exercise
+:::
+
+### ✍️ Exercise 6.2: What Shape Is `counts`?
+
+```r
+counts <- data.frame(
+  gene_id = c("gene_A", "gene_B", "gene_C", "gene_D"),
+  S1 = c(2, 0, 310, 89),
+  S2 = c(3, 45, 85, 12),
+  S3 = c(1, 12, 0, 640),
+  row.names = 1
+)
+```
+
+What does `dim(counts)` give you?
+
+* a) `3 4`
+* b) `4 3`
+* c) `1 3`
+* d) `4 4`
+
+---
+
+::: {.section-tag}
+1. R Data Structures · Exercise
+:::
+
+### ✅ Exercise 6.2: What Shape Is `counts`?
+
+**b) `4 3`**
 
 `dim()` is always **rows, then columns**.
 
@@ -809,251 +829,62 @@ What does `dim(counts)` give you?
 * **Columns = samples**, running across the top
 
 ```r
-dim(counts)              # 39376 12
-head(rownames(counts))   # "100287102" "653635" "102466751" ...
+dim(counts)              # 4 3
+head(rownames(counts))   # "gene_A" "gene_B" "gene_C" ...
 ```
 
 ::: {.callout-note}
 ### 🧬 Rows Are the Genes
-The gene IDs became **row labels**, not a column — that is what `row.names = 1` did. Without it you would have 13 columns and `39376 13`.
+The gene IDs became **row labels**, not a column — that is what `row.names = 1` did. Without it you would have 4 columns and `4 4`.
 :::
 
 ---
 
 ::: {.section-tag}
-1. R Data Structures · Checkpoint
+1. R Data Structures · Exercise
 :::
 
-### ✍️ Checkpoint 2: Pull One Sample
+### ✍️ Exercise 6.3: Pull One Sample
 
-You want the read counts for `GSM3702795` only, as a **vector**.
+You want the read counts for `S1` only, as a **vector**.
 
 * a) `counts[1, ]`
-* b) `counts[, 1]`
-* c) `counts[1]`
-* d) `counts$GSM3702795`
+* b) `counts$S1`
+* c) `counts[S1]`
+* d) `counts["S1"]`
 
 ---
 
 ::: {.section-tag}
-1. R Data Structures · Checkpoint
+1. R Data Structures · Exercise
 :::
 
-### ✅ Checkpoint 2 — Solutions
+### ✅ Exercise 6.3: Pull One Sample
 
-**b) `counts[, 1]`** — the comma means "rows, columns", so leaving the first slot empty takes **all** rows.
+**b) `counts$S1`** — `$` pulls the column out by name and hands you the bare values.
 
 ```r
-counts[, 1]      # all 39376 genes, that one sample
+counts$S1        # 2 0 310 89 — all 4 genes, that one sample
 ```
 
 | Option | Why not |
 |:---|:---|
-| a) `counts[1, ]` | one **gene**, all 12 samples — the wrong way round |
-| c) `counts[1]` | a **1×12 sub-matrix**, still a matrix — not a vector |
-| d) `counts$GSM3702795` | `$` needs a **data frame**; `counts` is a matrix |
-
----
-
-## 📋 2. Vectorization & the apply Family
-
-:::: {.columns}
-
-::: {.column width="50%"}
-* 1. R Data Structures
-* **2. Vectorization & the apply Family**
-* 3. Reading, Writing & Merging Files
-* 4. Strings & Regular Expressions
-:::
-
-::: {.column width="50%"}
-* 5. Cleaning Missing Data (NA)
-* 6. Custom Functions
-* 7. Practice Exercises
-:::
-
-::::
-
----
-
-::: {.section-tag}
-2. Vectorization & the apply Family
-:::
-
-### The Problem: Loops Are Slow
-
-You want the mean expression of every gene across the 12 samples — 39,376 averages.
-
-```{r}
-library(here)
-counts <- read.delim(here("FCWT_2026", "lecture-06", "counts", "counts.tsv"),
-                     row.names = 1)
-
-# A count matrix is all numbers — turn it into one grid, once
-mat <- as.matrix(counts)
-
-# The loop: R's interpreter runs once per gene — 39,376 round trips
-gene_means_loop <- numeric(nrow(mat))
-for (i in seq_len(nrow(mat))) {
-  gene_means_loop[i] <- mean(mat[i, ])
-}
-```
-
-::: {.callout-important}
-### 🧱 `as.matrix()` Is Not Optional
-`read.delim()` hands back a **data frame** — a list of columns, each with its own machinery. One `as.matrix()` at the top turns it into a plain numeric grid, and every later operation gets cheaper.
-
-Skip that line and you are back to `counts[i, ]`: a one-row `data.frame`, for which `mean()` quietly returns `NA`.
-:::
-
----
-
-::: {.section-tag}
-2. Vectorization & the apply Family
-:::
-
-### The Solution: One Operation, Whole Table
-
-The same 39,376 numbers, in one call:
-
-```{r}
-gene_means_fast <- rowMeans(mat)
-
-# Identical values — the loop's vector had no names, this one does
-identical(unname(gene_means_loop), unname(gene_means_fast))   # TRUE
-
-head(gene_means_fast, 3)
-head(names(gene_means_fast), 3)   # "100287102" "653635" "102466751" — free gene labels
-```
-
-On this matrix that is **0.1 s → 0.001 s**. The rest of the family was already there:
-
-```{r}
-rowSums(mat)     # total reads per gene
-colMeans(mat)    # mean expression per sample
-range(mat)       # smallest and largest count in the whole table
-```
+| a) `counts[1, ]` | one **gene** (`gene_A`), all 3 samples — the wrong way round |
+| c) `counts[S1]` | `Error: object 'S1' not found` |
+| d) `counts["S1"]` | a **4×1 data frame** — one column, wrapped in a table, not a vector |
 
 ::: {.callout-tip}
-### 🎯 The Rule
-If a function already comes in families — `mean()`, `sum()`, `rowMeans()`, `colSums()` — reach for those first. `apply()` is for when **no** built-in exists.
+### 🧬 Want the Vector? Use `[[ ]]`
+`counts[[1]]` and `counts[["S1"]]` both unwrap to the same thing: `2 0 310 89`.
 :::
 
 ---
 
-::: {.section-tag}
-2. Vectorization & the apply Family
+## 📋 2. Reading, Writing & Merging Files
+
+::: {.agenda data-section="2"}
 :::
-
-### apply(): The Margin Decides Everything
-
-```{webr-r}
-count_matrix <- matrix(1:12, nrow = 3, ncol = 4)
-
-# MARGIN 1 = one value per ROW
-apply(count_matrix, 1, mean)
-
-# MARGIN 2 = one value per COLUMN
-apply(count_matrix, 2, mean)
-```
-
-::: {.callout-important}
-### 📐 Margin = The Axis You Collapse
-* `MARGIN = 1` → R goes **down** the columns, returning one value per **row**
-* `MARGIN = 2` → R goes **across** the rows, returning one value per **column**
-
-Say "down" for 1, "across" for 2, and you will never mix them up again.
-:::
-
 ---
-
-::: {.section-tag}
-2. Vectorization & the apply Family
-:::
-
-### lapply() vs sapply()
-
-```{webr-r}
-umi <- c(4, 9, 16, 25)
-
-# lapply: ALWAYS returns a list
-lapply(umi, sqrt)
-
-# sapply: same work, simplified to a vector when possible
-sapply(umi, sqrt)
-```
-
-::: {.callout-note}
-`lapply()` never surprises you — the shape of the answer always matches the input shape. `sapply()` tries to be prettier and occasionally returns a matrix instead of a vector. When the shape matters, use `lapply()`.
-:::
-
----
-
-::: {.section-tag}
-2. Vectorization & the apply Family
-:::
-
-### tapply(): Summarise by Group
-
-```{webr-r}
-expression <- c(12, 15, 100, 110, 8)
-groups <- factor(c("Control", "Control", "Treated", "Treated", "Control"))
-
-# Mean expression per group, in one line
-tapply(expression, groups, mean)
-tapply(expression, groups, sum)
-```
-
-::: {.callout-tip}
-This single pattern replaces most of your pivot tables: **group a numeric vector by a factor, summarise it**. Differential expression at its core is `tapply` with a test function instead of `mean`.
-:::
-
----
-
-::: {.section-tag}
-2. Vectorization & the apply Family
-:::
-
-### Choosing the Right Tool
-
-| Function | You give it | You get back |
-|:---|:---|:---|
-| `apply` | matrix / data frame + margin | vector or matrix |
-| `lapply` | list / vector | list (always) |
-| `sapply` | list / vector | simplified vector (usually) |
-| `tapply` | vector + grouping factor | vector per group |
-| `colMeans` | matrix | one number per column |
-
-::: {.callout-tip}
-Work top to bottom: check the dedicated function, then `apply`, then `lapply`/`sapply`, then `tapply`.
-:::
-
----
-
-## 📋 3. Reading, Writing & Merging Files
-
-:::: {.columns}
-
-::: {.column width="50%"}
-* 1. R Data Structures
-* 2. Vectorization & the apply Family
-* **3. Reading, Writing & Merging Files**
-* 4. Strings & Regular Expressions
-:::
-
-::: {.column width="50%"}
-* 5. Cleaning Missing Data (NA)
-* 6. Custom Functions
-* 7. Practice Exercises
-:::
-
-::::
-
----
-
-::: {.section-tag}
-3. Reading, Writing & Merging Files
-:::
 
 ### Where Am I?
 
@@ -1069,10 +900,6 @@ setwd("~/projects/spatial")  # move to a project folder
 :::
 
 ---
-
-::: {.section-tag}
-3. Reading, Writing & Merging Files
-:::
 
 ### Paths Are Relative to Where You Stand
 
@@ -1104,10 +931,6 @@ file.exists(f)   # FALSE
 
 ---
 
-::: {.section-tag}
-3. Reading, Writing & Merging Files
-:::
-
 ### The Fix: Anchor to the Project Root
 
 `here()` builds the path from the project root, so the answer stops depending on where you stand:
@@ -1126,10 +949,6 @@ Inside a script, `here::i_am("analysis/code/demo.R")` pins the root explicitly.
 :::
 
 ---
-
-::: {.section-tag}
-3. Reading, Writing & Merging Files
-:::
 
 ### Read: the Real Count Matrix
 
@@ -1153,7 +972,7 @@ The first column holds Entrez gene IDs. With `row.names = 1` that column becomes
 ---
 
 ::: {.section-tag}
-3. Reading, Writing & Merging Files · Extra
+2. Reading, Writing & Merging Files · Extra
 :::
 
 ### Base R Table Readers Compared
@@ -1176,10 +995,6 @@ Base R functions load into memory as standard data frames. For huge single-cell 
 
 ---
 
-::: {.section-tag}
-3. Reading, Writing & Merging Files
-:::
-
 ### Write: Save a Slice to Disk
 
 Export a subset to disk with `write.csv()`:
@@ -1198,10 +1013,6 @@ If set to `FALSE`, row names (gene IDs) are dropped, leaving numbers without gen
 
 ---
 
-::: {.section-tag}
-3. Reading, Writing & Merging Files
-:::
-
 ### The Problem: Opaque Sample IDs
 
 Look at the column headers of your count matrix:
@@ -1216,10 +1027,6 @@ colnames(counts)
 - We need **sample metadata** mapped to these accession IDs.
 
 ---
-
-::: {.section-tag}
-3. Reading, Writing & Merging Files
-:::
 
 ### Create & Save a Sample Metadata Table
 
@@ -1238,10 +1045,6 @@ head(sample_info, 4)
 ```
 
 ---
-
-::: {.section-tag}
-3. Reading, Writing & Merging Files
-:::
 
 ### Merge Metadata with Expression Summaries
 
@@ -1266,10 +1069,6 @@ Base R's `merge()` aligns rows automatically using a shared ID key — no manual
 
 ---
 
-::: {.section-tag}
-3. Reading, Writing & Merging Files
-:::
-
 ### Large Files: Skip read.csv()
 
 ```r
@@ -1291,30 +1090,185 @@ Under ~100 MB: `read.csv()` is fine. Above that: `data.table::fread()`. You will
 
 ---
 
-## 📋 4. Strings & Regular Expressions
+## 📋 3. Vectorization & the apply Family
 
-:::: {.columns}
-
-::: {.column width="50%"}
-* 1. R Data Structures
-* 2. Vectorization & the apply Family
-* 3. Reading, Writing & Merging Files
-* **4. Strings & Regular Expressions**
+::: {.agenda data-section="3"}
 :::
+---
 
-::: {.column width="50%"}
-* 5. Cleaning Missing Data (NA)
-* 6. Custom Functions
-* 7. Practice Exercises
-:::
+### The Problem
 
-::::
+How many genes read **zero** in every sample?
+
+```{r}
+counts <- read.delim("counts/counts.tsv", row.names = 1)
+
+silent_gene <- 0
+for (i in 1:nrow(counts)) {
+  s <- sum(counts[i, ])
+  if (s == 0) {
+    silent_gene <- silent_gene + 1
+  }
+}
+silent_gene   # 10261
+```
 
 ---
 
-::: {.section-tag}
-4. Strings & Regular Expressions
+### The Solution: One Operation, Whole Table
+
+The same 39,376 numbers, in one call:
+
+```{r}
+gene_means_fast <- rowMeans(mat)
+
+# Identical values — the loop's vector had no names, this one does
+identical(unname(gene_means_loop), unname(gene_means_fast))   # TRUE
+
+head(gene_means_fast, 3)
+head(names(gene_means_fast), 3)   # "100287102" "653635" "102466751" — free gene labels
+```
+
+Don't take my word for the speedup — run it. This uses the **same shape** as the real matrix (39,376 genes × 12 samples):
+
+```{webr-r}
+#| autorun: false
+# Be patient: this loop is the slow one, and the browser is slower than RStudio.
+big <- matrix(rep(1:12, 39376), nrow = 39376)
+
+t_loop <- system.time(for (i in seq_len(nrow(big))) mean(big[i, ]))
+t_vec  <- system.time(rowMeans(big))
+
+c(loop = t_loop[["elapsed"]], rowMeans = t_vec[["elapsed"]])
+```
+
+Your absolute numbers will be larger than mine — this is R compiled to WebAssembly, not native R. **The ratio is the point**: one trip, versus 39,376.
+
+The rest of the family was already there:
+
+```{r}
+rowSums(mat)     # total reads per gene
+colMeans(mat)    # mean expression per sample
+range(mat)       # smallest and largest count in the whole table
+```
+
+::: {.callout-tip}
+### 🎯 The Rule
+If a function already comes in families — `mean()`, `sum()`, `rowMeans()`, `colSums()` — reach for those first. `apply()` is for when **no** built-in exists.
 :::
+
+---
+
+### apply(): The Margin Decides Everything
+
+```{webr-r}
+count_matrix <- matrix(1:12, nrow = 3, ncol = 4)
+
+# MARGIN 1 = one value per ROW
+apply(count_matrix, 1, mean)
+
+# MARGIN 2 = one value per COLUMN
+apply(count_matrix, 2, mean)
+```
+
+::: {.callout-important}
+### 📐 Margin = The Axis You Collapse
+* `MARGIN = 1` → R goes **down** the columns, returning one value per **row**
+* `MARGIN = 2` → R goes **across** the rows, returning one value per **column**
+
+Say "down" for 1, "across" for 2, and you will never mix them up again.
+:::
+
+---
+
+### 🎭 `apply()` Is a Loop Wearing a Mask
+
+`apply(X, 1, mean)` slices out each row, calls `mean()` **once per row**, and pastes the answers back together. It is the `for` loop from two slides ago — with better manners.
+
+```{webr-r}
+#| autorun: true
+count_matrix <- matrix(1:12, nrow = 3, ncol = 4)
+
+# Same numbers, two very different journeys
+rowMeans(count_matrix)
+apply(count_matrix, 1, mean)
+```
+
+At three rows you cannot see the cost. Scale up:
+
+```{webr-r}
+#| autorun: false
+big <- matrix(rep(1:12, 20000), nrow = 20000)   # 20,000 genes
+
+c(apply    = system.time(apply(big, 1, mean))[["elapsed"]],
+  rowMeans = system.time(rowMeans(big))[["elapsed"]])
+```
+
+::: {.callout-important}
+### 🕵️ When `apply()` Earns Its Place
+Identical answers, wildly different cost. `rowMeans()` hands the whole grid to compiled C in **one** call; `apply()` walks it in **20,000**.
+
+So `apply()` is the tool for when **no dedicated function exists** — your own function, an unusual margin-dependent statistic. The moment a `row*()` / `col*()` twin exists, take it.
+:::
+
+---
+
+### lapply() vs sapply()
+
+```{webr-r}
+umi <- c(4, 9, 16, 25)
+
+# lapply: ALWAYS returns a list
+lapply(umi, sqrt)
+
+# sapply: same work, simplified to a vector when possible
+sapply(umi, sqrt)
+```
+
+::: {.callout-note}
+`lapply()` never surprises you — the shape of the answer always matches the input shape. `sapply()` tries to be prettier and occasionally returns a matrix instead of a vector. When the shape matters, use `lapply()`.
+:::
+
+---
+
+### tapply(): Summarise by Group
+
+```{webr-r}
+expression <- c(12, 15, 100, 110, 8)
+groups <- factor(c("Control", "Control", "Treated", "Treated", "Control"))
+
+# Mean expression per group, in one line
+tapply(expression, groups, mean)
+tapply(expression, groups, sum)
+```
+
+::: {.callout-tip}
+This single pattern replaces most of your pivot tables: **group a numeric vector by a factor, summarise it**. Differential expression at its core is `tapply` with a test function instead of `mean`.
+:::
+
+---
+
+### Choosing the Right Tool
+
+| Function | You give it | You get back |
+|:---|:---|:---|
+| `apply` | matrix / data frame + margin | vector or matrix |
+| `lapply` | list / vector | list (always) |
+| `sapply` | list / vector | simplified vector (usually) |
+| `tapply` | vector + grouping factor | vector per group |
+| `colMeans` | matrix | one number per column |
+
+::: {.callout-tip}
+Work top to bottom: check the dedicated function, then `apply`, then `lapply`/`sapply`, then `tapply`.
+:::
+
+---
+
+## 📋 4. Strings & Regular Expressions
+
+::: {.agenda data-section="4"}
+:::
+---
 
 ### The Problem: Messy Gene Labels
 
@@ -1334,10 +1288,6 @@ Because the labels are not identical: `"ACTB-mouse"`, `"Actb-mouse"` and `"ACTB"
 
 ---
 
-::: {.section-tag}
-4. Strings & Regular Expressions
-:::
-
 ### grep(): Find the Matches
 
 ```{webr-r}
@@ -1354,10 +1304,6 @@ grep("mouse", genes, invert = TRUE)   # which do NOT match?
 
 ---
 
-::: {.section-tag}
-4. Strings & Regular Expressions
-:::
-
 ### sub() vs gsub(): Replace Text
 
 ```{webr-r}
@@ -1372,10 +1318,6 @@ gsub("-mouse", "", genes)   # replaces EVERY match
 :::
 
 ---
-
-::: {.section-tag}
-4. Strings & Regular Expressions
-:::
 
 ### Case, Length & Slicing
 
@@ -1392,10 +1334,6 @@ Whitespace is invisible and deadly. A label with one trailing space will never m
 :::
 
 ---
-
-::: {.section-tag}
-4. Strings & Regular Expressions
-:::
 
 ### Pattern Cheat Sheet
 
@@ -1422,28 +1360,9 @@ HGNC renamed `MARCH1` and `SEPT1` to `MARCHF1` and `SEPTIN1` precisely because E
 
 ## 📋 5. Cleaning Missing Data (NA)
 
-:::: {.columns}
-
-::: {.column width="50%"}
-* 1. R Data Structures
-* 2. Vectorization & the apply Family
-* 3. Reading, Writing & Merging Files
-* 4. Strings & Regular Expressions
+::: {.agenda data-section="5"}
 :::
-
-::: {.column width="50%"}
-* **5. Cleaning Missing Data (NA)**
-* 6. Custom Functions
-* 7. Practice Exercises
-:::
-
-::::
-
 ---
-
-::: {.section-tag}
-5. Cleaning Missing Data (NA)
-:::
 
 ### Spot the Gap: is.na()
 
@@ -1462,10 +1381,6 @@ Always **count** the missing values per column before deciding what to do with t
 
 ---
 
-::: {.section-tag}
-5. Cleaning Missing Data (NA)
-:::
-
 ### Why mean() Returns NA
 
 ```{webr-r}
@@ -1482,10 +1397,6 @@ R propagates `NA` on purpose: **one unknown value makes the result unknown**. A 
 
 ---
 
-::: {.section-tag}
-5. Cleaning Missing Data (NA)
-:::
-
 ### Three Ways to Handle NA
 
 ```{webr-r}
@@ -1501,10 +1412,6 @@ For a **vector**, 1 and 2 are identical. For a **data frame**, `na.omit(df)` del
 :::
 
 ---
-
-::: {.section-tag}
-5. Cleaning Missing Data (NA)
-:::
 
 ### Replace or Remove?
 
@@ -1526,10 +1433,6 @@ In sequencing, "not detected" and "not present" are different claims. Say which 
 :::
 
 ---
-
-::: {.section-tag}
-5. Cleaning Missing Data (NA)
-:::
 
 ### 🧬 Practice: Clean a QC Table
 
@@ -1558,10 +1461,6 @@ Your Turn!
 
 ---
 
-::: {.section-tag}
-5. Cleaning Missing Data (NA)
-:::
-
 ### ✅ Practice: Clean a QC Table — Solution
 
 ```{webr-r}
@@ -1588,28 +1487,9 @@ qc_filled$mito
 
 ## 📋 6. Custom Functions
 
-:::: {.columns}
-
-::: {.column width="50%"}
-* 1. R Data Structures
-* 2. Vectorization & the apply Family
-* 3. Reading, Writing & Merging Files
-* 4. Strings & Regular Expressions
+::: {.agenda data-section="6"}
 :::
-
-::: {.column width="50%"}
-* 5. Cleaning Missing Data (NA)
-* **6. Custom Functions**
-* 7. Practice Exercises
-:::
-
-::::
-
 ---
-
-::: {.section-tag}
-6. Custom Functions
-:::
 
 ### Anatomy of a Function
 
@@ -1631,10 +1511,6 @@ calc_percentage(1200, 5000)
 :::
 
 ---
-
-::: {.section-tag}
-6. Custom Functions
-:::
 
 ### return() or the Last Line?
 
@@ -1663,10 +1539,6 @@ Write `return()` when the function has more than a couple of steps. Your future 
 
 ---
 
-::: {.section-tag}
-6. Custom Functions
-:::
-
 ### Validate or Stop
 
 ```{webr-r}
@@ -1693,10 +1565,6 @@ A cryptic error ten lines later is expensive. A clear `stop()` at the door tells
 
 ---
 
-::: {.section-tag}
-6. Custom Functions
-:::
-
 ### 🧬 Practice: Wrap Yesterday's CPM
 
 ```{webr-r}
@@ -1719,10 +1587,6 @@ Your Turn!
 3. Use `sapply()` to turn the CPM column into a numeric vector of values.
 
 ---
-
-::: {.section-tag}
-6. Custom Functions
-:::
 
 ### ✅ Practice: Wrap Yesterday's CPM — Solution
 
@@ -1750,28 +1614,9 @@ round(spots$cpm)
 
 ## 📋 7. Practice Exercises
 
-:::: {.columns}
-
-::: {.column width="50%"}
-* 1. R Data Structures
-* 2. Vectorization & the apply Family
-* 3. Reading, Writing & Merging Files
-* 4. Strings & Regular Expressions
+::: {.agenda data-section="7"}
 :::
-
-::: {.column width="50%"}
-* 5. Cleaning Missing Data (NA)
-* 6. Custom Functions
-* **7. Practice Exercises**
-:::
-
-::::
-
 ---
-
-::: {.section-tag}
-7. Practice Exercises
-:::
 
 ### ✍️ Exercise 1: Lists & Double Brackets
 
@@ -1794,10 +1639,6 @@ Your Turn!
 3. How many spots fall below `100` reads?
 
 ---
-
-::: {.section-tag}
-7. Practice Exercises
-:::
 
 ### ✅ Exercise 1: Lists & Double Brackets — Solution
 
@@ -1825,10 +1666,6 @@ counts[counts < 100]
 
 ---
 
-::: {.section-tag}
-7. Practice Exercises
-:::
-
 ### ✍️ Exercise 2: apply() & Missing Data
 
 A gene expression matrix arrived with holes in it:
@@ -1847,10 +1684,6 @@ Your Turn!
 3. Print the column with the highest median.
 
 ---
-
-::: {.section-tag}
-7. Practice Exercises
-:::
 
 ### ✅ Exercise 2: apply() & Missing Data — Solution
 
@@ -1874,10 +1707,6 @@ which.max(col_medians)
 
 ---
 
-::: {.section-tag}
-7. Practice Exercises
-:::
-
 ### ✍️ Exercise 3: Clean the Gene List
 
 ```{webr-r}
@@ -1893,10 +1722,6 @@ Your Turn!
 3. Report how many genes remain and print them.
 
 ---
-
-::: {.section-tag}
-7. Practice Exercises
-:::
 
 ### ✅ Exercise 3: Clean the Gene List — Solution
 
