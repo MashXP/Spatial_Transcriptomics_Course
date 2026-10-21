@@ -975,100 +975,6 @@ The first column holds Entrez gene IDs. With `row.names = 1` that column becomes
 2. Reading, Writing & Merging Files · Extra
 :::
 
-### Base R Table Readers Compared
-
-All `read.*` functions wrap `read.table()`, but differ in default parameters:
-
-::: {.small}
-| Function | `sep` | `header` | `dec` | Use Case |
-|:---|:---:|:---:|:---:|:---|
-| **`read.delim()`** | `\t` (Tab) | `TRUE` | `.` | **TSV count matrices & annotations** |
-| `read.csv()` | `,` (Comma) | `TRUE` | `.` | Standard CSV files (US/UK) |
-| `read.table()` | `""` (Space) | `FALSE` | `.` | Space-separated raw tables |
-| `read.delim2()` / `csv2()` | `\t` / `;` | `TRUE` | `,` | European decimal comma format |
-:::
-
-::: {.callout-note}
-### ⚡ Large Datasets (>100 MB)
-Base R functions load into memory as standard data frames. For huge single-cell matrices, `data.table::fread()` or `readr::read_tsv()` are significantly faster.
-:::
-
----
-
-### Write: Save a Slice to Disk
-
-Export a subset to disk with `write.csv()`:
-
-```r
-small <- head(counts, 5)
-
-# Export with row labels (gene IDs) preserved:
-write.csv(small, "counts_head.csv", row.names = TRUE)
-```
-
-::: {.callout-warning}
-### ⚠️ Keep `row.names = TRUE` (Default)
-If set to `FALSE`, row names (gene IDs) are dropped, leaving numbers without gene identifiers!
-:::
-
----
-
-### The Problem: Opaque Sample IDs
-
-Look at the column headers of your count matrix:
-
-```r
-colnames(counts)
-# [1] "GSM3702795" "GSM3702796" "GSM3702797" "GSM3702798" ...
-```
-
-- GEO accessions (`GSM...`) tell you **nothing** about the biology.
-- Which samples are untreated controls? Which received Apatinib? Which are drug-resistant?
-- We need **sample metadata** mapped to these accession IDs.
-
----
-
-### Create & Save a Sample Metadata Table
-
-Build the lookup mapping and save it to disk with `write.csv()`:
-
-```r
-sample_info <- data.frame(
-  sample_id = colnames(counts),
-  cell_line = rep(c("PC9", "PC9GR"), each = 6),
-  treatment = rep(c("Control", "Apatinib", "Control", "Apatinib"), each = 3)
-)
-
-# Save sample metadata table for your project:
-write.csv(sample_info, "sample_metadata.csv", row.names = FALSE)
-head(sample_info, 4)
-```
-
----
-
-### Merge Metadata with Expression Summaries
-
-Calculate total reads per sample, then link them with `merge()`:
-
-```r
-# Total sequenced reads per sample:
-lib_sizes <- data.frame(
-  sample_id   = colnames(counts),
-  total_reads = colSums(counts)
-)
-
-# Merge metadata with library sizes by matching sample_id:
-sample_summary <- merge(sample_info, lib_sizes, by = "sample_id")
-head(sample_summary, 4)
-```
-
-::: {.callout-tip}
-### 🔑 `merge(x, y, by = "key")`
-Base R's `merge()` aligns rows automatically using a shared ID key — no manual index matching needed!
-:::
-
----
-
 ### Large Files: Skip read.csv()
 
 ```r
@@ -1090,6 +996,519 @@ Under ~100 MB: `read.csv()` is fine. Above that: `data.table::fread()`. You will
 
 ---
 
+::: {.section-tag}
+2. Reading, Writing & Merging Files · Extra
+:::
+
+### Base R Table Readers Compared
+
+All `read.*` functions wrap `read.table()`, but differ in default parameters:
+
+::: {.small}
+| Function | `sep` | `header` | `dec` | Use Case |
+|:---|:---:|:---:|:---:|:---|
+| **`read.delim()`** | `\t` (Tab) | `TRUE` | `.` | **TSV count matrices & annotations** |
+| `read.csv()` | `,` (Comma) | `TRUE` | `.` | Standard CSV files (US/UK) |
+| `read.table()` | `""` (Space) | `FALSE` | `.` | Space-separated raw tables |
+| `read.delim2()` / `csv2()` | `\t` / `;` | `TRUE` | `,` | European decimal comma format |
+:::
+
+::: {.callout-note}
+### ⚡ Large Datasets (>100 MB)
+Base R functions load into memory as standard data frames. For huge single-cell matrices, `data.table::fread()` or `readr::read_tsv()` are significantly faster.
+:::
+
+---
+
+### The Problem: Opaque Sample IDs
+
+Look at the column headers of your count matrix:
+
+```r
+colnames(counts)
+# [1] "GSM3702795" "GSM3702796" "GSM3702797" "GSM3702798" ...
+```
+
+- GEO accessions (`GSM...`) tell you **nothing** about the biology.
+- Which samples are untreated controls? Which received Apatinib? Which are drug-resistant?
+- We need **sample metadata** mapped to these accession IDs.
+
+---
+
+### The Metadata Table — First, on Paper
+
+Before any R: this is the table you need. One row per sample, keyed by the `GSM...` ID.
+
+::::: {.columns}
+
+::: {.column width="50%"}
+
+| sample_id  | cell_line | treatment | replicate |
+|:-----------|:----------|:----------| ---------- |
+| GSM3702795 | PC9       | Control   | 1 |
+| GSM3702796 | PC9       | Control   | 2 |
+| GSM3702797 | PC9       | Control   | 3 |
+| GSM3702798 | PC9       | Apatinib  | 1 |
+| GSM3702799 | PC9       | Apatinib  | 2 |
+| GSM3702800 | PC9       | Apatinib  | 3 |
+
+:::
+
+::: {.column width="50%"}
+
+| sample_id  | cell_line | treatment | replicate |
+|:-----------|:----------|:----------| ---------- |
+| GSM3702801 | PC9GR     | Control   | 1 |
+| GSM3702802 | PC9GR     | Control   | 2 |
+| GSM3702803 | PC9GR     | Control   | 3 |
+| GSM3702804 | PC9GR     | Apatinib  | 1 |
+| GSM3702805 | PC9GR     | Apatinib  | 2 |
+| GSM3702806 | PC9GR     | Apatinib  | 3 |
+
+:::
+
+:::::
+
+---
+
+### Step 1 — The Sample IDs
+
+We will build this table **one column at a time**.
+
+::::: {.columns}
+
+::: {.column width="50%"}
+
+| **sample_id** | cell_line | treatment | replicate |
+|:--------------|:----------|:----------| ---------- |
+| **GSM3702795** | PC9 | Control | 1 |
+| **GSM3702796** | PC9 | Control | 2 |
+| **GSM3702797** | PC9 | Control | 3 |
+| **GSM3702798** | PC9 | Apatinib | 1 |
+| **GSM3702799** | PC9 | Apatinib | 2 |
+| **GSM3702800** | PC9 | Apatinib | 3 |
+
+:::
+
+::: {.column width="50%"}
+
+| **sample_id** | cell_line | treatment | replicate |
+|:--------------|:----------|:----------| ---------- |
+| **GSM3702801** | PC9GR | Control | 1 |
+| **GSM3702802** | PC9GR | Control | 2 |
+| **GSM3702803** | PC9GR | Control | 3 |
+| **GSM3702804** | PC9GR | Apatinib | 1 |
+| **GSM3702805** | PC9GR | Apatinib | 2 |
+| **GSM3702806** | PC9GR | Apatinib | 3 |
+
+:::
+
+:::::
+
+---
+
+### ⚡ Step 1 — The Sample IDs
+
+The `GSM...` IDs are already in `counts` — they are its column names.
+
+**How do you get the column names of a data frame in R?**
+
+::: {.callout-tip}
+### 💡 Hint:
+1. `rownames()` gave you the gene IDs, three slides ago. There is a twin function for the samples.
+2. You have already met `colnames()` — earlier you **set** names on a matrix. Now ask for them instead of setting them.
+:::
+
+---
+
+### ✅ Step 1 — The Sample IDs
+
+```r
+colnames(counts)
+#  [1] "GSM3702795" "GSM3702796" "GSM3702797" "GSM3702798" "GSM3702799"
+#  [6] "GSM3702800" "GSM3702801" "GSM3702802" "GSM3702803" "GSM3702804"
+# [11] "GSM3702805" "GSM3702806"
+```
+
+`counts` has 12 columns, so you get 12 names — one per sample.
+
+---
+
+### Step 2 — The Cell Line
+
+Column 2.
+
+::::: {.columns}
+
+::: {.column width="50%"}
+
+| sample_id  | **cell_line** | treatment | replicate |
+|:-----------|:---------------|:----------| ---------- |
+| GSM3702795 | **PC9** | Control | 1 |
+| GSM3702796 | **PC9** | Control | 2 |
+| GSM3702797 | **PC9** | Control | 3 |
+| GSM3702798 | **PC9** | Apatinib | 1 |
+| GSM3702799 | **PC9** | Apatinib | 2 |
+| GSM3702800 | **PC9** | Apatinib | 3 |
+
+:::
+
+::: {.column width="50%"}
+
+| sample_id  | **cell_line** | treatment | replicate |
+|:-----------|:---------------|:----------| ---------- |
+| GSM3702801 | **PC9GR** | Control | 1 |
+| GSM3702802 | **PC9GR** | Control | 2 |
+| GSM3702803 | **PC9GR** | Control | 3 |
+| GSM3702804 | **PC9GR** | Apatinib | 1 |
+| GSM3702805 | **PC9GR** | Apatinib | 2 |
+| GSM3702806 | **PC9GR** | Apatinib | 3 |
+
+:::
+
+:::::
+
+---
+
+### ⚡ Step 2 — The Cell Line
+
+Six PC9, then six PC9GR. You could type all twelve out yourself:
+
+```r
+cell_line <- c("PC9", "PC9", "PC9", "PC9", "PC9", "PC9",
+               "PC9GR", "PC9GR", "PC9GR", "PC9GR", "PC9GR", "PC9GR")
+```
+
+It is correct. It is also exactly the kind of line you will mistype on Friday.
+
+**"Six PC9, then six PC9GR" — can R do that repeating for you?**
+
+---
+
+### 🔧 `rep()` — Repeating a Vector
+
+```r
+rep(x, times, each)
+```
+
+* **`x`** — the vector to repeat
+* **`times`** — repeat the **whole vector** that many times
+* **`each`** — repeat **every element** that many times
+
+The last two are not interchangeable:
+
+```r
+rep(c("A", "B"), times = 3)
+# [1] "A" "B" "A" "B" "A" "B"
+
+rep(c("A", "B"), each = 3)
+# [1] "A" "A" "A" "B" "B" "B"
+```
+
+::: {.callout-tip}
+### 🔑 Same Six Values, Different Order
+`times` and `each` both return 6 elements. Only `each` keeps the three `"A"`s **together**.
+:::
+
+---
+
+### ✅ Step 2 — The Cell Line
+
+```r
+cell_line <- rep(c("PC9", "PC9GR"), each = 6)
+#  [1] "PC9"   "PC9"   "PC9"   "PC9"   "PC9"   "PC9"   "PC9GR" "PC9GR"
+# [10] "PC9GR" "PC9GR" "PC9GR"
+```
+
+`c()` lists the two lines. `rep(..., each = 6)` repeats **each** one six times.
+
+---
+
+### Step 3 — The Treatment
+
+Column 3, and the last one.
+
+::::: {.columns}
+
+::: {.column width="50%"}
+
+| sample_id  | cell_line | **treatment** | replicate |
+|:-----------|:----------|:---------------| ---------- |
+| GSM3702795 | PC9 | **Control** | 1 |
+| GSM3702796 | PC9 | **Control** | 2 |
+| GSM3702797 | PC9 | **Control** | 3 |
+| GSM3702798 | PC9 | **Apatinib** | 1 |
+| GSM3702799 | PC9 | **Apatinib** | 2 |
+| GSM3702800 | PC9 | **Apatinib** | 3 |
+
+:::
+
+::: {.column width="50%"}
+
+| sample_id  | cell_line | **treatment** | replicate |
+|:-----------|:----------|:---------------| ---------- |
+| GSM3702801 | PC9GR | **Control** | 1 |
+| GSM3702802 | PC9GR | **Control** | 2 |
+| GSM3702803 | PC9GR | **Control** | 3 |
+| GSM3702804 | PC9GR | **Apatinib** | 1 |
+| GSM3702805 | PC9GR | **Apatinib** | 2 |
+| GSM3702806 | PC9GR | **Apatinib** | 3 |
+
+:::
+
+:::::
+
+---
+
+### ⚡ Step 3 — The Treatment
+
+Three samples per block, four blocks:
+
+```r
+rep(c("Control", "Apatinib"), times = 2, each = 3)
+#  [1] "Control"  "Control"  "Control"  "Apatinib" "Apatinib" "Apatinib"
+#  [7] "Control"  "Control"  "Control"  "Apatinib" "Apatinib" "Apatinib"
+```
+
+::: {.callout-tip}
+### 🔑 `each` First, Then `times`
+`each = 3` stretches `"Control"` and `"Apatinib"` into runs of three. Then `times = 2` repeats that whole run — once for PC9, once for PC9GR.
+:::
+
+---
+
+### Step 4 — The Replicate
+
+Column 4, and the last one.
+
+::::: {.columns}
+
+::: {.column width="50%"}
+
+| sample_id  | cell_line | treatment | **replicate** |
+|:-----------|:----------|:----------|:---------------|
+| GSM3702795 | PC9 | Control | **1** |
+| GSM3702796 | PC9 | Control | **2** |
+| GSM3702797 | PC9 | Control | **3** |
+| GSM3702798 | PC9 | Apatinib | **1** |
+| GSM3702799 | PC9 | Apatinib | **2** |
+| GSM3702800 | PC9 | Apatinib | **3** |
+
+:::
+
+::: {.column width="50%"}
+
+| sample_id  | cell_line | treatment | **replicate** |
+|:-----------|:----------|:----------|:---------------|
+| GSM3702801 | PC9GR | Control | **1** |
+| GSM3702802 | PC9GR | Control | **2** |
+| GSM3702803 | PC9GR | Control | **3** |
+| GSM3702804 | PC9GR | Apatinib | **1** |
+| GSM3702805 | PC9GR | Apatinib | **2** |
+| GSM3702806 | PC9GR | Apatinib | **3** |
+
+:::
+
+:::::
+
+---
+
+### ⚡ Step 4 — The Replicate
+
+Inside every group of three, number the samples 1, 2, 3 — then do it four times over:
+
+```r
+replicate <- rep(1:3, times = 4)
+# [1] 1 2 3 1 2 3 1 2 3 1 2 3
+```
+
+::: {.callout-tip}
+### 🔑 Here It Is `times`, Not `each`
+Steps 2 and 3 repeated **each** element. This column repeats the **whole** run `1 2 3` — so `each` would be wrong.
+:::
+
+---
+
+### From Table to Data Frame — One Column at a Time
+
+Each column is just a vector. Build them separately, then combine:
+
+```r
+# 1. the IDs — you already have them
+sample_id <- colnames(counts)
+
+# 2. cell line: six PC9, then six PC9GR
+cell_line <- rep(c("PC9", "PC9GR"), each = 6)
+
+# 3. treatment: two treatments, three samples each, twice over
+treatment <- rep(c("Control", "Apatinib"), times = 2, each = 3)
+
+# 4. replicate: 1, 2, 3 inside each group of three
+replicate <- rep(1:3, times = 4)
+```
+
+---
+
+### Four Vectors → One Data Frame
+
+Four vectors of length 12 → one data frame:
+
+```r
+sample_info <- data.frame(
+  sample_id = sample_id,
+  cell_line = cell_line,
+  treatment = treatment,
+  replicate = replicate
+)
+
+sample_info
+#    sample_id cell_line treatment replicate
+#  1 GSM3702795       PC9   Control         1
+#  2 GSM3702796       PC9   Control         2
+#  3 GSM3702797       PC9   Control         3
+#  4 GSM3702798       PC9  Apatinib         1
+#  ...
+# 12 GSM3702806     PC9GR  Apatinib         3
+```
+
+---
+
+### 🔧 `write.csv()` — Saving a Data Frame
+
+```r
+write.csv(x, file, row.names = TRUE)
+```
+
+* **`x`** — the object to save
+* **`file`** — the path, in quotes, ending in `.csv`
+* **`row.names`** — keep the row labels? Default `TRUE`
+
+One argument decides whether the file gets a stray leading header cell:
+
+```r
+write.csv(mydf, "mydf.csv")                     # "", "sample_id","cell_line",...
+write.csv(mydf, "mydf.csv", row.names = FALSE)  #        "sample_id","cell_line",...
+```
+
+::: {.callout-tip}
+### 🔑 `row.names` Depends on What the Labels Mean
+Row labels that *mean* something — gene IDs — keep them. Automatic `1..12` row numbers carry nothing, so drop them.
+:::
+
+---
+
+### Save It
+
+```r
+# Save sample metadata table for your project:
+# row.names = FALSE drops the 1..12 row numbers.
+write.csv(sample_info, "sample_metadata.csv", row.names = FALSE)
+```
+
+---
+
+### Step 5 — Merging
+
+Table built. Table saved. One thing left: **attach it to `counts`.**
+
+| | sample_id | cell_line | treatment | replicate |
+|:--|:----------|:----------|:----------|:----------|
+| `counts` column 1 says | `GSM3702795` | | | |
+| `sample_info` row 1 says | `GSM3702795` | `PC9` | `Control` | `1` |
+
+The two are lined up. The only thing missing is glue for the new label.
+
+---
+
+### 🔧 `paste()` — Gluing Text Together
+
+```r
+paste(..., sep = " ")
+```
+
+* **`...`** — anything you want joined; numbers are turned into text for you
+* **`sep`** — what goes **between** them. The default is a single space.
+
+The default is the part that bites:
+
+```r
+paste("PC9", "Control", 1)
+# [1] "PC9 Control 1"
+
+paste("PC9", "Control", 1, sep = "_")
+# [1] "PC9_Control_1"
+```
+
+---
+
+### 🔧 `paste()` on Whole Vectors
+
+```r
+paste(..., sep = " ")
+```
+
+And it works on whole vectors at once:
+
+```r
+paste(c("PC9", "PC9GR"), "Control", 1, sep = "_")
+# [1] "PC9_Control" "PC9GR_Control"
+```
+
+::: {.callout-tip}
+### 🔑 Always Set `sep` Explicitly
+Spaces inside column names are a nuisance to type and easy to lose. Pick `_` and say so every time.
+:::
+
+---
+
+### Now Use It — Name Your Columns
+
+The table was worth building for this: relabel `counts` with it.
+
+```r
+colnames(counts) <- paste(sample_info$cell_line,
+                          sample_info$treatment,
+                          sample_info$replicate, sep = "_")
+
+colnames(counts)
+#  [1] "PC9_Control_1"    "PC9_Control_2"    "PC9_Control_3"    "PC9_Apatinib_1"
+#  [5] "PC9_Apatinib_2"   "PC9_Apatinib_3"   "PC9GR_Control_1"  "PC9GR_Control_2"
+#  [9] "PC9GR_Control_3"  "PC9GR_Apatinib_1" "PC9GR_Apatinib_2" "PC9GR_Apatinib_3"
+
+# row.names = TRUE here — the gene IDs are row labels that mean something:
+write.table(counts, "counts_sample_name_merge.tsv", sep = "\t", row.names = TRUE)
+
+```
+
+`head(counts)` now reads like an experiment, not a GEO accession list.
+
+::: {.callout-note}
+### ⚠️ This Works Because the Order Matches
+`sample_info` row 1 was built from `colnames(counts)[1]`, so row *i* always describes column *i*. The GSM IDs are gone from `counts` — `sample_info$sample_id` is the only way back to GEO.
+:::
+
+---
+
+### ✍️ Homework — `annotate_gene.R`
+Entrez IDs are not readable. 
+
+A reference file sits next to the counts: `counts/Human.GRCh38.p13.annot.tsv`.
+
+Write **`annotate_gene.R`** that takes `counts_sample_name_merge.tsv` in and writes **`counts_annotated.tsv`** out.
+
+What you should have:
+
+::: {.small}
+| GeneID | Symbol | PC9_Control_1 | PC9_Control_2 | PC9_Apatinib_1 | … |
+|:-------|:-------|--------------:|--------------:|---------------:|:-:|
+| 100287102 | DDX11L1 | 2 | 3 | 2 | … |
+| 653635 | WASH7P | 531 | 485 | 433 | … |
+| 102466751 | MIR6859-1 | 14 | 13 | 14 | … |
+| 107985730 | MIR1302-2HG | 1 | 1 | 0 | … |
+:::
+
+---
+
 ## 📋 3. Vectorization & the apply Family
 
 ::: {.agenda data-section="3"}
@@ -1098,152 +1517,378 @@ Under ~100 MB: `read.csv()` is fine. Above that: `data.table::fread()`. You will
 
 ### The Problem
 
-How many genes read **zero** in every sample?
+Each gene has 12 numbers — one per sample. We want **the average number per gene**.
 
-```{r}
-counts <- read.delim("counts/counts.tsv", row.names = 1)
+::::: {.columns}
 
-silent_gene <- 0
-for (i in 1:nrow(counts)) {
-  s <- sum(counts[i, ])
-  if (s == 0) {
-    silent_gene <- silent_gene + 1
-  }
-}
-silent_gene   # 10261
-```
+::: {.column width="48%"}
+
+| gene | S1 | S2 | S3 | S4 |
+|:---|---:|---:|---:|---:|
+| gene_1 | 2 | 3 | 1 | 2 |
+| gene_2 | 531 | 485 | 409 | 433 |
+| gene_3 | 14 | 13 | 10 | 14 |
+| ⋮ | ⋮ | ⋮ | ⋮ | ⋮ |
+| gene_n | 43 | 41 | 50 | 60 |
+
+:::
+
+::: {.column width="8%"}
+
+<div style="text-align: center; font-size: 1.6em; margin-top: 1.2em;">→</div>
+
+:::
+
+::: {.column width="32%"}
+
+| mean |
+|---:|
+| **2.00** |
+| **464.50** |
+| **12.75** |
+| ⋮ |
+| **48.50** |
+
+:::
+
+:::::
 
 ---
 
-### The Solution: One Operation, Whole Table
+### The Naive Way: a `for` Loop
 
-The same 39,376 numbers, in one call:
+::::: {.columns}
 
-```{r}
-gene_means_fast <- rowMeans(mat)
-
-# Identical values — the loop's vector had no names, this one does
-identical(unname(gene_means_loop), unname(gene_means_fast))   # TRUE
-
-head(gene_means_fast, 3)
-head(names(gene_means_fast), 3)   # "100287102" "653635" "102466751" — free gene labels
-```
-
-Don't take my word for the speedup — run it. This uses the **same shape** as the real matrix (39,376 genes × 12 samples):
+::: {.column width="58%"}
 
 ```{webr-r}
-#| autorun: false
-# Be patient: this loop is the slow one, and the browser is slower than RStudio.
-big <- matrix(rep(1:12, 39376), nrow = 39376)
+#| autorun: true
+# 3 genes x 4 samples
+counts <- data.frame(
+  gene = c("gene_1", "gene_2", "gene_3"),
+  S1   = c(2, 531, 14),
+  S2   = c(3, 485, 13),
+  S3   = c(1, 409, 10),
+  S4   = c(2, 433, 14)
+)
 
-t_loop <- system.time(for (i in seq_len(nrow(big))) mean(big[i, ]))
-t_vec  <- system.time(rowMeans(big))
+means <- numeric(nrow(counts))
 
-c(loop = t_loop[["elapsed"]], rowMeans = t_vec[["elapsed"]])
+for (i in 1:nrow(counts)) {
+  row <- counts[i, -1]                # pull out gene i's 4 numbers
+  means[i] <- mean(as.numeric(row))   # a data frame row is not a vector
+}
+
+means
 ```
 
-Your absolute numbers will be larger than mine — this is R compiled to WebAssembly, not native R. **The ratio is the point**: one trip, versus 39,376.
-
-The rest of the family was already there:
-
-```{r}
-rowSums(mat)     # total reads per gene
-colMeans(mat)    # mean expression per sample
-range(mat)       # smallest and largest count in the whole table
-```
-
-::: {.callout-tip}
-### 🎯 The Rule
-If a function already comes in families — `mean()`, `sum()`, `rowMeans()`, `colSums()` — reach for those first. `apply()` is for when **no** built-in exists.
 :::
+
+::: {.column width="38%"}
+
+::: {.callout-important}
+### ⏱️ What If There Are More Samples? More Rows?
+Every round pulls one row out of the table and averages it. More genes, more samples — more rounds, more copying.
+
+**R will take forever!**
+:::
+
+:::
+
+:::::
 
 ---
 
 ### apply(): The Margin Decides Everything
 
-```{webr-r}
-count_matrix <- matrix(1:12, nrow = 3, ncol = 4)
+`apply()` does the same job as a loop, without the loop. It collapses your matrix along **one** axis, and works out the same statistic on each piece that is left.
 
-# MARGIN 1 = one value per ROW
-apply(count_matrix, 1, mean)
-
-# MARGIN 2 = one value per COLUMN
-apply(count_matrix, 2, mean)
-```
-
-::: {.callout-important}
-### 📐 Margin = The Axis You Collapse
-* `MARGIN = 1` → R goes **down** the columns, returning one value per **row**
-* `MARGIN = 2` → R goes **across** the rows, returning one value per **column**
-
-Say "down" for 1, "across" for 2, and you will never mix them up again.
-:::
+Everything hinges on which axis — the **margin**.
 
 ---
 
-### 🎭 `apply()` Is a Loop Wearing a Mask
+### Margin 1: Mean of Each Row
 
-`apply(X, 1, mean)` slices out each row, calls `mean()` **once per row**, and pastes the answers back together. It is the `for` loop from two slides ago — with better manners.
-
-```{webr-r}
-#| autorun: true
-count_matrix <- matrix(1:12, nrow = 3, ncol = 4)
-
-# Same numbers, two very different journeys
-rowMeans(count_matrix)
-apply(count_matrix, 1, mean)
-```
-
-At three rows you cannot see the cost. Scale up:
+Add each row across, divide by 4 (there are 4 samples):
 
 ```{webr-r}
-#| autorun: false
-big <- matrix(rep(1:12, 20000), nrow = 20000)   # 20,000 genes
-
-c(apply    = system.time(apply(big, 1, mean))[["elapsed"]],
-  rowMeans = system.time(rowMeans(big))[["elapsed"]])
+#  gene_1:  (2 + 3 + 1 + 2) / 4 =  2.00
+#  gene_2:  (531 + 485 + 409 + 433) / 4 = 464.50
+#  gene_3:  (14 + 13 + 10 + 14) / 4 = 12.75
+apply(counts[, -1], 1, mean) # [, -1] : drop the gene column - only the numbers
 ```
 
-::: {.callout-important}
+**3 rows in → 3 numbers out.**
+
+---
+
+### Margin 2: Mean of Each Column
+
+Same table. Add each column down, divide by 3 (there are 3 genes):
+
+```{webr-r}
+#  S1:  (2 + 531 + 14)     / 3 = 182.33
+#  S2:  (3 + 485 + 13)     / 3 = 167.00
+#  S3:  (1 + 409 + 10)     / 3 = 140.00
+#  S4:  (2 + 433 + 14)     / 3 = 149.67
+apply(counts[, -1], 2, mean)
+``` 
+
+**4 columns in → 4 numbers out.**
+
+---
+
+### 📐 The Margin Is the Divisor
+
+| | What you add up | Divide by | Answers |
+|:---|:---|:---:|:---|
+| `MARGIN = 1` | each **row**, across the columns | `ncol` = 4 | one per **row** → 3 |
+| `MARGIN = 2` | each **column**, down the rows | `nrow` = 3 | one per **column** → 4 |
+
+The margin decides **which axis survives**. Count the answers to check you got it right.
+
+---
+
+### apply() on the Real Matrix
+
+MARGIN 1 does to the real matrix exactly what it did to the mock one:
+
+```{r}
+library(here)
+
+counts <- read.delim(here("FCWT_2026", "lecture-06", "counts", "counts_annotated.tsv"))
+
+# offset 2 columns (GeneID, Symbol) -> the 12 sample columns
+mean <- apply(counts[, 3:ncol(counts)], 1, mean)
+head(mean, 3)
+# [1]   1.2500 512.8333  11.7500
+```
+
+---
+
+### `rowMeans()` — The Shortcut
+
+R ships a named version of that exact job:
+
+```{r}
+rowMeans(counts[, 3:ncol(counts)])
+# 100287102    653635 102466751
+#    1.2500 512.8333   11.7500
+```
+
+---
+
 ### 🕵️ When `apply()` Earns Its Place
-Identical answers, wildly different cost. `rowMeans()` hands the whole grid to compiled C in **one** call; `apply()` walks it in **20,000**.
 
-So `apply()` is the tool for when **no dedicated function exists** — your own function, an unusual margin-dependent statistic. The moment a `row*()` / `col*()` twin exists, take it.
-:::
+Most common jobs already have a shortcut:
+
+| Shortcut | Does the same job as |
+|:---|:---|
+| `rowMeans(x)` | `apply(x, 1, mean)` |
+| `colMeans(x)` | `apply(x, 2, mean)` |
+| `rowSums(x)` | `apply(x, 1, sum)` |
+
+If a shortcut exists, use it — it is faster and easier to read.
+
+Reach for `apply()` only when **no twin exists**: a statistic that is not row- or column-shaped, and where the margin genuinely changes what the number means.
 
 ---
 
-### lapply() vs sapply()
+### lapply() — A List, Every Time
+
+One gene — the first row of `counts`:
 
 ```{webr-r}
-umi <- c(4, 9, 16, 25)
+reads <- counts[1, -1]     # gene_1's four reads
+reads
 
-# lapply: ALWAYS returns a list
-lapply(umi, sqrt)
-
-# sapply: same work, simplified to a vector when possible
-sapply(umi, sqrt)
+# Run `sqrt()` on every element:
+lapply(reads, sqrt)
 ```
 
 ::: {.callout-note}
-`lapply()` never surprises you — the shape of the answer always matches the input shape. `sapply()` tries to be prettier and occasionally returns a matrix instead of a vector. When the shape matters, use `lapply()`.
+The answer is **always** a list, whatever you put in. Each element keeps its name — `S1`, `S2`, `S3`, `S4` — so nothing is lost.
 :::
 
 ---
 
-### tapply(): Summarise by Group
+### sapply() — The Same Work, Flattened
 
 ```{webr-r}
-expression <- c(12, 15, 100, 110, 8)
-groups <- factor(c("Control", "Control", "Treated", "Treated", "Control"))
+sapply(reads, sqrt)
+#      S1       S2       S3       S4
+# 1.414214 1.732051 1.000000 1.414214
+```
 
-# Mean expression per group, in one line
-tapply(expression, groups, mean)
-tapply(expression, groups, sum)
+Same numbers, no `$` prefixes — `sapply()` takes the list and tries to simplify it into a plain vector.
+
+---
+
+### tapply() — The Same Idea, With Labels
+
+`lapply()` and `sapply()` walk a **list**. `tapply()` takes a **vector** plus the **labels that group it**:
+
+```{webr-r}
+reads <- c(2, 3, 1, 531, 485, 409)
+
+# "gene_1", "gene_1", "gene_1", "gene_2", "gene_2", "gene_2"
+gene  <- rep(c("gene_1", "gene_2"), each = 3)
+
+tapply(reads, gene, mean)
+```
+
+Split the numbers into piles by `gene`, then run `mean` on each pile. The answer comes back **named after the groups** — the same 2.00 and 464.50 from the first slide.
+
+---
+
+### Which One Do You Want?
+
+| | `lapply()` | `sapply()` | `tapply()`
+|:---|:---|:---|:---|
+| Returns | list, **always** | simplified vector, usually | vector per group
+| Names kept? | yes | only if they survive simplification | yes 
+| Surprises you? | never | sometimes returns a matrix | --- |
+
+When the shape matters, use `lapply()`. When you just want the numbers and the shape is obvious, `sapply()` is fine.
+
+
+---
+
+### The Problem: 12 Numbers, 2 Answers Needed
+
+MARGIN 2 gave us one mean per sample — **12 numbers**:
+
+```{r}
+# offset 2 columns (GeneID, Symbol) -> the 12 sample columns
+sample_means <- colMeans(counts[, 3:ncol(counts)])
+round(sample_means, 2)
+#    PC9_Control_1 PC9_Control_2 PC9_Control_3  ... PC9GR_Apatinib_3
+#             570.94         560.04         559.32   ...         494.85
+```
+
+But the question is not about samples. It is about **treatment**. We want two numbers: the mean of all Controls, and the mean of all Apatinibs.
+
+How do you average numbers that carry labels?
+
+---
+
+### Step 1 — Get the Labels
+
+```{r}
+library(here)
+counts_dir <- here("FCWT_2026", "lecture-06", "counts")
+
+info <- read.csv(file.path(counts_dir, "sample_metadata.csv"))
+info$treatment
+#  [1] "Control"  "Control"  "Control"  "Apatinib" "Apatinib" "Apatinib"
+#  [7] "Control"  "Control"  "Control"  "Apatinib" "Apatinib" "Apatinib"
 ```
 
 ::: {.callout-tip}
-This single pattern replaces most of your pivot tables: **group a numeric vector by a factor, summarise it**. Differential expression at its core is `tapply` with a test function instead of `mean`.
+### 🔑 `$` Pulls One Column
+`info` is a table with four columns. `info$treatment` is just *"the `treatment` column"* — one vector of 12 labels, in the same order as `sample_means`.
+:::
+
+---
+
+### Step 2 — Put Them Side by Side
+
+Numbers on the left, labels on the right. Row *i* is the same sample in both:
+
+```{r}
+side_by_side <- data.frame(mean = round(sample_means, 2),
+                           treatment = info$treatment)
+```
+
+::::: {.columns}
+
+::: {.column width="50%"}
+
+| mean | treatment |
+|---:|:---|
+| 570.94 | Control |
+| 560.04 | Control |
+| 559.32 | Control |
+| 554.25 | Apatinib |
+| 559.01 | Apatinib |
+| 524.23 | Apatinib |
+
+:::
+
+::: {.column width="50%"}
+
+| mean | treatment |
+|---:|:---|
+| 544.62 | Control |
+| 566.64 | Control |
+| 569.34 | Control |
+| 558.34 | Apatinib |
+| 510.47 | Apatinib |
+| 494.85 | Apatinib |
+
+:::
+
+:::::
+
+---
+
+### Step 3 — Average Each Pile
+
+```{r}
+tapply(sample_means, info$treatment, mean)
+#  Apatinib   Control
+#  533.5257  561.8162
+```
+
+That is all it did:
+
+* `Control` = (570.94 + 560.04 + 559.32 + 544.62 + 566.64 + 569.34) / 6 = **561.82**
+* `Apatinib` = (554.25 + 559.01 + 524.23 + 558.34 + 510.47 + 494.85) / 6 = **533.53**
+
+---
+
+### All Three Steps Together
+
+Everything from the previous slides, start to finish:
+
+```{r}
+library(here)
+counts_dir <- here("FCWT_2026", "lecture-06", "counts")
+
+# --- the data -------------------------------------------------------
+counts <- as.matrix(read.delim(file.path(counts_dir, "counts_sample_name_merge.tsv"),
+                               row.names = 1))
+info <- read.csv(file.path(counts_dir, "sample_metadata.csv"))
+
+# --- Step 1: one mean per sample (12 numbers) ------------------------
+sample_means <- apply(counts, 2, mean)
+
+# --- Step 2: the matching label for each of those 12 -----------------
+treatment <- info$treatment
+
+# --- Step 3: average each pile (2 numbers) ---------------------------
+tapply(sample_means, treatment, mean)
+#  Apatinib   Control
+#  533.5257  561.8162
+```
+
+---
+
+### 💡 Why This Pattern Is Everywhere
+
+**Group a numeric vector by a factor, summarise it.** That one line replaces most of your pivot tables.
+
+Same numbers, a different grouping — one mean per **cell line**:
+
+```{r}
+tapply(sample_means, info$cell_line, mean)
+#     PC9    PC9GR 
+# 554.6308 540.7111 
+```
+
+::: {.callout-note}
+### 🔍 Trivia
+Differential expression has the same shape too — numbers grouped by a factor — but it needs a **count model** (DESeq2, edgeR), not a `tapply`.
 :::
 
 ---
@@ -1252,15 +1897,121 @@ This single pattern replaces most of your pivot tables: **group a numeric vector
 
 | Function | You give it | You get back |
 |:---|:---|:---|
+| `colMeans()` / `colSums()` | matrix | one mean or total per column |
+| `rowMeans()` / `rowSums()` | matrix | one mean or total per row |
 | `apply` | matrix / data frame + margin | vector or matrix |
 | `lapply` | list / vector | list (always) |
 | `sapply` | list / vector | simplified vector (usually) |
 | `tapply` | vector + grouping factor | vector per group |
-| `colMeans` | matrix | one number per column |
+| `split` | vector + grouping factor | a list, one vector per group |
 
-::: {.callout-tip}
-Work top to bottom: check the dedicated function, then `apply`, then `lapply`/`sapply`, then `tapply`.
+---
+
+::: {.section-tag}
+1. Vectorization & the apply Family · Exercise
 :::
+
+### ✍️ Exercise 3.1: Which Margin?
+
+Rows are genes, columns are samples:
+
+```{r}
+m <- matrix(c(2, 3, 1, 2,
+               531, 485, 409, 433,
+               14, 13, 10, 14), nrow = 3, byrow = TRUE)
+#      [,1] [,2] [,3] [,4]
+# [1,]    2    3    1    2
+# [2,]  531  485  409  433
+# [3,]   14   13   10   14
+```
+
+You want **one mean per sample** — and the samples are the columns.
+
+* a) `apply(m, 1, mean)`
+* b) `apply(m, 2, mean)`
+* c) `apply(m, 2, sum)`
+* d) `rowMeans(m)`
+
+---
+
+::: {.section-tag}
+3. Vectorization & the apply Family · Exercise
+:::
+
+### ✅ Exercise 3.1 — Solution
+
+**b) `apply(m, 2, mean)`** — MARGIN 2 collapses down the rows, so the **columns survive**: one number per column.
+
+| Option | Gives | Verdict |
+|:---|:---|:---|
+| a) `apply(m, 1, mean)` | `2  464.5  12.75` | wrong axis — one per **row** |
+| b) `apply(m, 2, mean)` | `182.3  167  140  149.7` | ✅ one per **column** |
+| c) `apply(m, 2, sum)` | `547  501  420  449` | right axis, wrong statistic |
+| d) `rowMeans(m)` | `2  464.5  12.75` | one per **row** |
+
+---
+
+::: {.section-tag}
+3. Vectorization & the apply Family · Exercise
+:::
+
+### ✍️ Exercise 3.2: What Does `lapply()` Give Back?
+
+* a) a vector
+* b) a list, always
+* c) a matrix
+* d) whatever the data happens to be
+
+---
+
+::: {.section-tag}
+3. Vectorization & the apply Family · Exercise
+:::
+
+### ✅ Exercise 3.2 — Solution
+
+**b) a list, always.** Whatever you feed it, `lapply()` comes back with a list — one element per input, names kept.
+
+`sapply()` is the one that *tries* to simplify that list into a plain vector. Sometimes it succeeds, sometimes it hands you a matrix instead — which is exactly why `lapply()` is the safer default when the shape matters.
+
+---
+
+::: {.section-tag}
+3. Vectorization & the apply Family · Exercise
+:::
+
+### ✍️ Exercise 3.3: Group and Summarise
+
+12 numbers, each with a label:
+
+```{r}
+sample_means <- c(2, 3, 1, 2, 5, 6, 1, 2, 3, 1, 4, 5)
+treatment   <- rep(c("Control", "Apatinib"), each = 6)
+```
+
+You want the mean of the **Controls** and the mean of the **Apatinibs** — two numbers, not twelve.
+
+* a) `tapply(sample_means, treatment, mean)`
+* b) `apply(sample_means, treatment, mean)`
+* c) `lapply(treatment, mean)`
+* d) `mean(sample_means)`
+
+---
+
+::: {.section-tag}
+3. Vectorization & the apply Family · Exercise
+:::
+
+### ✅ Exercise 3.3 — Solution
+
+**a) `tapply(sample_means, treatment, mean)`** — split the numbers into piles by the labels, then average each pile. The result comes back named after the groups.
+
+| Option | Gives | Verdict |
+|:---|:---|:---|
+| a) `tapply(...)` | `Control 3.17  Apatinib 2.67` | ✅ two numbers, named by group |
+| b) `apply(...)` | **Error**: `dim(X) must have a positive length` | `apply()` wants a margin (1 or 2), not labels |
+| c) `lapply(treatment, mean)` | `NA NA NA …` (×12) | it walks the **labels** — and you cannot average text |
+| d) `mean(sample_means)` | `2.92` | one number for all 12 — the labels never used |
 
 ---
 
@@ -1281,11 +2032,6 @@ genes
 
 You need the suffix stripped and the cases normalised — across 20,000 rows.
 
-::: {.callout-important}
-### 🛑 Why Not Find-and-Replace in Excel?
-Because the labels are not identical: `"ACTB-mouse"`, `"Actb-mouse"` and `"ACTB"` are three different strings. A **pattern** catches all of them; a literal search does not.
-:::
-
 ---
 
 ### grep(): Find the Matches
@@ -1294,7 +2040,13 @@ Because the labels are not identical: `"ACTB-mouse"`, `"Actb-mouse"` and `"ACTB"
 genes <- c("GAPDH", "ACTB-mouse", "CD8A-mouse", "IL6")
 
 grep("mouse", genes)                  # which positions?
+```
+
+```{webr-r}
 grep("mouse", genes, value = TRUE)    # which values?
+```
+
+```{webr-r}
 grep("mouse", genes, invert = TRUE)   # which do NOT match?
 ```
 
@@ -1307,10 +2059,13 @@ grep("mouse", genes, invert = TRUE)   # which do NOT match?
 ### sub() vs gsub(): Replace Text
 
 ```{webr-r}
-genes <- c("GAPDH", "ACTB-mouse", "CD8A-mouse", "IL6")
+genes <- c("GAPDH", "HLA-DRB5-mouse", "CD8A-mouse", "IL6")
 
-sub("-mouse", "", genes)    # replaces the FIRST match
-gsub("-mouse", "", genes)   # replaces EVERY match
+sub("-", "", genes)     # removes the FIRST hyphen only
+```
+
+```{webr-r}
+gsub("-", "", genes)    # removes EVERY hyphen
 ```
 
 ::: {.callout-note}
@@ -1325,7 +2080,13 @@ gsub("-mouse", "", genes)   # replaces EVERY match
 genes <- c("gapdh", "ACTB-mouse", "Cd8a-MOUSE", "il6 ")
 
 toupper("gapdh")            # force case
+```
+
+```{webr-r}
 nchar(genes)                # how many characters?
+```
+
+```{webr-r}
 trimws("  Tumor  ")         # trim stray whitespace
 ```
 
@@ -1347,8 +2108,24 @@ Whitespace is invisible and deadly. A label with one trailing space will never m
 | `\\.` | a literal dot | `\\.1` |
 
 ```{webr-r}
-# Literal characters must be escaped
-grep("\\.1$", c("HLA.1", "HLA1", "TP53"))
+#| autorun: true
+genes <- c("HLA.1", "HLA1", "TP53", "HLA-A.1", "HLA.12", "HLA.1B", "mouse-HLA.1")
+```
+
+```{webr-r}
+# A literal dot must be escaped: "\\.1$" = a real "." then "1" at the end
+grep("\\.1$", genes, value = TRUE)
+# [1] "HLA.1" "HLA-A.1" "mouse-HLA.1"
+```
+
+---
+
+### ⚠️ The Dot Is a Wildcard
+
+```{webr-r}
+# Without the backslash, "." is a WILDCARD that matches any character
+grep(".1$", genes, value = TRUE)
+# [1] "HLA.1" "HLA1" "HLA-A.1" "mouse-HLA.1"
 ```
 
 ::: {.callout-warning}
@@ -1367,11 +2144,20 @@ HGNC renamed `MARCH1` and `SEPT1` to `MARCHF1` and `SEPTIN1` precisely because E
 ### Spot the Gap: is.na()
 
 ```{webr-r}
+#| autorun: true
 expression <- c(12, NA, 45, 0, NA, 99)
-
 is.na(expression)
+```
+
+```{webr-r}
 sum(is.na(expression))     # TRUE counts as 1
+```
+
+```{webr-r}
 sum(!is.na(expression))
+```
+
+```{webr-r}
 table(is.na(expression))
 ```
 
@@ -1385,8 +2171,10 @@ Always **count** the missing values per column before deciding what to do with t
 
 ```{webr-r}
 expression <- c(12, NA, 45, 0, NA, 99)
-
 mean(expression)                 # NA -> the whole answer is NA
+```
+
+```{webr-r}
 mean(expression, na.rm = TRUE)   # na.rm = "NA remove"
 ```
 
@@ -1403,7 +2191,13 @@ R propagates `NA` on purpose: **one unknown value makes the result unknown**. A 
 expression <- c(12, NA, 45, 0, NA, 99)
 
 expression[complete.cases(expression)]   # 1. drop the NAs
+```
+
+```{webr-r}
 na.omit(expression)                       # 2. same thing, other name
+```
+
+```{webr-r}
 mean(expression, na.rm = TRUE)            # 3. ignore them while computing
 ```
 
@@ -1417,7 +2211,6 @@ For a **vector**, 1 and 2 are identical. For a **data frame**, `na.omit(df)` del
 
 ```{webr-r}
 expression <- c(12, NA, 45, 0, NA, 99)
-
 expression[is.na(expression)] <- 0   # replace with a baseline
 expression
 
@@ -1442,45 +2235,93 @@ qc <- data.frame(
   umi     = c(1200, NA, 0, 640),
   mito    = c(4.1, 22.5, NA, 6.0)
 )
-
-# 1. How many spots are affected?
-sum(is.na(qc$umi))
-
-# 2. Keep only fully measured spots
-qc_complete <- qc[complete.cases(qc), ]
-nrow(qc_complete)
 ```
 
 ::: {.slide-kicker}
 Your Turn!
 :::
 
-1. Add a `pass` column that is `TRUE` when `umi > 500`.
-2. Replace the missing `mito` values with `0` in a **copy** of the table.
-3. Report how many spots remain after both filters.
+Three steps — one at a time.
 
 ---
 
-### ✅ Practice: Clean a QC Table — Solution
+### ⚡ Step 1 — Add a `pass` column
 
-```{webr-r}
-qc <- data.frame(
-  spot_id = c("S1", "S2", "S3", "S4"),
-  umi = c(1200, NA, 0, 640), mito = c(4.1, 22.5, NA, 6.0)
-)
+`pass` is `TRUE` when `umi > 500`:
 
-# 1. A logical column
+```{r}
+qc$pass <- _______________
+```
+
+::: {.callout-tip}
+### 💡 Hint:
+Compare a column with a number — you get a logical column back.
+:::
+
+---
+
+### ✅ Step 1 — Add a `pass` column
+
+```{r}
 qc$pass <- qc$umi > 500
+```
 
-# 2. Replace NA with 0 in a copy
+`TRUE  NA  FALSE  TRUE` — spot S2 has no `umi` value, so its `pass` is `NA` too.
+
+---
+
+### ⚡ Step 2 — Fill the gaps in a copy
+
+In `qc_filled`, the missing `mito` values become `0`:
+
+```{r}
 qc_filled <- qc
-qc_filled$mito[is.na(qc_filled$mito)] <- 0
+qc_filled$mito <- ______________________________
+```
 
-# 3. Fully measured AND passing
-nrow(qc[complete.cases(qc) & qc$pass, ])
+::: {.callout-tip}
+### 💡 Hint:
+`is.na(x)` finds the missing values, `ifelse(is.na(x), 0, x)` swaps them for something else.
+:::
 
-qc$pass
-qc_filled$mito
+---
+
+### ✅ Step 2 — Fill the gaps in a copy
+
+```{r}
+qc_filled <- qc
+qc_filled$mito <- ifelse(is.na(qc_filled$mito), 0, qc_filled$mito)
+```
+
+`4.1  22.5  0  6.0` — `qc` itself is untouched.
+
+---
+
+### ⚡ Step 3 — Count the survivors
+
+Spots that are fully measured **and** pass:
+
+```{r}
+keep <- ______________________________
+
+sum(keep)
+```
+
+::: {.callout-tip}
+### 💡 Hint:
+`complete.cases(qc)` is one logical column, `qc$pass` is another. `&` joins them, `sum()` counts the `TRUE`s.
+:::
+
+---
+
+### ✅ Step 3 — Count the survivors
+
+```{r}
+keep <- complete.cases(qc) & qc$pass
+
+sum(keep)          # 2 spots survive
+qc$pass            # TRUE  NA  FALSE  TRUE
+qc_filled$mito     # 4.1  22.5  0  6.0
 ```
 
 ---
@@ -1503,7 +2344,6 @@ calc_percentage <- function(gene_count, total_umi) {
 
 # Call it
 calc_percentage(25, 500)
-calc_percentage(1200, 5000)
 ```
 
 ::: {.callout-note}
@@ -1524,7 +2364,17 @@ median_count <- function(x) {
 }
 
 median_count(c(10, 40, 20))
+```
 
+::: {.callout-tip}
+Write `return()` when the function has more than a couple of steps. Your future self — and your reviewers — will thank you.
+:::
+
+---
+
+### The Last Line Is the Return Value
+
+```{webr-r}
 # Without return(), R returns the last expression anyway
 double_it <- function(x) {
   x * 2
@@ -1532,10 +2382,6 @@ double_it <- function(x) {
 
 double_it(21)
 ```
-
-::: {.callout-tip]
-Write `return()` when the function has more than a couple of steps. Your future self — and your reviewers — will thank you.
-:::
 
 ---
 
@@ -1582,33 +2428,89 @@ spots
 Your Turn!
 :::
 
-1. Write `calc_cpm(reads, total)` that returns counts per million.
-2. Add a `mito_pct` column for `spot_id`, `mito_reads` = `c(12, 4)`.
-3. Use `sapply()` to turn the CPM column into a numeric vector of values.
+Three steps — one at a time.
 
 ---
 
-### ✅ Practice: Wrap Yesterday's CPM — Solution
+### ⚡ Step 1 — Write the function
 
-```{webr-r}
+`calc_cpm()` returns counts per million:
+
+```{r}
 calc_cpm <- function(reads, total) {
-  if (total <= 0) stop("Library size must be > 0")
+  if (any(total <= 0)) stop("Library size must be > 0")
+  ____________________
+}
+```
+
+::: {.callout-tip}
+### 💡 Hint:
+CPM = reads divided by the library size, times one million.
+:::
+
+---
+
+### ✅ Step 1 — Write the function
+
+```{r}
+calc_cpm <- function(reads, total) {
+  if (any(total <= 0)) stop("Library size must be > 0")
   (reads / total) * 1e6
 }
+```
 
-spots <- data.frame(
-  spot_id = c("S1", "S2"), reads = c(450, 200),
-  total = c(50000, 20000), mito_reads = c(12, 4)
-)
+---
 
-# sapply() walks the rows; each call sees its OWN library size
-spots$cpm <- sapply(seq_len(nrow(spots)),
-                    function(i) calc_cpm(spots$reads[i], spots$total[i]))
+### ⚡ Step 2 — Add a `cpm` column
 
-spots$mito_pct <- (spots$mito_reads / spots$reads) * 100
+```{r}
+spots$cpm <- ______________________________
+```
+
+::: {.callout-tip}
+### 💡 Hint:
+Give your function both columns at once — R functions work on whole vectors.
+:::
+
+---
+
+### ✅ Step 2 — Add a `cpm` column
+
+```{r}
+spots$cpm <- calc_cpm(spots$reads, spots$total)
+```
+
+`9000  10000` — one CPM per spot, no loop.
+
+---
+
+### ⚡ Step 3 — Add `mito_reads` and `mito_pct`
+
+```{r}
+spots$mito_reads <- c(12, 4)
+spots$mito_pct  <- ______________________________
+```
+
+::: {.callout-tip}
+### 💡 Hint:
+Mito percent = mito reads divided by all reads, times 100.
+:::
+
+---
+
+### ✅ Step 3 — Add `mito_reads` and `mito_pct`
+
+```{r}
+spots$mito_reads <- c(12, 4)
+spots$mito_pct  <- (spots$mito_reads / spots$reads) * 100
 
 round(spots$cpm)
 ```
+
+::: {.callout-tip}
+### 🎯 No Loop, No `sapply()`
+`calc_cpm(spots$reads, spots$total)` gives **one CPM per spot** in a single line — R functions work on whole vectors. The guard needed `any()` so it still works when `total` is a vector.
+:::
 
 ---
 

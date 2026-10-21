@@ -1359,7 +1359,7 @@ min-height: 500px;
   };
 
   // Store cell data
-  globalThis.qwebrCellDetails = [{"code":"vals <- c(10, 20, 30)\nvals","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"1:5","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"seq(2, 10, by = 2)","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"rep(1, 10) # repeat 1 ten times","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"gene_reads <- c(1200, 450, 0, 89, 3300)\ngene_reads","id":5,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"gene_reads[2]     # one value (the 2nd element)","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"gene_reads[2:4]   # a range","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"gene_reads[-2]    # negative index REMOVES element 2","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# 3 genes (rows) x 2 cohorts (cols)\ncount_mat <- matrix(c(120, 45, 0, 310, 85, 12), nrow = 3, ncol = 2)\ncount_mat","id":9,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"dim(count_mat)      # [rows, cols]","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"count_mat[1, 2]     # Row 1 (Gene 1), Col 2 (Cohort 2)","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"count_mat <- matrix(c(120, 45, 0, 310, 85, 12), nrow = 3, ncol = 2)\n\n# Name the 3 genes (rows) and 2 cohorts (columns)\nrownames(count_mat) <- c(\"EPCAM\", \"CD3D\", \"PECAM1\")\ncolnames(count_mat) <- c(\"Tumor\", \"Normal\")\ncount_mat","id":12,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"count_mat[, \"Tumor\"]     # Entire 'Tumor' column across all genes","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-13","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"count_mat[\"EPCAM\", ]     # Entire 'EPCAM' row across all cohorts","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-14","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# 2 rows x 3 cols x 2 slices (e.g. RGB / intensity channels)\nlayers <- array(c(255, 128, 45, 0, 89, 210, 180, 95, 15, 0, 72, 190), \n                dim = c(2, 3, 2))\nlayers","id":15,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-15","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"dim(layers)       # [rows, cols, slices]","id":16,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-16","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"layers[1, 2, 1]   # Row 1, Col 2, Slice 1","id":17,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-17","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spot <- list(name = \"Visium_S1\", \n             counts = c(120, 45, 0), \n             qc_pass = TRUE)\nspot","id":18,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-18","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spot[[\"qc_pass\"]]   # Extracts value","id":19,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-19","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spot[\"qc_pass\"]     # Extracts a sublist","id":20,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-20","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spots <- data.frame(\n  spot_id   = c(\"S1\", \"S2\", \"S3\"),\n  umi_count = c(12, 45, 0),\n  in_tissue = c(TRUE, TRUE, FALSE)\n)\n\nspots","id":21,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-21","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spots <- data.frame(\n  spot_id   = c(\"S1\", \"S2\", \"S3\"),\n  umi_count = c(12, 45, 0),\n  in_tissue = c(TRUE, TRUE, FALSE)\n)\nhead(spots, n = 2)   # First rows","id":22,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-22","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"dim(spots)           # [rows, columns]","id":23,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-23","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"str(spots)           # Structure: types + preview of values","id":24,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-24","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spots <- data.frame(\n  spot_id   = c(\"S1\", \"S2\", \"S3\"),\n  umi_count = c(12, 45, 0),\n  in_tissue = c(TRUE, TRUE, FALSE)\n)\nspots$umi_count                                     # 1. Extract one column as a vector","id":25,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-25","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spots[spots$umi_count > 10, ]                      # 2. Filter rows by condition","id":26,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-26","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spots[spots$in_tissue, c(\"spot_id\", \"umi_count\")]  # 3. Filter rows AND select columns","id":27,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-27","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cell_types <- factor(c(\"T-cell\", \"B-cell\", \"T-cell\", \"T-cell\"))\nlevels(cell_types)","id":28,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-28","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"table(cell_types)","id":29,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-29","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"library(tibble)\n\n# Tibbles print dimensions and column types (<chr>, <dbl>) clearly:\nmy_spots <- tibble(\n  spot_id   = c(\"S1\", \"S2\", \"S3\"),\n  umi_count = c(12, 45, 0),\n  in_tissue = c(TRUE, TRUE, FALSE)\n)\n\nmy_spots","id":30,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-30","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Be patient: this loop is the slow one, and the browser is slower than RStudio.\nbig <- matrix(rep(1:12, 39376), nrow = 39376)\n\nt_loop <- system.time(for (i in seq_len(nrow(big))) mean(big[i, ]))\nt_vec  <- system.time(rowMeans(big))\n\nc(loop = t_loop[[\"elapsed\"]], rowMeans = t_vec[[\"elapsed\"]])","id":31,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-31","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"count_matrix <- matrix(1:12, nrow = 3, ncol = 4)\n\n# MARGIN 1 = one value per ROW\napply(count_matrix, 1, mean)\n\n# MARGIN 2 = one value per COLUMN\napply(count_matrix, 2, mean)","id":32,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-32","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"count_matrix <- matrix(1:12, nrow = 3, ncol = 4)\n\n# Same numbers, two very different journeys\nrowMeans(count_matrix)\napply(count_matrix, 1, mean)","id":33,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-33","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"big <- matrix(rep(1:12, 20000), nrow = 20000)   # 20,000 genes\n\nc(apply    = system.time(apply(big, 1, mean))[[\"elapsed\"]],\n  rowMeans = system.time(rowMeans(big))[[\"elapsed\"]])","id":34,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-34","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"umi <- c(4, 9, 16, 25)\n\n# lapply: ALWAYS returns a list\nlapply(umi, sqrt)\n\n# sapply: same work, simplified to a vector when possible\nsapply(umi, sqrt)","id":35,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-35","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"expression <- c(12, 15, 100, 110, 8)\ngroups <- factor(c(\"Control\", \"Control\", \"Treated\", \"Treated\", \"Control\"))\n\n# Mean expression per group, in one line\ntapply(expression, groups, mean)\ntapply(expression, groups, sum)","id":36,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-36","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"GAPDH\", \"ACTB-mouse\", \"CD8A-mouse\", \"IL6\")\ngenes","id":37,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-37","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"GAPDH\", \"ACTB-mouse\", \"CD8A-mouse\", \"IL6\")\n\ngrep(\"mouse\", genes)                  # which positions?\ngrep(\"mouse\", genes, value = TRUE)    # which values?\ngrep(\"mouse\", genes, invert = TRUE)   # which do NOT match?","id":38,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-38","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"GAPDH\", \"ACTB-mouse\", \"CD8A-mouse\", \"IL6\")\n\nsub(\"-mouse\", \"\", genes)    # replaces the FIRST match\ngsub(\"-mouse\", \"\", genes)   # replaces EVERY match","id":39,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-39","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"gapdh\", \"ACTB-mouse\", \"Cd8a-MOUSE\", \"il6 \")\n\ntoupper(\"gapdh\")            # force case\nnchar(genes)                # how many characters?\ntrimws(\"  Tumor  \")         # trim stray whitespace","id":40,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-40","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Literal characters must be escaped\ngrep(\"\\\\.1$\", c(\"HLA.1\", \"HLA1\", \"TP53\"))","id":41,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-41","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"expression <- c(12, NA, 45, 0, NA, 99)\n\nis.na(expression)\nsum(is.na(expression))     # TRUE counts as 1\nsum(!is.na(expression))\ntable(is.na(expression))","id":42,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-42","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"expression <- c(12, NA, 45, 0, NA, 99)\n\nmean(expression)                 # NA -> the whole answer is NA\nmean(expression, na.rm = TRUE)   # na.rm = \"NA remove\"","id":43,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-43","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"expression <- c(12, NA, 45, 0, NA, 99)\n\nexpression[complete.cases(expression)]   # 1. drop the NAs\nna.omit(expression)                       # 2. same thing, other name\nmean(expression, na.rm = TRUE)            # 3. ignore them while computing","id":44,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-44","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"expression <- c(12, NA, 45, 0, NA, 99)\n\nexpression[is.na(expression)] <- 0   # replace with a baseline\nexpression\n\nsum(c(0, 5, 12))   # a 0 count and a missing value are NOT the same thing","id":45,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-45","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"qc <- data.frame(\n  spot_id = c(\"S1\", \"S2\", \"S3\", \"S4\"),\n  umi     = c(1200, NA, 0, 640),\n  mito    = c(4.1, 22.5, NA, 6.0)\n)\n\n# 1. How many spots are affected?\nsum(is.na(qc$umi))\n\n# 2. Keep only fully measured spots\nqc_complete <- qc[complete.cases(qc), ]\nnrow(qc_complete)","id":46,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-46","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"qc <- data.frame(\n  spot_id = c(\"S1\", \"S2\", \"S3\", \"S4\"),\n  umi = c(1200, NA, 0, 640), mito = c(4.1, 22.5, NA, 6.0)\n)\n\n# 1. A logical column\nqc$pass <- qc$umi > 500\n\n# 2. Replace NA with 0 in a copy\nqc_filled <- qc\nqc_filled$mito[is.na(qc_filled$mito)] <- 0\n\n# 3. Fully measured AND passing\nnrow(qc[complete.cases(qc) & qc$pass, ])\n\nqc$pass\nqc_filled$mito","id":47,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-47","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"calc_percentage <- function(gene_count, total_umi) {\n  pct <- (gene_count / total_umi) * 100\n  return(pct)\n}\n\n# Call it\ncalc_percentage(25, 500)\ncalc_percentage(1200, 5000)","id":48,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-48","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Explicit is easier to read\nmedian_count <- function(x) {\n  if (length(x) == 0) {\n    return(NA)\n  }\n  return(stats::median(x))\n}\n\nmedian_count(c(10, 40, 20))\n\n# Without return(), R returns the last expression anyway\ndouble_it <- function(x) {\n  x * 2\n}\n\ndouble_it(21)","id":49,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-49","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"calc_cpm <- function(gene_count, total_umi) {\n  # Guard: refuse nonsense input immediately\n  if (!is.numeric(gene_count) || !is.numeric(total_umi)) {\n    stop(\"Counts must be numeric!\")\n  }\n  if (total_umi <= 0) {\n    stop(\"Library size must be greater than zero!\")\n  }\n\n  return((gene_count / total_umi) * 1e6)\n}\n\ncalc_cpm(450, 50000)\ncalc_cpm(\"450\", 50000)","id":50,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-50","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Yesterday we computed CPM by hand on two spots.\n# Today: one function, any number of spots.\nspots <- data.frame(\n  spot_id = c(\"S1\", \"S2\"),\n  reads   = c(450, 200),\n  total   = c(50000, 20000)\n)\nspots","id":51,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-51","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"calc_cpm <- function(reads, total) {\n  if (total <= 0) stop(\"Library size must be > 0\")\n  (reads / total) * 1e6\n}\n\nspots <- data.frame(\n  spot_id = c(\"S1\", \"S2\"), reads = c(450, 200),\n  total = c(50000, 20000), mito_reads = c(12, 4)\n)\n\n# sapply() walks the rows; each call sees its OWN library size\nspots$cpm <- sapply(seq_len(nrow(spots)),\n                    function(i) calc_cpm(spots$reads[i], spots$total[i]))\n\nspots$mito_pct <- (spots$mito_reads / spots$reads) * 100\n\nround(spots$cpm)","id":52,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-52","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"qc_report <- list(\n  sample_name = \"Visium_HD_01\",\n  umi_counts  = c(200, 450, 12, 90, 800),\n  pass_status = TRUE\n)","id":53,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-53","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"qc_report <- list(\n  sample_name = \"Visium_HD_01\",\n  umi_counts  = c(200, 450, 12, 90, 800),\n  pass_status = TRUE\n)\n\n# 1. [[ ]] unwraps the vector\ncounts <- qc_report[[\"umi_counts\"]]\n\n# 2. Mean library depth per spot\nmean(counts)\n\n# 3. How many low-quality spots?\nsum(counts < 100)\ncounts[counts < 100]","id":54,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-54","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"test_data <- matrix(c(5, 10, NA, 2, 8, 12, 1, NA, 3), nrow = 3, ncol = 3)\ntest_data","id":55,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-55","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"test_data <- matrix(c(5, 10, NA, 2, 8, 12, 1, NA, 3), nrow = 3, ncol = 3)\n\n# 1. Fill the holes\ntest_data[is.na(test_data)] <- 0\n\n# 2. MARGIN 2 -> one median per column\ncol_medians <- apply(test_data, 2, median)\ncol_medians\n\n# 3. Which column wins?\nwhich.max(col_medians)","id":56,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-56","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"gapdh\", \"ACTB-mouse\", \"Cd8a-MOUSE\", \"il6 \", \"PECAM1-mouse\")","id":57,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-57","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"gapdh\", \"ACTB-mouse\", \"Cd8a-MOUSE\", \"il6 \", \"PECAM1-mouse\")\n\n# 1. Whitespace + case\ngenes <- toupper(trimws(genes))\n\n# 2. Strip the suffix\ngenes <- gsub(\"-MOUSE\", \"\", genes)\n\n# 3. Count and print\nlength(genes)\ngenes","id":58,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-58","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+  globalThis.qwebrCellDetails = [{"code":"vals <- c(10, 20, 30)\nvals","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"1:5","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"seq(2, 10, by = 2)","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"rep(1, 10) # repeat 1 ten times","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"gene_reads <- c(1200, 450, 0, 89, 3300)\ngene_reads","id":5,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"gene_reads[2]     # one value (the 2nd element)","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"gene_reads[2:4]   # a range","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"gene_reads[-2]    # negative index REMOVES element 2","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-8","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# 3 genes (rows) x 2 cohorts (cols)\ncount_mat <- matrix(c(120, 45, 0, 310, 85, 12), nrow = 3, ncol = 2)\ncount_mat","id":9,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-9","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"dim(count_mat)      # [rows, cols]","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-10","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"count_mat[1, 2]     # Row 1 (Gene 1), Col 2 (Cohort 2)","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-11","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"count_mat <- matrix(c(120, 45, 0, 310, 85, 12), nrow = 3, ncol = 2)\n\n# Name the 3 genes (rows) and 2 cohorts (columns)\nrownames(count_mat) <- c(\"EPCAM\", \"CD3D\", \"PECAM1\")\ncolnames(count_mat) <- c(\"Tumor\", \"Normal\")\ncount_mat","id":12,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-12","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"count_mat[, \"Tumor\"]     # Entire 'Tumor' column across all genes","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-13","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"count_mat[\"EPCAM\", ]     # Entire 'EPCAM' row across all cohorts","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-14","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# 2 rows x 3 cols x 2 slices (e.g. RGB / intensity channels)\nlayers <- array(c(255, 128, 45, 0, 89, 210, 180, 95, 15, 0, 72, 190), \n                dim = c(2, 3, 2))\nlayers","id":15,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-15","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"dim(layers)       # [rows, cols, slices]","id":16,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-16","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"layers[1, 2, 1]   # Row 1, Col 2, Slice 1","id":17,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-17","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spot <- list(name = \"Visium_S1\", \n             counts = c(120, 45, 0), \n             qc_pass = TRUE)\nspot","id":18,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-18","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spot[[\"qc_pass\"]]   # Extracts value","id":19,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-19","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spot[\"qc_pass\"]     # Extracts a sublist","id":20,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-20","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spots <- data.frame(\n  spot_id   = c(\"S1\", \"S2\", \"S3\"),\n  umi_count = c(12, 45, 0),\n  in_tissue = c(TRUE, TRUE, FALSE)\n)\n\nspots","id":21,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-21","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spots <- data.frame(\n  spot_id   = c(\"S1\", \"S2\", \"S3\"),\n  umi_count = c(12, 45, 0),\n  in_tissue = c(TRUE, TRUE, FALSE)\n)\nhead(spots, n = 2)   # First rows","id":22,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-22","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"dim(spots)           # [rows, columns]","id":23,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-23","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"str(spots)           # Structure: types + preview of values","id":24,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-24","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spots <- data.frame(\n  spot_id   = c(\"S1\", \"S2\", \"S3\"),\n  umi_count = c(12, 45, 0),\n  in_tissue = c(TRUE, TRUE, FALSE)\n)\nspots$umi_count                                     # 1. Extract one column as a vector","id":25,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-25","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spots[spots$umi_count > 10, ]                      # 2. Filter rows by condition","id":26,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-26","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"spots[spots$in_tissue, c(\"spot_id\", \"umi_count\")]  # 3. Filter rows AND select columns","id":27,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-27","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cell_types <- factor(c(\"T-cell\", \"B-cell\", \"T-cell\", \"T-cell\"))\nlevels(cell_types)","id":28,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-28","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"table(cell_types)","id":29,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-29","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"library(tibble)\n\n# Tibbles print dimensions and column types (<chr>, <dbl>) clearly:\nmy_spots <- tibble(\n  spot_id   = c(\"S1\", \"S2\", \"S3\"),\n  umi_count = c(12, 45, 0),\n  in_tissue = c(TRUE, TRUE, FALSE)\n)\n\nmy_spots","id":30,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-30","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# 3 genes x 4 samples\ncounts <- data.frame(\n  gene = c(\"gene_1\", \"gene_2\", \"gene_3\"),\n  S1   = c(2, 531, 14),\n  S2   = c(3, 485, 13),\n  S3   = c(1, 409, 10),\n  S4   = c(2, 433, 14)\n)\n\nmeans <- numeric(nrow(counts))\n\nfor (i in 1:nrow(counts)) {\n  row <- counts[i, -1]                # pull out gene i's 4 numbers\n  means[i] <- mean(as.numeric(row))   # a data frame row is not a vector\n}\n\nmeans","id":31,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-31","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"#  gene_1:  (2 + 3 + 1 + 2) / 4 =  2.00\n#  gene_2:  (531 + 485 + 409 + 433) / 4 = 464.50\n#  gene_3:  (14 + 13 + 10 + 14) / 4 = 12.75\napply(counts[, -1], 1, mean) # [, -1] : drop the gene column - only the numbers","id":32,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-32","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"#  S1:  (2 + 531 + 14)     / 3 = 182.33\n#  S2:  (3 + 485 + 13)     / 3 = 167.00\n#  S3:  (1 + 409 + 10)     / 3 = 140.00\n#  S4:  (2 + 433 + 14)     / 3 = 149.67\napply(counts[, -1], 2, mean)","id":33,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-33","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"reads <- counts[1, -1]     # gene_1's four reads\nreads\n\n# Run `sqrt()` on every element:\nlapply(reads, sqrt)","id":34,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-34","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"sapply(reads, sqrt)\n#      S1       S2       S3       S4\n# 1.414214 1.732051 1.000000 1.414214","id":35,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-35","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"reads <- c(2, 3, 1, 531, 485, 409)\n\n# \"gene_1\", \"gene_1\", \"gene_1\", \"gene_2\", \"gene_2\", \"gene_2\"\ngene  <- rep(c(\"gene_1\", \"gene_2\"), each = 3)\n\ntapply(reads, gene, mean)","id":36,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-36","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"GAPDH\", \"ACTB-mouse\", \"CD8A-mouse\", \"IL6\")\ngenes","id":37,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-37","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"GAPDH\", \"ACTB-mouse\", \"CD8A-mouse\", \"IL6\")\n\ngrep(\"mouse\", genes)                  # which positions?","id":38,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-38","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"grep(\"mouse\", genes, value = TRUE)    # which values?","id":39,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-39","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"grep(\"mouse\", genes, invert = TRUE)   # which do NOT match?","id":40,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-40","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"GAPDH\", \"HLA-DRB5-mouse\", \"CD8A-mouse\", \"IL6\")\n\nsub(\"-\", \"\", genes)     # removes the FIRST hyphen only","id":41,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-41","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"gsub(\"-\", \"\", genes)    # removes EVERY hyphen","id":42,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-42","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"gapdh\", \"ACTB-mouse\", \"Cd8a-MOUSE\", \"il6 \")\n\ntoupper(\"gapdh\")            # force case","id":43,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-43","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"nchar(genes)                # how many characters?","id":44,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-44","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"trimws(\"  Tumor  \")         # trim stray whitespace","id":45,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-45","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"HLA.1\", \"HLA1\", \"TP53\", \"HLA-A.1\", \"HLA.12\", \"HLA.1B\", \"mouse-HLA.1\")","id":46,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-46","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# A literal dot must be escaped: \"\\\\.1$\" = a real \".\" then \"1\" at the end\ngrep(\"\\\\.1$\", genes, value = TRUE)\n# [1] \"HLA.1\" \"HLA-A.1\" \"mouse-HLA.1\"","id":47,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-47","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Without the backslash, \".\" is a WILDCARD that matches any character\ngrep(\".1$\", genes, value = TRUE)\n# [1] \"HLA.1\" \"HLA1\" \"HLA-A.1\" \"mouse-HLA.1\"","id":48,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-48","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"expression <- c(12, NA, 45, 0, NA, 99)\nis.na(expression)","id":49,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-49","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"sum(is.na(expression))     # TRUE counts as 1","id":50,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-50","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"sum(!is.na(expression))","id":51,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-51","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"table(is.na(expression))","id":52,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-52","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"expression <- c(12, NA, 45, 0, NA, 99)\nmean(expression)                 # NA -> the whole answer is NA","id":53,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-53","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"mean(expression, na.rm = TRUE)   # na.rm = \"NA remove\"","id":54,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-54","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"expression <- c(12, NA, 45, 0, NA, 99)\n\nexpression[complete.cases(expression)]   # 1. drop the NAs","id":55,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-55","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"na.omit(expression)                       # 2. same thing, other name","id":56,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-56","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"mean(expression, na.rm = TRUE)            # 3. ignore them while computing","id":57,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-57","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"expression <- c(12, NA, 45, 0, NA, 99)\nexpression[is.na(expression)] <- 0   # replace with a baseline\nexpression\n\nsum(c(0, 5, 12))   # a 0 count and a missing value are NOT the same thing","id":58,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-58","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"qc <- data.frame(\n  spot_id = c(\"S1\", \"S2\", \"S3\", \"S4\"),\n  umi     = c(1200, NA, 0, 640),\n  mito    = c(4.1, 22.5, NA, 6.0)\n)","id":59,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-59","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"calc_percentage <- function(gene_count, total_umi) {\n  pct <- (gene_count / total_umi) * 100\n  return(pct)\n}\n\n# Call it\ncalc_percentage(25, 500)","id":60,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-60","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Explicit is easier to read\nmedian_count <- function(x) {\n  if (length(x) == 0) {\n    return(NA)\n  }\n  return(stats::median(x))\n}\n\nmedian_count(c(10, 40, 20))","id":61,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-61","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Without return(), R returns the last expression anyway\ndouble_it <- function(x) {\n  x * 2\n}\n\ndouble_it(21)","id":62,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-62","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"calc_cpm <- function(gene_count, total_umi) {\n  # Guard: refuse nonsense input immediately\n  if (!is.numeric(gene_count) || !is.numeric(total_umi)) {\n    stop(\"Counts must be numeric!\")\n  }\n  if (total_umi <= 0) {\n    stop(\"Library size must be greater than zero!\")\n  }\n\n  return((gene_count / total_umi) * 1e6)\n}\n\ncalc_cpm(450, 50000)\ncalc_cpm(\"450\", 50000)","id":63,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-63","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Yesterday we computed CPM by hand on two spots.\n# Today: one function, any number of spots.\nspots <- data.frame(\n  spot_id = c(\"S1\", \"S2\"),\n  reads   = c(450, 200),\n  total   = c(50000, 20000)\n)\nspots","id":64,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-64","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"qc_report <- list(\n  sample_name = \"Visium_HD_01\",\n  umi_counts  = c(200, 450, 12, 90, 800),\n  pass_status = TRUE\n)","id":65,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-65","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"qc_report <- list(\n  sample_name = \"Visium_HD_01\",\n  umi_counts  = c(200, 450, 12, 90, 800),\n  pass_status = TRUE\n)\n\n# 1. [[ ]] unwraps the vector\ncounts <- qc_report[[\"umi_counts\"]]\n\n# 2. Mean library depth per spot\nmean(counts)\n\n# 3. How many low-quality spots?\nsum(counts < 100)\ncounts[counts < 100]","id":66,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-66","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"test_data <- matrix(c(5, 10, NA, 2, 8, 12, 1, NA, 3), nrow = 3, ncol = 3)\ntest_data","id":67,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-67","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"test_data <- matrix(c(5, 10, NA, 2, 8, 12, 1, NA, 3), nrow = 3, ncol = 3)\n\n# 1. Fill the holes\ntest_data[is.na(test_data)] <- 0\n\n# 2. MARGIN 2 -> one median per column\ncol_medians <- apply(test_data, 2, median)\ncol_medians\n\n# 3. Which column wins?\nwhich.max(col_medians)","id":68,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-68","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"gapdh\", \"ACTB-mouse\", \"Cd8a-MOUSE\", \"il6 \", \"PECAM1-mouse\")","id":69,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-69","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"genes <- c(\"gapdh\", \"ACTB-mouse\", \"Cd8a-MOUSE\", \"il6 \", \"PECAM1-mouse\")\n\n# 1. Whitespace + case\ngenes <- toupper(trimws(genes))\n\n# 2. Strip the suffix\ngenes <- gsub(\"-MOUSE\", \"\", genes)\n\n# 3. Count and print\nlength(genes)\ngenes","id":70,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-70","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
   </script>
   <script type="module">
@@ -3986,6 +3986,35 @@ Fighting Cancer with Transcriptomics 2026
 <div class="section-tag">
 <p>2. Reading, Writing &amp; Merging Files · Extra</p>
 </div>
+<h3 id="large-files-skip-read.csv">Large Files: Skip read.csv()</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href aria-label="1"></a><span class="co"># Base R is correct but slow on big matrices</span></span>
+<span id="cb16-2"><a href aria-label="2"></a>slow <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;visium_counts.csv&quot;</span>)</span>
+<span id="cb16-3"><a href aria-label="3"></a></span>
+<span id="cb16-4"><a href aria-label="4"></a><span class="co"># data.table::fread() is 10-100x faster on the same file</span></span>
+<span id="cb16-5"><a href aria-label="5"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb16-6"><a href aria-label="6"></a>fast <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;visium_counts.csv&quot;</span>)</span>
+<span id="cb16-7"><a href aria-label="7"></a></span>
+<span id="cb16-8"><a href aria-label="8"></a><span class="co"># Spot coordinates</span></span>
+<span id="cb16-9"><a href aria-label="9"></a>coords <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;tissue_positions_list.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>⚡ Rule of Thumb</strong></p>
+</div>
+<div class="callout-content">
+<p>Under ~100 MB: <code>read.csv()</code> is fine. Above that: <code>data.table::fread()</code>. You will meet the threshold the day you load your first gene-by-spot matrix.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files · Extra</p>
+</div>
 <h3 id="base-r-table-readers-compared">Base R Table Readers Compared</h3>
 <p>All <code>read.*</code> functions wrap <code>read.table()</code>, but differ in default parameters:</p>
 <div class="small">
@@ -4057,31 +4086,6 @@ Fighting Cancer with Transcriptomics 2026
 <div class="section-tag">
 <p>2. Reading, Writing &amp; Merging Files</p>
 </div>
-<h3 id="write-save-a-slice-to-disk">Write: Save a Slice to Disk</h3>
-<p>Export a subset to disk with <code>write.csv()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href aria-label="1"></a>small <span class="ot">&lt;-</span> <span class="fu">head</span>(counts, <span class="dv">5</span>)</span>
-<span id="cb16-2"><a href aria-label="2"></a></span>
-<span id="cb16-3"><a href aria-label="3"></a><span class="co"># Export with row labels (gene IDs) preserved:</span></span>
-<span id="cb16-4"><a href aria-label="4"></a><span class="fu">write.csv</span>(small, <span class="st">&quot;counts_head.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>⚠️ Keep <code>row.names = TRUE</code> (Default)</strong></p>
-</div>
-<div class="callout-content">
-<p>If set to <code>FALSE</code>, row names (gene IDs) are dropped, leaving numbers without gene identifiers!</p>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="section-tag">
-<p>2. Reading, Writing &amp; Merging Files</p>
-</div>
 <h3 id="the-problem-opaque-sample-ids">The Problem: Opaque Sample IDs</h3>
 <p>Look at the column headers of your count matrix:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href aria-label="1"></a><span class="fu">colnames</span>(counts)</span>
@@ -4097,44 +4101,238 @@ Fighting Cancer with Transcriptomics 2026
 <div class="section-tag">
 <p>2. Reading, Writing &amp; Merging Files</p>
 </div>
-<h3 id="create-save-a-sample-metadata-table">Create &amp; Save a Sample Metadata Table</h3>
-<p>Build the lookup mapping and save it to disk with <code>write.csv()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href aria-label="1"></a>sample_info <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-2"><a href aria-label="2"></a>  <span class="at">sample_id =</span> <span class="fu">colnames</span>(counts),</span>
-<span id="cb18-3"><a href aria-label="3"></a>  <span class="at">cell_line =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;PC9&quot;</span>, <span class="st">&quot;PC9GR&quot;</span>), <span class="at">each =</span> <span class="dv">6</span>),</span>
-<span id="cb18-4"><a href aria-label="4"></a>  <span class="at">treatment =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Apatinib&quot;</span>, <span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Apatinib&quot;</span>), <span class="at">each =</span> <span class="dv">3</span>)</span>
-<span id="cb18-5"><a href aria-label="5"></a>)</span>
-<span id="cb18-6"><a href aria-label="6"></a></span>
-<span id="cb18-7"><a href aria-label="7"></a><span class="co"># Save sample metadata table for your project:</span></span>
-<span id="cb18-8"><a href aria-label="8"></a><span class="fu">write.csv</span>(sample_info, <span class="st">&quot;sample_metadata.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb18-9"><a href aria-label="9"></a><span class="fu">head</span>(sample_info, <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h3 id="the-metadata-table-first-on-paper">The Metadata Table — First, on Paper</h3>
+<p>Before any R: this is the table you need. One row per sample, keyed by the <code>GSM...</code> ID.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">sample_id</th>
+<th style="text-align: left;">cell_line</th>
+<th style="text-align: left;">treatment</th>
+<th>replicate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GSM3702795</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Control</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702796</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Control</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702797</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Control</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702798</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Apatinib</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702799</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Apatinib</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702800</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Apatinib</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">sample_id</th>
+<th style="text-align: left;">cell_line</th>
+<th style="text-align: left;">treatment</th>
+<th>replicate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GSM3702801</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Control</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702802</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Control</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702803</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Control</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702804</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Apatinib</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702805</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Apatinib</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702806</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Apatinib</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
 </section>
 <section class="slide level2">
 
 <div class="section-tag">
 <p>2. Reading, Writing &amp; Merging Files</p>
 </div>
-<h3 id="merge-metadata-with-expression-summaries">Merge Metadata with Expression Summaries</h3>
-<p>Calculate total reads per sample, then link them with <code>merge()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href aria-label="1"></a><span class="co"># Total sequenced reads per sample:</span></span>
-<span id="cb19-2"><a href aria-label="2"></a>lib_sizes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb19-3"><a href aria-label="3"></a>  <span class="at">sample_id   =</span> <span class="fu">colnames</span>(counts),</span>
-<span id="cb19-4"><a href aria-label="4"></a>  <span class="at">total_reads =</span> <span class="fu">colSums</span>(counts)</span>
-<span id="cb19-5"><a href aria-label="5"></a>)</span>
-<span id="cb19-6"><a href aria-label="6"></a></span>
-<span id="cb19-7"><a href aria-label="7"></a><span class="co"># Merge metadata with library sizes by matching sample_id:</span></span>
-<span id="cb19-8"><a href aria-label="8"></a>sample_summary <span class="ot">&lt;-</span> <span class="fu">merge</span>(sample_info, lib_sizes, <span class="at">by =</span> <span class="st">&quot;sample_id&quot;</span>)</span>
-<span id="cb19-9"><a href aria-label="9"></a><span class="fu">head</span>(sample_summary, <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h3 id="step-1-the-sample-ids">Step 1 — The Sample IDs</h3>
+<p>We will build this table <strong>one column at a time</strong>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>sample_id</strong></th>
+<th style="text-align: left;">cell_line</th>
+<th style="text-align: left;">treatment</th>
+<th>replicate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>GSM3702795</strong></td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Control</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>GSM3702796</strong></td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Control</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>GSM3702797</strong></td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Control</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>GSM3702798</strong></td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Apatinib</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>GSM3702799</strong></td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Apatinib</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>GSM3702800</strong></td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Apatinib</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>sample_id</strong></th>
+<th style="text-align: left;">cell_line</th>
+<th style="text-align: left;">treatment</th>
+<th>replicate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>GSM3702801</strong></td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Control</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>GSM3702802</strong></td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Control</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>GSM3702803</strong></td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Control</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>GSM3702804</strong></td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Apatinib</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>GSM3702805</strong></td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Apatinib</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>GSM3702806</strong></td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Apatinib</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="step-1-the-sample-ids-1">⚡ Step 1 — The Sample IDs</h3>
+<p>The <code>GSM...</code> IDs are already in <code>counts</code> — they are its column names.</p>
+<p><strong>How do you get the column names of a data frame in R?</strong></p>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>🔑 <code>merge(x, y, by = &quot;key&quot;)</code></strong></p>
+<p><strong>💡 Hint:</strong></p>
 </div>
 <div class="callout-content">
-<p>Base R’s <code>merge()</code> aligns rows automatically using a shared ID key — no manual index matching needed!</p>
+<ol type="1">
+<li><code>rownames()</code> gave you the gene IDs, three slides ago. There is a twin function for the samples.</li>
+<li>You have already met <code>colnames()</code> — earlier you <strong>set</strong> names on a matrix. Now ask for them instead of setting them.</li>
+</ol>
 </div>
 </div>
 </div>
@@ -4144,28 +4342,688 @@ Fighting Cancer with Transcriptomics 2026
 <div class="section-tag">
 <p>2. Reading, Writing &amp; Merging Files</p>
 </div>
-<h3 id="large-files-skip-read.csv">Large Files: Skip read.csv()</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href aria-label="1"></a><span class="co"># Base R is correct but slow on big matrices</span></span>
-<span id="cb20-2"><a href aria-label="2"></a>slow <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;visium_counts.csv&quot;</span>)</span>
-<span id="cb20-3"><a href aria-label="3"></a></span>
-<span id="cb20-4"><a href aria-label="4"></a><span class="co"># data.table::fread() is 10-100x faster on the same file</span></span>
-<span id="cb20-5"><a href aria-label="5"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb20-6"><a href aria-label="6"></a>fast <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;visium_counts.csv&quot;</span>)</span>
-<span id="cb20-7"><a href aria-label="7"></a></span>
-<span id="cb20-8"><a href aria-label="8"></a><span class="co"># Spot coordinates</span></span>
-<span id="cb20-9"><a href aria-label="9"></a>coords <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;tissue_positions_list.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h3 id="step-1-the-sample-ids-2">✅ Step 1 — The Sample IDs</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href aria-label="1"></a><span class="fu">colnames</span>(counts)</span>
+<span id="cb18-2"><a href aria-label="2"></a><span class="co">#  [1] &quot;GSM3702795&quot; &quot;GSM3702796&quot; &quot;GSM3702797&quot; &quot;GSM3702798&quot; &quot;GSM3702799&quot;</span></span>
+<span id="cb18-3"><a href aria-label="3"></a><span class="co">#  [6] &quot;GSM3702800&quot; &quot;GSM3702801&quot; &quot;GSM3702802&quot; &quot;GSM3702803&quot; &quot;GSM3702804&quot;</span></span>
+<span id="cb18-4"><a href aria-label="4"></a><span class="co"># [11] &quot;GSM3702805&quot; &quot;GSM3702806&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>counts</code> has 12 columns, so you get 12 names — one per sample.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="step-2-the-cell-line">Step 2 — The Cell Line</h3>
+<p>Column 2.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">sample_id</th>
+<th style="text-align: left;"><strong>cell_line</strong></th>
+<th style="text-align: left;">treatment</th>
+<th>replicate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GSM3702795</td>
+<td style="text-align: left;"><strong>PC9</strong></td>
+<td style="text-align: left;">Control</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702796</td>
+<td style="text-align: left;"><strong>PC9</strong></td>
+<td style="text-align: left;">Control</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702797</td>
+<td style="text-align: left;"><strong>PC9</strong></td>
+<td style="text-align: left;">Control</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702798</td>
+<td style="text-align: left;"><strong>PC9</strong></td>
+<td style="text-align: left;">Apatinib</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702799</td>
+<td style="text-align: left;"><strong>PC9</strong></td>
+<td style="text-align: left;">Apatinib</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702800</td>
+<td style="text-align: left;"><strong>PC9</strong></td>
+<td style="text-align: left;">Apatinib</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">sample_id</th>
+<th style="text-align: left;"><strong>cell_line</strong></th>
+<th style="text-align: left;">treatment</th>
+<th>replicate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GSM3702801</td>
+<td style="text-align: left;"><strong>PC9GR</strong></td>
+<td style="text-align: left;">Control</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702802</td>
+<td style="text-align: left;"><strong>PC9GR</strong></td>
+<td style="text-align: left;">Control</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702803</td>
+<td style="text-align: left;"><strong>PC9GR</strong></td>
+<td style="text-align: left;">Control</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702804</td>
+<td style="text-align: left;"><strong>PC9GR</strong></td>
+<td style="text-align: left;">Apatinib</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702805</td>
+<td style="text-align: left;"><strong>PC9GR</strong></td>
+<td style="text-align: left;">Apatinib</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702806</td>
+<td style="text-align: left;"><strong>PC9GR</strong></td>
+<td style="text-align: left;">Apatinib</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="step-2-the-cell-line-1">⚡ Step 2 — The Cell Line</h3>
+<p>Six PC9, then six PC9GR. You could type all twelve out yourself:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href aria-label="1"></a>cell_line <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;PC9&quot;</span>, <span class="st">&quot;PC9&quot;</span>, <span class="st">&quot;PC9&quot;</span>, <span class="st">&quot;PC9&quot;</span>, <span class="st">&quot;PC9&quot;</span>, <span class="st">&quot;PC9&quot;</span>,</span>
+<span id="cb19-2"><a href aria-label="2"></a>               <span class="st">&quot;PC9GR&quot;</span>, <span class="st">&quot;PC9GR&quot;</span>, <span class="st">&quot;PC9GR&quot;</span>, <span class="st">&quot;PC9GR&quot;</span>, <span class="st">&quot;PC9GR&quot;</span>, <span class="st">&quot;PC9GR&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It is correct. It is also exactly the kind of line you will mistype on Friday.</p>
+<p><strong>“Six PC9, then six PC9GR” — can R do that repeating for you?</strong></p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="rep-repeating-a-vector">🔧 <code>rep()</code> — Repeating a Vector</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href aria-label="1"></a><span class="fu">rep</span>(x, times, each)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><strong><code>x</code></strong> — the vector to repeat</li>
+<li><strong><code>times</code></strong> — repeat the <strong>whole vector</strong> that many times</li>
+<li><strong><code>each</code></strong> — repeat <strong>every element</strong> that many times</li>
+</ul>
+<p>The last two are not interchangeable:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href aria-label="1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="at">times =</span> <span class="dv">3</span>)</span>
+<span id="cb21-2"><a href aria-label="2"></a><span class="co"># [1] &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</span></span>
+<span id="cb21-3"><a href aria-label="3"></a></span>
+<span id="cb21-4"><a href aria-label="4"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="at">each =</span> <span class="dv">3</span>)</span>
+<span id="cb21-5"><a href aria-label="5"></a><span class="co"># [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🔑 Same Six Values, Different Order</strong></p>
+</div>
+<div class="callout-content">
+<p><code>times</code> and <code>each</code> both return 6 elements. Only <code>each</code> keeps the three <code>&quot;A&quot;</code>s <strong>together</strong>.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="step-2-the-cell-line-2">✅ Step 2 — The Cell Line</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href aria-label="1"></a>cell_line <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;PC9&quot;</span>, <span class="st">&quot;PC9GR&quot;</span>), <span class="at">each =</span> <span class="dv">6</span>)</span>
+<span id="cb22-2"><a href aria-label="2"></a><span class="co">#  [1] &quot;PC9&quot;   &quot;PC9&quot;   &quot;PC9&quot;   &quot;PC9&quot;   &quot;PC9&quot;   &quot;PC9&quot;   &quot;PC9GR&quot; &quot;PC9GR&quot;</span></span>
+<span id="cb22-3"><a href aria-label="3"></a><span class="co"># [10] &quot;PC9GR&quot; &quot;PC9GR&quot; &quot;PC9GR&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>c()</code> lists the two lines. <code>rep(..., each = 6)</code> repeats <strong>each</strong> one six times.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="step-3-the-treatment">Step 3 — The Treatment</h3>
+<p>Column 3, and the last one.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">sample_id</th>
+<th style="text-align: left;">cell_line</th>
+<th style="text-align: left;"><strong>treatment</strong></th>
+<th>replicate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GSM3702795</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;"><strong>Control</strong></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702796</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;"><strong>Control</strong></td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702797</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;"><strong>Control</strong></td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702798</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;"><strong>Apatinib</strong></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702799</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;"><strong>Apatinib</strong></td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702800</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;"><strong>Apatinib</strong></td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">sample_id</th>
+<th style="text-align: left;">cell_line</th>
+<th style="text-align: left;"><strong>treatment</strong></th>
+<th>replicate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GSM3702801</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;"><strong>Control</strong></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702802</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;"><strong>Control</strong></td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702803</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;"><strong>Control</strong></td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702804</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;"><strong>Apatinib</strong></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702805</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;"><strong>Apatinib</strong></td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702806</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;"><strong>Apatinib</strong></td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="step-3-the-treatment-1">⚡ Step 3 — The Treatment</h3>
+<p>Three samples per block, four blocks:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href aria-label="1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Apatinib&quot;</span>), <span class="at">times =</span> <span class="dv">2</span>, <span class="at">each =</span> <span class="dv">3</span>)</span>
+<span id="cb23-2"><a href aria-label="2"></a><span class="co">#  [1] &quot;Control&quot;  &quot;Control&quot;  &quot;Control&quot;  &quot;Apatinib&quot; &quot;Apatinib&quot; &quot;Apatinib&quot;</span></span>
+<span id="cb23-3"><a href aria-label="3"></a><span class="co">#  [7] &quot;Control&quot;  &quot;Control&quot;  &quot;Control&quot;  &quot;Apatinib&quot; &quot;Apatinib&quot; &quot;Apatinib&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🔑 <code>each</code> First, Then <code>times</code></strong></p>
+</div>
+<div class="callout-content">
+<p><code>each = 3</code> stretches <code>&quot;Control&quot;</code> and <code>&quot;Apatinib&quot;</code> into runs of three. Then <code>times = 2</code> repeats that whole run — once for PC9, once for PC9GR.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="step-4-the-replicate">Step 4 — The Replicate</h3>
+<p>Column 4, and the last one.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">sample_id</th>
+<th style="text-align: left;">cell_line</th>
+<th style="text-align: left;">treatment</th>
+<th style="text-align: left;"><strong>replicate</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GSM3702795</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Control</td>
+<td style="text-align: left;"><strong>1</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702796</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Control</td>
+<td style="text-align: left;"><strong>2</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702797</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Control</td>
+<td style="text-align: left;"><strong>3</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702798</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Apatinib</td>
+<td style="text-align: left;"><strong>1</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702799</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Apatinib</td>
+<td style="text-align: left;"><strong>2</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702800</td>
+<td style="text-align: left;">PC9</td>
+<td style="text-align: left;">Apatinib</td>
+<td style="text-align: left;"><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">sample_id</th>
+<th style="text-align: left;">cell_line</th>
+<th style="text-align: left;">treatment</th>
+<th style="text-align: left;"><strong>replicate</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GSM3702801</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Control</td>
+<td style="text-align: left;"><strong>1</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702802</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Control</td>
+<td style="text-align: left;"><strong>2</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702803</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Control</td>
+<td style="text-align: left;"><strong>3</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702804</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Apatinib</td>
+<td style="text-align: left;"><strong>1</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GSM3702805</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Apatinib</td>
+<td style="text-align: left;"><strong>2</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GSM3702806</td>
+<td style="text-align: left;">PC9GR</td>
+<td style="text-align: left;">Apatinib</td>
+<td style="text-align: left;"><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="step-4-the-replicate-1">⚡ Step 4 — The Replicate</h3>
+<p>Inside every group of three, number the samples 1, 2, 3 — then do it four times over:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href aria-label="1"></a>replicate <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">times =</span> <span class="dv">4</span>)</span>
+<span id="cb24-2"><a href aria-label="2"></a><span class="co"># [1] 1 2 3 1 2 3 1 2 3 1 2 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🔑 Here It Is <code>times</code>, Not <code>each</code></strong></p>
+</div>
+<div class="callout-content">
+<p>Steps 2 and 3 repeated <strong>each</strong> element. This column repeats the <strong>whole</strong> run <code>1 2 3</code> — so <code>each</code> would be wrong.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="from-table-to-data-frame-one-column-at-a-time">From Table to Data Frame — One Column at a Time</h3>
+<p>Each column is just a vector. Build them separately, then combine:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href aria-label="1"></a><span class="co"># 1. the IDs — you already have them</span></span>
+<span id="cb25-2"><a href aria-label="2"></a>sample_id <span class="ot">&lt;-</span> <span class="fu">colnames</span>(counts)</span>
+<span id="cb25-3"><a href aria-label="3"></a></span>
+<span id="cb25-4"><a href aria-label="4"></a><span class="co"># 2. cell line: six PC9, then six PC9GR</span></span>
+<span id="cb25-5"><a href aria-label="5"></a>cell_line <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;PC9&quot;</span>, <span class="st">&quot;PC9GR&quot;</span>), <span class="at">each =</span> <span class="dv">6</span>)</span>
+<span id="cb25-6"><a href aria-label="6"></a></span>
+<span id="cb25-7"><a href aria-label="7"></a><span class="co"># 3. treatment: two treatments, three samples each, twice over</span></span>
+<span id="cb25-8"><a href aria-label="8"></a>treatment <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Apatinib&quot;</span>), <span class="at">times =</span> <span class="dv">2</span>, <span class="at">each =</span> <span class="dv">3</span>)</span>
+<span id="cb25-9"><a href aria-label="9"></a></span>
+<span id="cb25-10"><a href aria-label="10"></a><span class="co"># 4. replicate: 1, 2, 3 inside each group of three</span></span>
+<span id="cb25-11"><a href aria-label="11"></a>replicate <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">times =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="four-vectors-one-data-frame">Four Vectors → One Data Frame</h3>
+<p>Four vectors of length 12 → one data frame:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href aria-label="1"></a>sample_info <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-2"><a href aria-label="2"></a>  <span class="at">sample_id =</span> sample_id,</span>
+<span id="cb26-3"><a href aria-label="3"></a>  <span class="at">cell_line =</span> cell_line,</span>
+<span id="cb26-4"><a href aria-label="4"></a>  <span class="at">treatment =</span> treatment,</span>
+<span id="cb26-5"><a href aria-label="5"></a>  <span class="at">replicate =</span> replicate</span>
+<span id="cb26-6"><a href aria-label="6"></a>)</span>
+<span id="cb26-7"><a href aria-label="7"></a></span>
+<span id="cb26-8"><a href aria-label="8"></a>sample_info</span>
+<span id="cb26-9"><a href aria-label="9"></a><span class="co">#    sample_id cell_line treatment replicate</span></span>
+<span id="cb26-10"><a href aria-label="10"></a><span class="co">#  1 GSM3702795       PC9   Control         1</span></span>
+<span id="cb26-11"><a href aria-label="11"></a><span class="co">#  2 GSM3702796       PC9   Control         2</span></span>
+<span id="cb26-12"><a href aria-label="12"></a><span class="co">#  3 GSM3702797       PC9   Control         3</span></span>
+<span id="cb26-13"><a href aria-label="13"></a><span class="co">#  4 GSM3702798       PC9  Apatinib         1</span></span>
+<span id="cb26-14"><a href aria-label="14"></a><span class="co">#  ...</span></span>
+<span id="cb26-15"><a href aria-label="15"></a><span class="co"># 12 GSM3702806     PC9GR  Apatinib         3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="write.csv-saving-a-data-frame">🔧 <code>write.csv()</code> — Saving a Data Frame</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href aria-label="1"></a><span class="fu">write.csv</span>(x, file, <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><strong><code>x</code></strong> — the object to save</li>
+<li><strong><code>file</code></strong> — the path, in quotes, ending in <code>.csv</code></li>
+<li><strong><code>row.names</code></strong> — keep the row labels? Default <code>TRUE</code></li>
+</ul>
+<p>One argument decides whether the file gets a stray leading header cell:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href aria-label="1"></a><span class="fu">write.csv</span>(mydf, <span class="st">&quot;mydf.csv&quot;</span>)                     <span class="co"># &quot;&quot;, &quot;sample_id&quot;,&quot;cell_line&quot;,...</span></span>
+<span id="cb28-2"><a href aria-label="2"></a><span class="fu">write.csv</span>(mydf, <span class="st">&quot;mydf.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)  <span class="co">#        &quot;sample_id&quot;,&quot;cell_line&quot;,...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🔑 <code>row.names</code> Depends on What the Labels Mean</strong></p>
+</div>
+<div class="callout-content">
+<p>Row labels that <em>mean</em> something — gene IDs — keep them. Automatic <code>1..12</code> row numbers carry nothing, so drop them.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="save-it">Save It</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href aria-label="1"></a><span class="co"># Save sample metadata table for your project:</span></span>
+<span id="cb29-2"><a href aria-label="2"></a><span class="co"># row.names = FALSE drops the 1..12 row numbers.</span></span>
+<span id="cb29-3"><a href aria-label="3"></a><span class="fu">write.csv</span>(sample_info, <span class="st">&quot;sample_metadata.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="step-5-merging">Step 5 — Merging</h3>
+<p>Table built. Table saved. One thing left: <strong>attach it to <code>counts</code>.</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">sample_id</th>
+<th style="text-align: left;">cell_line</th>
+<th style="text-align: left;">treatment</th>
+<th style="text-align: left;">replicate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>counts</code> column 1 says</td>
+<td style="text-align: left;"><code>GSM3702795</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sample_info</code> row 1 says</td>
+<td style="text-align: left;"><code>GSM3702795</code></td>
+<td style="text-align: left;"><code>PC9</code></td>
+<td style="text-align: left;"><code>Control</code></td>
+<td style="text-align: left;"><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<p>The two are lined up. The only thing missing is glue for the new label.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="paste-gluing-text-together">🔧 <code>paste()</code> — Gluing Text Together</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href aria-label="1"></a><span class="fu">paste</span>(..., <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><strong><code>...</code></strong> — anything you want joined; numbers are turned into text for you</li>
+<li><strong><code>sep</code></strong> — what goes <strong>between</strong> them. The default is a single space.</li>
+</ul>
+<p>The default is the part that bites:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href aria-label="1"></a><span class="fu">paste</span>(<span class="st">&quot;PC9&quot;</span>, <span class="st">&quot;Control&quot;</span>, <span class="dv">1</span>)</span>
+<span id="cb31-2"><a href aria-label="2"></a><span class="co"># [1] &quot;PC9 Control 1&quot;</span></span>
+<span id="cb31-3"><a href aria-label="3"></a></span>
+<span id="cb31-4"><a href aria-label="4"></a><span class="fu">paste</span>(<span class="st">&quot;PC9&quot;</span>, <span class="st">&quot;Control&quot;</span>, <span class="dv">1</span>, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
+<span id="cb31-5"><a href aria-label="5"></a><span class="co"># [1] &quot;PC9_Control_1&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="paste-on-whole-vectors">🔧 <code>paste()</code> on Whole Vectors</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href aria-label="1"></a><span class="fu">paste</span>(..., <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>And it works on whole vectors at once:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href aria-label="1"></a><span class="fu">paste</span>(<span class="fu">c</span>(<span class="st">&quot;PC9&quot;</span>, <span class="st">&quot;PC9GR&quot;</span>), <span class="st">&quot;Control&quot;</span>, <span class="dv">1</span>, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
+<span id="cb33-2"><a href aria-label="2"></a><span class="co"># [1] &quot;PC9_Control&quot; &quot;PC9GR_Control&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🔑 Always Set <code>sep</code> Explicitly</strong></p>
+</div>
+<div class="callout-content">
+<p>Spaces inside column names are a nuisance to type and easy to lose. Pick <code>_</code> and say so every time.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="now-use-it-name-your-columns">Now Use It — Name Your Columns</h3>
+<p>The table was worth building for this: relabel <code>counts</code> with it.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href aria-label="1"></a><span class="fu">colnames</span>(counts) <span class="ot">&lt;-</span> <span class="fu">paste</span>(sample_info<span class="sc">$</span>cell_line,</span>
+<span id="cb34-2"><a href aria-label="2"></a>                          sample_info<span class="sc">$</span>treatment,</span>
+<span id="cb34-3"><a href aria-label="3"></a>                          sample_info<span class="sc">$</span>replicate, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
+<span id="cb34-4"><a href aria-label="4"></a></span>
+<span id="cb34-5"><a href aria-label="5"></a><span class="fu">colnames</span>(counts)</span>
+<span id="cb34-6"><a href aria-label="6"></a><span class="co">#  [1] &quot;PC9_Control_1&quot;    &quot;PC9_Control_2&quot;    &quot;PC9_Control_3&quot;    &quot;PC9_Apatinib_1&quot;</span></span>
+<span id="cb34-7"><a href aria-label="7"></a><span class="co">#  [5] &quot;PC9_Apatinib_2&quot;   &quot;PC9_Apatinib_3&quot;   &quot;PC9GR_Control_1&quot;  &quot;PC9GR_Control_2&quot;</span></span>
+<span id="cb34-8"><a href aria-label="8"></a><span class="co">#  [9] &quot;PC9GR_Control_3&quot;  &quot;PC9GR_Apatinib_1&quot; &quot;PC9GR_Apatinib_2&quot; &quot;PC9GR_Apatinib_3&quot;</span></span>
+<span id="cb34-9"><a href aria-label="9"></a></span>
+<span id="cb34-10"><a href aria-label="10"></a><span class="co"># row.names = TRUE here — the gene IDs are row labels that mean something:</span></span>
+<span id="cb34-11"><a href aria-label="11"></a><span class="fu">write.table</span>(counts, <span class="st">&quot;counts_sample_name_merge.tsv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>head(counts)</code> now reads like an experiment, not a GEO accession list.</p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>⚡ Rule of Thumb</strong></p>
+<p><strong>⚠️ This Works Because the Order Matches</strong></p>
 </div>
 <div class="callout-content">
-<p>Under ~100 MB: <code>read.csv()</code> is fine. Above that: <code>data.table::fread()</code>. You will meet the threshold the day you load your first gene-by-spot matrix.</p>
+<p><code>sample_info</code> row 1 was built from <code>colnames(counts)[1]</code>, so row <em>i</em> always describes column <em>i</em>. The GSM IDs are gone from <code>counts</code> — <code>sample_info$sample_id</code> is the only way back to GEO.</p>
 </div>
 </div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>2. Reading, Writing &amp; Merging Files</p>
+</div>
+<h3 id="homework-annotate_gene.r">✍️ Homework — <code>annotate_gene.R</code></h3>
+<p>Entrez IDs are not readable.</p>
+<p>A reference file sits next to the counts: <code>counts/Human.GRCh38.p13.annot.tsv</code>.</p>
+<p>Write <strong><code>annotate_gene.R</code></strong> that takes <code>counts_sample_name_merge.tsv</code> in and writes <strong><code>counts_annotated.tsv</code></strong> out.</p>
+<p>What you should have:</p>
+<div class="small">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">GeneID</th>
+<th style="text-align: left;">Symbol</th>
+<th style="text-align: right;">PC9_Control_1</th>
+<th style="text-align: right;">PC9_Control_2</th>
+<th style="text-align: right;">PC9_Apatinib_1</th>
+<th style="text-align: center;">…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">100287102</td>
+<td style="text-align: left;">DDX11L1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">653635</td>
+<td style="text-align: left;">WASH7P</td>
+<td style="text-align: right;">531</td>
+<td style="text-align: right;">485</td>
+<td style="text-align: right;">433</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">102466751</td>
+<td style="text-align: left;">MIR6859-1</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">107985730</td>
+<td style="text-align: left;">MIR1302-2HG</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: center;">…</td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
 <section id="vectorization-the-apply-family" class="slide level2">
@@ -4188,59 +5046,114 @@ Fighting Cancer with Transcriptomics 2026
 <p>3. Vectorization &amp; the apply Family</p>
 </div>
 <h3 id="the-problem">The Problem</h3>
-<p>How many genes read <strong>zero</strong> in every sample?</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href aria-label="1"></a>counts <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;counts/counts.tsv&quot;</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb21-2"><a href aria-label="2"></a></span>
-<span id="cb21-3"><a href aria-label="3"></a>silent_gene <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb21-4"><a href aria-label="4"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(counts)) {</span>
-<span id="cb21-5"><a href aria-label="5"></a>  s <span class="ot">&lt;-</span> <span class="fu">sum</span>(counts[i, ])</span>
-<span id="cb21-6"><a href aria-label="6"></a>  <span class="cf">if</span> (s <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb21-7"><a href aria-label="7"></a>    silent_gene <span class="ot">&lt;-</span> silent_gene <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb21-8"><a href aria-label="8"></a>  }</span>
-<span id="cb21-9"><a href aria-label="9"></a>}</span>
-<span id="cb21-10"><a href aria-label="10"></a>silent_gene   <span class="co"># 10261</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Each gene has 12 numbers — one per sample. We want <strong>the average number per gene</strong>.</p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">gene</th>
+<th style="text-align: right;">S1</th>
+<th style="text-align: right;">S2</th>
+<th style="text-align: right;">S3</th>
+<th style="text-align: right;">S4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">gene_1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gene_2</td>
+<td style="text-align: right;">531</td>
+<td style="text-align: right;">485</td>
+<td style="text-align: right;">409</td>
+<td style="text-align: right;">433</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gene_3</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gene_n</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">60</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:8%;">
+<div style="text-align: center; font-size: 1.6em; margin-top: 1.2em;">
+→
 </div>
+</div><div class="column" style="width:32%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><strong>2.00</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>464.50</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>12.75</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">⋮</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>48.50</strong></td>
+</tr>
+</tbody>
+</table>
+</div></div>
 </section>
 <section class="slide level2">
 
 <div class="section-tag">
 <p>3. Vectorization &amp; the apply Family</p>
 </div>
-<h3 id="the-solution-one-operation-whole-table">The Solution: One Operation, Whole Table</h3>
-<p>The same 39,376 numbers, in one call:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href aria-label="1"></a>gene_means_fast <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(mat)</span>
-<span id="cb22-2"><a href aria-label="2"></a></span>
-<span id="cb22-3"><a href aria-label="3"></a><span class="co"># Identical values — the loop&#39;s vector had no names, this one does</span></span>
-<span id="cb22-4"><a href aria-label="4"></a><span class="fu">identical</span>(<span class="fu">unname</span>(gene_means_loop), <span class="fu">unname</span>(gene_means_fast))   <span class="co"># TRUE</span></span>
-<span id="cb22-5"><a href aria-label="5"></a></span>
-<span id="cb22-6"><a href aria-label="6"></a><span class="fu">head</span>(gene_means_fast, <span class="dv">3</span>)</span>
-<span id="cb22-7"><a href aria-label="7"></a><span class="fu">head</span>(<span class="fu">names</span>(gene_means_fast), <span class="dv">3</span>)   <span class="co"># &quot;100287102&quot; &quot;653635&quot; &quot;102466751&quot; — free gene labels</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Don’t take my word for the speedup — run it. This uses the <strong>same shape</strong> as the real matrix (39,376 genes × 12 samples):</p>
+<h3 id="the-naive-way-a-for-loop">The Naive Way: a <code>for</code> Loop</h3>
+<div class="columns">
+<div class="column" style="width:58%;">
 <div id="qwebr-insertion-location-31"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Your absolute numbers will be larger than mine — this is R compiled to WebAssembly, not native R. <strong>The ratio is the point</strong>: one trip, versus 39,376.</p>
-<p>The rest of the family was already there:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href aria-label="1"></a><span class="fu">rowSums</span>(mat)     <span class="co"># total reads per gene</span></span>
-<span id="cb23-2"><a href aria-label="2"></a><span class="fu">colMeans</span>(mat)    <span class="co"># mean expression per sample</span></span>
-<span id="cb23-3"><a href aria-label="3"></a><span class="fu">range</span>(mat)       <span class="co"># smallest and largest count in the whole table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-tip callout-titled callout-style-default">
+</div><div class="column" style="width:38%;">
+<div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>🎯 The Rule</strong></p>
+<p><strong>⏱️ What If There Are More Samples? More Rows?</strong></p>
 </div>
 <div class="callout-content">
-<p>If a function already comes in families — <code>mean()</code>, <code>sum()</code>, <code>rowMeans()</code>, <code>colSums()</code> — reach for those first. <code>apply()</code> is for when <strong>no</strong> built-in exists.</p>
+<p>Every round pulls one row out of the table and averages it. More genes, more samples — more rounds, more copying.</p>
+<p><strong>R will take forever!</strong></p>
 </div>
 </div>
 </div>
+</div></div>
 </section>
 <section class="slide level2">
 
@@ -4248,51 +5161,85 @@ Fighting Cancer with Transcriptomics 2026
 <p>3. Vectorization &amp; the apply Family</p>
 </div>
 <h3 id="apply-the-margin-decides-everything">apply(): The Margin Decides Everything</h3>
+<p><code>apply()</code> does the same job as a loop, without the loop. It collapses your matrix along <strong>one</strong> axis, and works out the same statistic on each piece that is left.</p>
+<p>Everything hinges on which axis — the <strong>margin</strong>.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
+</div>
+<h3 id="margin-1-mean-of-each-row">Margin 1: Mean of Each Row</h3>
+<p>Add each row across, divide by 4 (there are 4 samples):</p>
 <div id="qwebr-insertion-location-32"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>📐 Margin = The Axis You Collapse</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li><code>MARGIN = 1</code> → R goes <strong>down</strong> the columns, returning one value per <strong>row</strong></li>
-<li><code>MARGIN = 2</code> → R goes <strong>across</strong> the rows, returning one value per <strong>column</strong></li>
-</ul>
-<p>Say “down” for 1, “across” for 2, and you will never mix them up again.</p>
-</div>
-</div>
-</div>
+<p><strong>3 rows in → 3 numbers out.</strong></p>
 </section>
 <section class="slide level2">
 
 <div class="section-tag">
 <p>3. Vectorization &amp; the apply Family</p>
 </div>
-<h3 id="apply-is-a-loop-wearing-a-mask">🎭 <code>apply()</code> Is a Loop Wearing a Mask</h3>
-<p><code>apply(X, 1, mean)</code> slices out each row, calls <code>mean()</code> <strong>once per row</strong>, and pastes the answers back together. It is the <code>for</code> loop from two slides ago — with better manners.</p>
+<h3 id="margin-2-mean-of-each-column">Margin 2: Mean of Each Column</h3>
+<p>Same table. Add each column down, divide by 3 (there are 3 genes):</p>
 <div id="qwebr-insertion-location-33"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>At three rows you cannot see the cost. Scale up:</p>
-<div id="qwebr-insertion-location-34"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p><strong>4 columns in → 4 numbers out.</strong></p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
 </div>
-<p><strong>🕵️ When <code>apply()</code> Earns Its Place</strong></p>
+<h3 id="the-margin-is-the-divisor">📐 The Margin Is the Divisor</h3>
+<table class="caption-top">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 29%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">What you add up</th>
+<th style="text-align: center;">Divide by</th>
+<th style="text-align: left;">Answers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>MARGIN = 1</code></td>
+<td style="text-align: left;">each <strong>row</strong>, across the columns</td>
+<td style="text-align: center;"><code>ncol</code> = 4</td>
+<td style="text-align: left;">one per <strong>row</strong> → 3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>MARGIN = 2</code></td>
+<td style="text-align: left;">each <strong>column</strong>, down the rows</td>
+<td style="text-align: center;"><code>nrow</code> = 3</td>
+<td style="text-align: left;">one per <strong>column</strong> → 4</td>
+</tr>
+</tbody>
+</table>
+<p>The margin decides <strong>which axis survives</strong>. Count the answers to check you got it right.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
 </div>
-<div class="callout-content">
-<p>Identical answers, wildly different cost. <code>rowMeans()</code> hands the whole grid to compiled C in <strong>one</strong> call; <code>apply()</code> walks it in <strong>20,000</strong>.</p>
-<p>So <code>apply()</code> is the tool for when <strong>no dedicated function exists</strong> — your own function, an unusual margin-dependent statistic. The moment a <code>row*()</code> / <code>col*()</code> twin exists, take it.</p>
-</div>
-</div>
+<h3 id="apply-on-the-real-matrix">apply() on the Real Matrix</h3>
+<p>MARGIN 1 does to the real matrix exactly what it did to the mock one:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href aria-label="1"></a><span class="fu">library</span>(here)</span>
+<span id="cb35-2"><a href aria-label="2"></a></span>
+<span id="cb35-3"><a href aria-label="3"></a>counts <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="fu">here</span>(<span class="st">&quot;FCWT_2026&quot;</span>, <span class="st">&quot;lecture-06&quot;</span>, <span class="st">&quot;counts&quot;</span>, <span class="st">&quot;counts_annotated.tsv&quot;</span>))</span>
+<span id="cb35-4"><a href aria-label="4"></a></span>
+<span id="cb35-5"><a href aria-label="5"></a><span class="co"># offset 2 columns (GeneID, Symbol) -&gt; the 12 sample columns</span></span>
+<span id="cb35-6"><a href aria-label="6"></a>mean <span class="ot">&lt;-</span> <span class="fu">apply</span>(counts[, <span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(counts)], <span class="dv">1</span>, mean)</span>
+<span id="cb35-7"><a href aria-label="7"></a><span class="fu">head</span>(mean, <span class="dv">3</span>)</span>
+<span id="cb35-8"><a href aria-label="8"></a><span class="co"># [1]   1.2500 512.8333  11.7500</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section class="slide level2">
@@ -4300,8 +5247,54 @@ Fighting Cancer with Transcriptomics 2026
 <div class="section-tag">
 <p>3. Vectorization &amp; the apply Family</p>
 </div>
-<h3 id="lapply-vs-sapply">lapply() vs sapply()</h3>
-<div id="qwebr-insertion-location-35"></div>
+<h3 id="rowmeans-the-shortcut"><code>rowMeans()</code> — The Shortcut</h3>
+<p>R ships a named version of that exact job:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href aria-label="1"></a><span class="fu">rowMeans</span>(counts[, <span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(counts)])</span>
+<span id="cb36-2"><a href aria-label="2"></a><span class="co"># 100287102    653635 102466751</span></span>
+<span id="cb36-3"><a href aria-label="3"></a><span class="co">#    1.2500 512.8333   11.7500</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
+</div>
+<h3 id="when-apply-earns-its-place">🕵️ When <code>apply()</code> Earns Its Place</h3>
+<p>Most common jobs already have a shortcut:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Shortcut</th>
+<th style="text-align: left;">Does the same job as</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>rowMeans(x)</code></td>
+<td style="text-align: left;"><code>apply(x, 1, mean)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>colMeans(x)</code></td>
+<td style="text-align: left;"><code>apply(x, 2, mean)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>rowSums(x)</code></td>
+<td style="text-align: left;"><code>apply(x, 1, sum)</code></td>
+</tr>
+</tbody>
+</table>
+<p>If a shortcut exists, use it — it is faster and easier to read.</p>
+<p>Reach for <code>apply()</code> only when <strong>no twin exists</strong>: a statistic that is not row- or column-shaped, and where the margin genuinely changes what the number means.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
+</div>
+<h3 id="lapply-a-list-every-time">lapply() — A List, Every Time</h3>
+<p>One gene — the first row of <code>counts</code>:</p>
+<div id="qwebr-insertion-location-34"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -4312,7 +5305,7 @@ Fighting Cancer with Transcriptomics 2026
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p><code>lapply()</code> never surprises you — the shape of the answer always matches the input shape. <code>sapply()</code> tries to be prettier and occasionally returns a matrix instead of a vector. When the shape matters, use <code>lapply()</code>.</p>
+<p>The answer is <strong>always</strong> a list, whatever you put in. Each element keeps its name — <code>S1</code>, <code>S2</code>, <code>S3</code>, <code>S4</code> — so nothing is lost.</p>
 </div>
 </div>
 </div>
@@ -4322,19 +5315,264 @@ Fighting Cancer with Transcriptomics 2026
 <div class="section-tag">
 <p>3. Vectorization &amp; the apply Family</p>
 </div>
-<h3 id="tapply-summarise-by-group">tapply(): Summarise by Group</h3>
+<h3 id="sapply-the-same-work-flattened">sapply() — The Same Work, Flattened</h3>
+<div id="qwebr-insertion-location-35"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Same numbers, no <code>$</code> prefixes — <code>sapply()</code> takes the list and tries to simplify it into a plain vector.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
+</div>
+<h3 id="tapply-the-same-idea-with-labels">tapply() — The Same Idea, With Labels</h3>
+<p><code>lapply()</code> and <code>sapply()</code> walk a <strong>list</strong>. <code>tapply()</code> takes a <strong>vector</strong> plus the <strong>labels that group it</strong>:</p>
 <div id="qwebr-insertion-location-36"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Split the numbers into piles by <code>gene</code>, then run <code>mean</code> on each pile. The answer comes back <strong>named after the groups</strong> — the same 2.00 and 464.50 from the first slide.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
+</div>
+<h3 id="which-one-do-you-want">Which One Do You Want?</h3>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><code>lapply()</code></th>
+<th style="text-align: left;"><code>sapply()</code></th>
+<th style="text-align: left;"><code>tapply()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Returns</td>
+<td style="text-align: left;">list, <strong>always</strong></td>
+<td style="text-align: left;">simplified vector, usually</td>
+<td style="text-align: left;">vector per group</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Names kept?</td>
+<td style="text-align: left;">yes</td>
+<td style="text-align: left;">only if they survive simplification</td>
+<td style="text-align: left;">yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Surprises you?</td>
+<td style="text-align: left;">never</td>
+<td style="text-align: left;">sometimes returns a matrix</td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+<p>When the shape matters, use <code>lapply()</code>. When you just want the numbers and the shape is obvious, <code>sapply()</code> is fine.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
+</div>
+<h3 id="the-problem-12-numbers-2-answers-needed">The Problem: 12 Numbers, 2 Answers Needed</h3>
+<p>MARGIN 2 gave us one mean per sample — <strong>12 numbers</strong>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href aria-label="1"></a><span class="co"># offset 2 columns (GeneID, Symbol) -&gt; the 12 sample columns</span></span>
+<span id="cb37-2"><a href aria-label="2"></a>sample_means <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(counts[, <span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(counts)])</span>
+<span id="cb37-3"><a href aria-label="3"></a><span class="fu">round</span>(sample_means, <span class="dv">2</span>)</span>
+<span id="cb37-4"><a href aria-label="4"></a><span class="co">#    PC9_Control_1 PC9_Control_2 PC9_Control_3  ... PC9GR_Apatinib_3</span></span>
+<span id="cb37-5"><a href aria-label="5"></a><span class="co">#             570.94         560.04         559.32   ...         494.85</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>But the question is not about samples. It is about <strong>treatment</strong>. We want two numbers: the mean of all Controls, and the mean of all Apatinibs.</p>
+<p>How do you average numbers that carry labels?</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
+</div>
+<h3 id="step-1-get-the-labels">Step 1 — Get the Labels</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href aria-label="1"></a><span class="fu">library</span>(here)</span>
+<span id="cb38-2"><a href aria-label="2"></a>counts_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;FCWT_2026&quot;</span>, <span class="st">&quot;lecture-06&quot;</span>, <span class="st">&quot;counts&quot;</span>)</span>
+<span id="cb38-3"><a href aria-label="3"></a></span>
+<span id="cb38-4"><a href aria-label="4"></a>info <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.path</span>(counts_dir, <span class="st">&quot;sample_metadata.csv&quot;</span>))</span>
+<span id="cb38-5"><a href aria-label="5"></a>info<span class="sc">$</span>treatment</span>
+<span id="cb38-6"><a href aria-label="6"></a><span class="co">#  [1] &quot;Control&quot;  &quot;Control&quot;  &quot;Control&quot;  &quot;Apatinib&quot; &quot;Apatinib&quot; &quot;Apatinib&quot;</span></span>
+<span id="cb38-7"><a href aria-label="7"></a><span class="co">#  [7] &quot;Control&quot;  &quot;Control&quot;  &quot;Control&quot;  &quot;Apatinib&quot; &quot;Apatinib&quot; &quot;Apatinib&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Tip</strong></p>
+<p><strong>🔑 <code>$</code> Pulls One Column</strong></p>
 </div>
 <div class="callout-content">
-<p>This single pattern replaces most of your pivot tables: <strong>group a numeric vector by a factor, summarise it</strong>. Differential expression at its core is <code>tapply</code> with a test function instead of <code>mean</code>.</p>
+<p><code>info</code> is a table with four columns. <code>info$treatment</code> is just <em>“the <code>treatment</code> column”</em> — one vector of 12 labels, in the same order as <code>sample_means</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
+</div>
+<h3 id="step-2-put-them-side-by-side">Step 2 — Put Them Side by Side</h3>
+<p>Numbers on the left, labels on the right. Row <em>i</em> is the same sample in both:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href aria-label="1"></a>side_by_side <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">mean =</span> <span class="fu">round</span>(sample_means, <span class="dv">2</span>),</span>
+<span id="cb39-2"><a href aria-label="2"></a>                           <span class="at">treatment =</span> info<span class="sc">$</span>treatment)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">mean</th>
+<th style="text-align: left;">treatment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">570.94</td>
+<td style="text-align: left;">Control</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">560.04</td>
+<td style="text-align: left;">Control</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">559.32</td>
+<td style="text-align: left;">Control</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">554.25</td>
+<td style="text-align: left;">Apatinib</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">559.01</td>
+<td style="text-align: left;">Apatinib</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">524.23</td>
+<td style="text-align: left;">Apatinib</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">mean</th>
+<th style="text-align: left;">treatment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">544.62</td>
+<td style="text-align: left;">Control</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">566.64</td>
+<td style="text-align: left;">Control</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">569.34</td>
+<td style="text-align: left;">Control</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">558.34</td>
+<td style="text-align: left;">Apatinib</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">510.47</td>
+<td style="text-align: left;">Apatinib</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">494.85</td>
+<td style="text-align: left;">Apatinib</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
+</div>
+<h3 id="step-3-average-each-pile">Step 3 — Average Each Pile</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href aria-label="1"></a><span class="fu">tapply</span>(sample_means, info<span class="sc">$</span>treatment, mean)</span>
+<span id="cb40-2"><a href aria-label="2"></a><span class="co">#  Apatinib   Control</span></span>
+<span id="cb40-3"><a href aria-label="3"></a><span class="co">#  533.5257  561.8162</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>That is all it did:</p>
+<ul>
+<li><code>Control</code> = (570.94 + 560.04 + 559.32 + 544.62 + 566.64 + 569.34) / 6 = <strong>561.82</strong></li>
+<li><code>Apatinib</code> = (554.25 + 559.01 + 524.23 + 558.34 + 510.47 + 494.85) / 6 = <strong>533.53</strong></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
+</div>
+<h3 id="all-three-steps-together">All Three Steps Together</h3>
+<p>Everything from the previous slides, start to finish:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href aria-label="1"></a><span class="fu">library</span>(here)</span>
+<span id="cb41-2"><a href aria-label="2"></a>counts_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;FCWT_2026&quot;</span>, <span class="st">&quot;lecture-06&quot;</span>, <span class="st">&quot;counts&quot;</span>)</span>
+<span id="cb41-3"><a href aria-label="3"></a></span>
+<span id="cb41-4"><a href aria-label="4"></a><span class="co"># --- the data -------------------------------------------------------</span></span>
+<span id="cb41-5"><a href aria-label="5"></a>counts <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">read.delim</span>(<span class="fu">file.path</span>(counts_dir, <span class="st">&quot;counts_sample_name_merge.tsv&quot;</span>),</span>
+<span id="cb41-6"><a href aria-label="6"></a>                               <span class="at">row.names =</span> <span class="dv">1</span>))</span>
+<span id="cb41-7"><a href aria-label="7"></a>info <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.path</span>(counts_dir, <span class="st">&quot;sample_metadata.csv&quot;</span>))</span>
+<span id="cb41-8"><a href aria-label="8"></a></span>
+<span id="cb41-9"><a href aria-label="9"></a><span class="co"># --- Step 1: one mean per sample (12 numbers) ------------------------</span></span>
+<span id="cb41-10"><a href aria-label="10"></a>sample_means <span class="ot">&lt;-</span> <span class="fu">apply</span>(counts, <span class="dv">2</span>, mean)</span>
+<span id="cb41-11"><a href aria-label="11"></a></span>
+<span id="cb41-12"><a href aria-label="12"></a><span class="co"># --- Step 2: the matching label for each of those 12 -----------------</span></span>
+<span id="cb41-13"><a href aria-label="13"></a>treatment <span class="ot">&lt;-</span> info<span class="sc">$</span>treatment</span>
+<span id="cb41-14"><a href aria-label="14"></a></span>
+<span id="cb41-15"><a href aria-label="15"></a><span class="co"># --- Step 3: average each pile (2 numbers) ---------------------------</span></span>
+<span id="cb41-16"><a href aria-label="16"></a><span class="fu">tapply</span>(sample_means, treatment, mean)</span>
+<span id="cb41-17"><a href aria-label="17"></a><span class="co">#  Apatinib   Control</span></span>
+<span id="cb41-18"><a href aria-label="18"></a><span class="co">#  533.5257  561.8162</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family</p>
+</div>
+<h3 id="why-this-pattern-is-everywhere">💡 Why This Pattern Is Everywhere</h3>
+<p><strong>Group a numeric vector by a factor, summarise it.</strong> That one line replaces most of your pivot tables.</p>
+<p>Same numbers, a different grouping — one mean per <strong>cell line</strong>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href aria-label="1"></a><span class="fu">tapply</span>(sample_means, info<span class="sc">$</span>cell_line, mean)</span>
+<span id="cb42-2"><a href aria-label="2"></a><span class="co">#     PC9    PC9GR </span></span>
+<span id="cb42-3"><a href aria-label="3"></a><span class="co"># 554.6308 540.7111 </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🔍 Trivia</strong></p>
+</div>
+<div class="callout-content">
+<p>Differential expression has the same shape too — numbers grouped by a factor — but it needs a <strong>count model</strong> (DESeq2, edgeR), not a <code>tapply</code>.</p>
 </div>
 </div>
 </div>
@@ -4354,6 +5592,16 @@ Fighting Cancer with Transcriptomics 2026
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>colMeans()</code> / <code>colSums()</code></td>
+<td style="text-align: left;">matrix</td>
+<td style="text-align: left;">one mean or total per column</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>rowMeans()</code> / <code>rowSums()</code></td>
+<td style="text-align: left;">matrix</td>
+<td style="text-align: left;">one mean or total per row</td>
+</tr>
 <tr class="odd">
 <td style="text-align: left;"><code>apply</code></td>
 <td style="text-align: left;">matrix / data frame + margin</td>
@@ -4375,25 +5623,189 @@ Fighting Cancer with Transcriptomics 2026
 <td style="text-align: left;">vector per group</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>colMeans</code></td>
-<td style="text-align: left;">matrix</td>
-<td style="text-align: left;">one number per column</td>
+<td style="text-align: left;"><code>split</code></td>
+<td style="text-align: left;">vector + grouping factor</td>
+<td style="text-align: left;">a list, one vector per group</td>
 </tr>
 </tbody>
 </table>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>1. Vectorization &amp; the apply Family · Exercise</p>
 </div>
-<p><strong>Tip</strong></p>
+<h3 id="exercise-3.1-which-margin">✍️ Exercise 3.1: Which Margin?</h3>
+<p>Rows are genes, columns are samples:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href aria-label="1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>,</span>
+<span id="cb43-2"><a href aria-label="2"></a>               <span class="dv">531</span>, <span class="dv">485</span>, <span class="dv">409</span>, <span class="dv">433</span>,</span>
+<span id="cb43-3"><a href aria-label="3"></a>               <span class="dv">14</span>, <span class="dv">13</span>, <span class="dv">10</span>, <span class="dv">14</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb43-4"><a href aria-label="4"></a><span class="co">#      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb43-5"><a href aria-label="5"></a><span class="co"># [1,]    2    3    1    2</span></span>
+<span id="cb43-6"><a href aria-label="6"></a><span class="co"># [2,]  531  485  409  433</span></span>
+<span id="cb43-7"><a href aria-label="7"></a><span class="co"># [3,]   14   13   10   14</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-content">
-<p>Work top to bottom: check the dedicated function, then <code>apply</code>, then <code>lapply</code>/<code>sapply</code>, then <code>tapply</code>.</p>
+<p>You want <strong>one mean per sample</strong> — and the samples are the columns.</p>
+<ul>
+<li><ol type="a">
+<li><code>apply(m, 1, mean)</code></li>
+</ol></li>
+<li><ol start="2" type="a">
+<li><code>apply(m, 2, mean)</code></li>
+</ol></li>
+<li><ol start="3" type="a">
+<li><code>apply(m, 2, sum)</code></li>
+</ol></li>
+<li><ol start="4" type="a">
+<li><code>rowMeans(m)</code></li>
+</ol></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family · Exercise</p>
 </div>
+<h3 id="exercise-3.1-solution">✅ Exercise 3.1 — Solution</h3>
+<p><strong>b) <code>apply(m, 2, mean)</code></strong> — MARGIN 2 collapses down the rows, so the <strong>columns survive</strong>: one number per column.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Option</th>
+<th style="text-align: left;">Gives</th>
+<th style="text-align: left;">Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">a) <code>apply(m, 1, mean)</code></td>
+<td style="text-align: left;"><code>2  464.5  12.75</code></td>
+<td style="text-align: left;">wrong axis — one per <strong>row</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">b) <code>apply(m, 2, mean)</code></td>
+<td style="text-align: left;"><code>182.3  167  140  149.7</code></td>
+<td style="text-align: left;">✅ one per <strong>column</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">c) <code>apply(m, 2, sum)</code></td>
+<td style="text-align: left;"><code>547  501  420  449</code></td>
+<td style="text-align: left;">right axis, wrong statistic</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">d) <code>rowMeans(m)</code></td>
+<td style="text-align: left;"><code>2  464.5  12.75</code></td>
+<td style="text-align: left;">one per <strong>row</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family · Exercise</p>
 </div>
+<h3 id="exercise-3.2-what-does-lapply-give-back">✍️ Exercise 3.2: What Does <code>lapply()</code> Give Back?</h3>
+<ul>
+<li><ol type="a">
+<li>a vector</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>a list, always</li>
+</ol></li>
+<li><ol start="3" type="a">
+<li>a matrix</li>
+</ol></li>
+<li><ol start="4" type="a">
+<li>whatever the data happens to be</li>
+</ol></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family · Exercise</p>
 </div>
+<h3 id="exercise-3.2-solution">✅ Exercise 3.2 — Solution</h3>
+<p><strong>b) a list, always.</strong> Whatever you feed it, <code>lapply()</code> comes back with a list — one element per input, names kept.</p>
+<p><code>sapply()</code> is the one that <em>tries</em> to simplify that list into a plain vector. Sometimes it succeeds, sometimes it hands you a matrix instead — which is exactly why <code>lapply()</code> is the safer default when the shape matters.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family · Exercise</p>
+</div>
+<h3 id="exercise-3.3-group-and-summarise">✍️ Exercise 3.3: Group and Summarise</h3>
+<p>12 numbers, each with a label:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href aria-label="1"></a>sample_means <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb44-2"><a href aria-label="2"></a>treatment   <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Apatinib&quot;</span>), <span class="at">each =</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You want the mean of the <strong>Controls</strong> and the mean of the <strong>Apatinibs</strong> — two numbers, not twelve.</p>
+<ul>
+<li><ol type="a">
+<li><code>tapply(sample_means, treatment, mean)</code></li>
+</ol></li>
+<li><ol start="2" type="a">
+<li><code>apply(sample_means, treatment, mean)</code></li>
+</ol></li>
+<li><ol start="3" type="a">
+<li><code>lapply(treatment, mean)</code></li>
+</ol></li>
+<li><ol start="4" type="a">
+<li><code>mean(sample_means)</code></li>
+</ol></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>3. Vectorization &amp; the apply Family · Exercise</p>
+</div>
+<h3 id="exercise-3.3-solution">✅ Exercise 3.3 — Solution</h3>
+<p><strong>a) <code>tapply(sample_means, treatment, mean)</code></strong> — split the numbers into piles by the labels, then average each pile. The result comes back named after the groups.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Option</th>
+<th style="text-align: left;">Gives</th>
+<th style="text-align: left;">Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">a) <code>tapply(...)</code></td>
+<td style="text-align: left;"><code>Control 3.17  Apatinib 2.67</code></td>
+<td style="text-align: left;">✅ two numbers, named by group</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">b) <code>apply(...)</code></td>
+<td style="text-align: left;"><strong>Error</strong>: <code>dim(X) must have a positive length</code></td>
+<td style="text-align: left;"><code>apply()</code> wants a margin (1 or 2), not labels</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">c) <code>lapply(treatment, mean)</code></td>
+<td style="text-align: left;"><code>NA NA NA …</code> (×12)</td>
+<td style="text-align: left;">it walks the <strong>labels</strong> — and you cannot average text</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">d) <code>mean(sample_means)</code></td>
+<td style="text-align: left;"><code>2.92</code></td>
+<td style="text-align: left;">one number for all 12 — the labels never used</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="strings-regular-expressions" class="slide level2">
 <h2>📋 4. Strings &amp; Regular Expressions</h2>
@@ -4419,19 +5831,6 @@ Fighting Cancer with Transcriptomics 2026
 <div id="qwebr-insertion-location-37"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>You need the suffix stripped and the cases normalised — across 20,000 rows.</p>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>🛑 Why Not Find-and-Replace in Excel?</strong></p>
-</div>
-<div class="callout-content">
-<p>Because the labels are not identical: <code>&quot;ACTB-mouse&quot;</code>, <code>&quot;Actb-mouse&quot;</code> and <code>&quot;ACTB&quot;</code> are three different strings. A <strong>pattern</strong> catches all of them; a literal search does not.</p>
-</div>
-</div>
-</div>
 </section>
 <section class="slide level2">
 
@@ -4440,6 +5839,10 @@ Fighting Cancer with Transcriptomics 2026
 </div>
 <h3 id="grep-find-the-matches">grep(): Find the Matches</h3>
 <div id="qwebr-insertion-location-38"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-39"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-40"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -4461,7 +5864,9 @@ Fighting Cancer with Transcriptomics 2026
 <p>4. Strings &amp; Regular Expressions</p>
 </div>
 <h3 id="sub-vs-gsub-replace-text">sub() vs gsub(): Replace Text</h3>
-<div id="qwebr-insertion-location-39"></div>
+<div id="qwebr-insertion-location-41"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-42"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -4483,7 +5888,11 @@ Fighting Cancer with Transcriptomics 2026
 <p>4. Strings &amp; Regular Expressions</p>
 </div>
 <h3 id="case-length-slicing">Case, Length &amp; Slicing</h3>
-<div id="qwebr-insertion-location-40"></div>
+<div id="qwebr-insertion-location-43"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-44"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-45"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -4546,7 +5955,18 @@ Fighting Cancer with Transcriptomics 2026
 </tr>
 </tbody>
 </table>
-<div id="qwebr-insertion-location-41"></div>
+<div id="qwebr-insertion-location-46"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-47"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>4. Strings &amp; Regular Expressions</p>
+</div>
+<h3 id="the-dot-is-a-wildcard">⚠️ The Dot Is a Wildcard</h3>
+<div id="qwebr-insertion-location-48"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
@@ -4582,7 +6002,13 @@ Fighting Cancer with Transcriptomics 2026
 <p>5. Cleaning Missing Data (NA)</p>
 </div>
 <h3 id="spot-the-gap-is.na">Spot the Gap: is.na()</h3>
-<div id="qwebr-insertion-location-42"></div>
+<div id="qwebr-insertion-location-49"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-50"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-51"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-52"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -4604,7 +6030,9 @@ Fighting Cancer with Transcriptomics 2026
 <p>5. Cleaning Missing Data (NA)</p>
 </div>
 <h3 id="why-mean-returns-na">Why mean() Returns NA</h3>
-<div id="qwebr-insertion-location-43"></div>
+<div id="qwebr-insertion-location-53"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-54"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -4626,7 +6054,11 @@ Fighting Cancer with Transcriptomics 2026
 <p>5. Cleaning Missing Data (NA)</p>
 </div>
 <h3 id="three-ways-to-handle-na">Three Ways to Handle NA</h3>
-<div id="qwebr-insertion-location-44"></div>
+<div id="qwebr-insertion-location-55"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-56"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-57"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -4648,7 +6080,7 @@ Fighting Cancer with Transcriptomics 2026
 <p>5. Cleaning Missing Data (NA)</p>
 </div>
 <h3 id="replace-or-remove">Replace or Remove?</h3>
-<div id="qwebr-insertion-location-45"></div>
+<div id="qwebr-insertion-location-58"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -4674,25 +6106,124 @@ Fighting Cancer with Transcriptomics 2026
 <p>5. Cleaning Missing Data (NA)</p>
 </div>
 <h3 id="practice-clean-a-qc-table">🧬 Practice: Clean a QC Table</h3>
-<div id="qwebr-insertion-location-46"></div>
+<div id="qwebr-insertion-location-59"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="slide-kicker">
 <p>Your Turn!</p>
 </div>
-<ol type="1">
-<li>Add a <code>pass</code> column that is <code>TRUE</code> when <code>umi &gt; 500</code>.</li>
-<li>Replace the missing <code>mito</code> values with <code>0</code> in a <strong>copy</strong> of the table.</li>
-<li>Report how many spots remain after both filters.</li>
-</ol>
+<p>Three steps — one at a time.</p>
 </section>
 <section class="slide level2">
 
 <div class="section-tag">
 <p>5. Cleaning Missing Data (NA)</p>
 </div>
-<h3 id="practice-clean-a-qc-table-solution">✅ Practice: Clean a QC Table — Solution</h3>
-<div id="qwebr-insertion-location-47"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<h3 id="step-1-add-a-pass-column">⚡ Step 1 — Add a <code>pass</code> column</h3>
+<p><code>pass</code> is <code>TRUE</code> when <code>umi &gt; 500</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href aria-label="1"></a>qc<span class="sc">$</span>pass <span class="ot">&lt;-</span> _______________</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>💡 Hint:</strong></p>
+</div>
+<div class="callout-content">
+<p>Compare a column with a number — you get a logical column back.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>5. Cleaning Missing Data (NA)</p>
+</div>
+<h3 id="step-1-add-a-pass-column-1">✅ Step 1 — Add a <code>pass</code> column</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href aria-label="1"></a>qc<span class="sc">$</span>pass <span class="ot">&lt;-</span> qc<span class="sc">$</span>umi <span class="sc">&gt;</span> <span class="dv">500</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>TRUE  NA  FALSE  TRUE</code> — spot S2 has no <code>umi</code> value, so its <code>pass</code> is <code>NA</code> too.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>5. Cleaning Missing Data (NA)</p>
+</div>
+<h3 id="step-2-fill-the-gaps-in-a-copy">⚡ Step 2 — Fill the gaps in a copy</h3>
+<p>In <code>qc_filled</code>, the missing <code>mito</code> values become <code>0</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href aria-label="1"></a>qc_filled <span class="ot">&lt;-</span> qc</span>
+<span id="cb47-2"><a href aria-label="2"></a>qc_filled<span class="sc">$</span>mito <span class="ot">&lt;-</span> ______________________________</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>💡 Hint:</strong></p>
+</div>
+<div class="callout-content">
+<p><code>is.na(x)</code> finds the missing values, <code>ifelse(is.na(x), 0, x)</code> swaps them for something else.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>5. Cleaning Missing Data (NA)</p>
+</div>
+<h3 id="step-2-fill-the-gaps-in-a-copy-1">✅ Step 2 — Fill the gaps in a copy</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href aria-label="1"></a>qc_filled <span class="ot">&lt;-</span> qc</span>
+<span id="cb48-2"><a href aria-label="2"></a>qc_filled<span class="sc">$</span>mito <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(qc_filled<span class="sc">$</span>mito), <span class="dv">0</span>, qc_filled<span class="sc">$</span>mito)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>4.1  22.5  0  6.0</code> — <code>qc</code> itself is untouched.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>5. Cleaning Missing Data (NA)</p>
+</div>
+<h3 id="step-3-count-the-survivors">⚡ Step 3 — Count the survivors</h3>
+<p>Spots that are fully measured <strong>and</strong> pass:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href aria-label="1"></a>keep <span class="ot">&lt;-</span> ______________________________</span>
+<span id="cb49-2"><a href aria-label="2"></a></span>
+<span id="cb49-3"><a href aria-label="3"></a><span class="fu">sum</span>(keep)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>💡 Hint:</strong></p>
+</div>
+<div class="callout-content">
+<p><code>complete.cases(qc)</code> is one logical column, <code>qc$pass</code> is another. <code>&amp;</code> joins them, <code>sum()</code> counts the <code>TRUE</code>s.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>5. Cleaning Missing Data (NA)</p>
+</div>
+<h3 id="step-3-count-the-survivors-1">✅ Step 3 — Count the survivors</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href aria-label="1"></a>keep <span class="ot">&lt;-</span> <span class="fu">complete.cases</span>(qc) <span class="sc">&amp;</span> qc<span class="sc">$</span>pass</span>
+<span id="cb50-2"><a href aria-label="2"></a></span>
+<span id="cb50-3"><a href aria-label="3"></a><span class="fu">sum</span>(keep)          <span class="co"># 2 spots survive</span></span>
+<span id="cb50-4"><a href aria-label="4"></a>qc<span class="sc">$</span>pass            <span class="co"># TRUE  NA  FALSE  TRUE</span></span>
+<span id="cb50-5"><a href aria-label="5"></a>qc_filled<span class="sc">$</span>mito     <span class="co"># 4.1  22.5  0  6.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
 <section id="custom-functions" class="slide level2">
 <h2>📋 6. Custom Functions</h2>
@@ -4715,7 +6246,7 @@ Fighting Cancer with Transcriptomics 2026
 </div>
 <h3 id="anatomy-of-a-function">Anatomy of a Function</h3>
 <p>A function is a <strong>named recipe</strong>: inputs, a body, and a returned value.</p>
-<div id="qwebr-insertion-location-48"></div>
+<div id="qwebr-insertion-location-60"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -4737,10 +6268,20 @@ Fighting Cancer with Transcriptomics 2026
 <p>6. Custom Functions</p>
 </div>
 <h3 id="return-or-the-last-line">return() or the Last Line?</h3>
-<div id="qwebr-insertion-location-49"></div>
+<div id="qwebr-insertion-location-61"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div class="{.callout-tip]">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
 <p>Write <code>return()</code> when the function has more than a couple of steps. Your future self — and your reviewers — will thank you.</p>
+</div>
+</div>
 </div>
 </section>
 <section class="slide level2">
@@ -4748,8 +6289,17 @@ Fighting Cancer with Transcriptomics 2026
 <div class="section-tag">
 <p>6. Custom Functions</p>
 </div>
+<h3 id="the-last-line-is-the-return-value">The Last Line Is the Return Value</h3>
+<div id="qwebr-insertion-location-62"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>6. Custom Functions</p>
+</div>
 <h3 id="validate-or-stop">Validate or Stop</h3>
-<div id="qwebr-insertion-location-50"></div>
+<div id="qwebr-insertion-location-63"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -4771,25 +6321,136 @@ Fighting Cancer with Transcriptomics 2026
 <p>6. Custom Functions</p>
 </div>
 <h3 id="practice-wrap-yesterdays-cpm">🧬 Practice: Wrap Yesterday’s CPM</h3>
-<div id="qwebr-insertion-location-51"></div>
+<div id="qwebr-insertion-location-64"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="slide-kicker">
 <p>Your Turn!</p>
 </div>
-<ol type="1">
-<li>Write <code>calc_cpm(reads, total)</code> that returns counts per million.</li>
-<li>Add a <code>mito_pct</code> column for <code>spot_id</code>, <code>mito_reads</code> = <code>c(12, 4)</code>.</li>
-<li>Use <code>sapply()</code> to turn the CPM column into a numeric vector of values.</li>
-</ol>
+<p>Three steps — one at a time.</p>
 </section>
 <section class="slide level2">
 
 <div class="section-tag">
 <p>6. Custom Functions</p>
 </div>
-<h3 id="practice-wrap-yesterdays-cpm-solution">✅ Practice: Wrap Yesterday’s CPM — Solution</h3>
-<div id="qwebr-insertion-location-52"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<h3 id="step-1-write-the-function">⚡ Step 1 — Write the function</h3>
+<p><code>calc_cpm()</code> returns counts per million:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href aria-label="1"></a>calc_cpm <span class="ot">&lt;-</span> <span class="cf">function</span>(reads, total) {</span>
+<span id="cb51-2"><a href aria-label="2"></a>  <span class="cf">if</span> (<span class="fu">any</span>(total <span class="sc">&lt;=</span> <span class="dv">0</span>)) <span class="fu">stop</span>(<span class="st">&quot;Library size must be &gt; 0&quot;</span>)</span>
+<span id="cb51-3"><a href aria-label="3"></a>  ____________________</span>
+<span id="cb51-4"><a href aria-label="4"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>💡 Hint:</strong></p>
+</div>
+<div class="callout-content">
+<p>CPM = reads divided by the library size, times one million.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>6. Custom Functions</p>
+</div>
+<h3 id="step-1-write-the-function-1">✅ Step 1 — Write the function</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href aria-label="1"></a>calc_cpm <span class="ot">&lt;-</span> <span class="cf">function</span>(reads, total) {</span>
+<span id="cb52-2"><a href aria-label="2"></a>  <span class="cf">if</span> (<span class="fu">any</span>(total <span class="sc">&lt;=</span> <span class="dv">0</span>)) <span class="fu">stop</span>(<span class="st">&quot;Library size must be &gt; 0&quot;</span>)</span>
+<span id="cb52-3"><a href aria-label="3"></a>  (reads <span class="sc">/</span> total) <span class="sc">*</span> <span class="fl">1e6</span></span>
+<span id="cb52-4"><a href aria-label="4"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>6. Custom Functions</p>
+</div>
+<h3 id="step-2-add-a-cpm-column">⚡ Step 2 — Add a <code>cpm</code> column</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href aria-label="1"></a>spots<span class="sc">$</span>cpm <span class="ot">&lt;-</span> ______________________________</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>💡 Hint:</strong></p>
+</div>
+<div class="callout-content">
+<p>Give your function both columns at once — R functions work on whole vectors.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>6. Custom Functions</p>
+</div>
+<h3 id="step-2-add-a-cpm-column-1">✅ Step 2 — Add a <code>cpm</code> column</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href aria-label="1"></a>spots<span class="sc">$</span>cpm <span class="ot">&lt;-</span> <span class="fu">calc_cpm</span>(spots<span class="sc">$</span>reads, spots<span class="sc">$</span>total)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>9000  10000</code> — one CPM per spot, no loop.</p>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>6. Custom Functions</p>
+</div>
+<h3 id="step-3-add-mito_reads-and-mito_pct">⚡ Step 3 — Add <code>mito_reads</code> and <code>mito_pct</code></h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href aria-label="1"></a>spots<span class="sc">$</span>mito_reads <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">4</span>)</span>
+<span id="cb55-2"><a href aria-label="2"></a>spots<span class="sc">$</span>mito_pct  <span class="ot">&lt;-</span> ______________________________</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>💡 Hint:</strong></p>
+</div>
+<div class="callout-content">
+<p>Mito percent = mito reads divided by all reads, times 100.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="section-tag">
+<p>6. Custom Functions</p>
+</div>
+<h3 id="step-3-add-mito_reads-and-mito_pct-1">✅ Step 3 — Add <code>mito_reads</code> and <code>mito_pct</code></h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href aria-label="1"></a>spots<span class="sc">$</span>mito_reads <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">4</span>)</span>
+<span id="cb56-2"><a href aria-label="2"></a>spots<span class="sc">$</span>mito_pct  <span class="ot">&lt;-</span> (spots<span class="sc">$</span>mito_reads <span class="sc">/</span> spots<span class="sc">$</span>reads) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb56-3"><a href aria-label="3"></a></span>
+<span id="cb56-4"><a href aria-label="4"></a><span class="fu">round</span>(spots<span class="sc">$</span>cpm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🎯 No Loop, No <code>sapply()</code></strong></p>
+</div>
+<div class="callout-content">
+<p><code>calc_cpm(spots$reads, spots$total)</code> gives <strong>one CPM per spot</strong> in a single line — R functions work on whole vectors. The guard needed <code>any()</code> so it still works when <code>total</code> is a vector.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="practice-exercises" class="slide level2">
 <h2>📋 7. Practice Exercises</h2>
@@ -4812,7 +6473,7 @@ Fighting Cancer with Transcriptomics 2026
 </div>
 <h3 id="exercise-1-lists-double-brackets">✍️ Exercise 1: Lists &amp; Double Brackets</h3>
 <p>A QC report came back from the pipeline as a list:</p>
-<div id="qwebr-insertion-location-53"></div>
+<div id="qwebr-insertion-location-65"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="slide-kicker">
 <p>Your Turn!</p>
@@ -4829,7 +6490,7 @@ Fighting Cancer with Transcriptomics 2026
 <p>7. Practice Exercises</p>
 </div>
 <h3 id="exercise-1-lists-double-brackets-solution">✅ Exercise 1: Lists &amp; Double Brackets — Solution</h3>
-<div id="qwebr-insertion-location-54"></div>
+<div id="qwebr-insertion-location-66"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -4852,7 +6513,7 @@ Fighting Cancer with Transcriptomics 2026
 </div>
 <h3 id="exercise-2-apply-missing-data">✍️ Exercise 2: apply() &amp; Missing Data</h3>
 <p>A gene expression matrix arrived with holes in it:</p>
-<div id="qwebr-insertion-location-55"></div>
+<div id="qwebr-insertion-location-67"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="slide-kicker">
 <p>Your Turn!</p>
@@ -4869,7 +6530,7 @@ Fighting Cancer with Transcriptomics 2026
 <p>7. Practice Exercises</p>
 </div>
 <h3 id="exercise-2-apply-missing-data-solution">✅ Exercise 2: apply() &amp; Missing Data — Solution</h3>
-<div id="qwebr-insertion-location-56"></div>
+<div id="qwebr-insertion-location-68"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -4891,7 +6552,7 @@ Fighting Cancer with Transcriptomics 2026
 <p>7. Practice Exercises</p>
 </div>
 <h3 id="exercise-3-clean-the-gene-list">✍️ Exercise 3: Clean the Gene List</h3>
-<div id="qwebr-insertion-location-57"></div>
+<div id="qwebr-insertion-location-69"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="slide-kicker">
 <p>Your Turn!</p>
@@ -4908,7 +6569,7 @@ Fighting Cancer with Transcriptomics 2026
 <p>7. Practice Exercises</p>
 </div>
 <h3 id="exercise-3-clean-the-gene-list-solution">✅ Exercise 3: Clean the Gene List — Solution</h3>
-<div id="qwebr-insertion-location-58"></div>
+<div id="qwebr-insertion-location-70"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
