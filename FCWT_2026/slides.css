@@ -43,6 +43,72 @@
   line-height: 1.4;
 }
 
+/* Dense slides. Put the class on the heading line — `### Title {.compact}` —
+   so Pandoc attaches it to the slide section. A `{.compact}` line on its own
+   after the heading is literal text and prints on the slide. */
+.reveal .compact p,
+.reveal .compact li {
+  font-size: 0.75em;
+  line-height: 1.35;
+}
+
+.reveal .compact table {
+  font-size: 0.58em;
+}
+
+.reveal .compact .callout {
+  font-size: 0.7em;
+}
+
+/* One real alignment line written out as a table, walked through field by
+   field. Two rows: field names, then the values of the record. Put the fields
+   in play in `.key` (bold, accent) and the rest in `.fade`. */
+.reveal table.rec {
+  font-family: "DejaVu Sans Mono", monospace;
+  font-size: 0.42em;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.reveal table.rec th,
+.reveal table.rec td {
+  border: none;
+  background: transparent;
+  padding: 0.12em 0.22em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.reveal table.rec .fade {
+  opacity: 0.3;
+}
+
+.reveal table.rec .key {
+  color: #b03a56;
+  font-weight: 700;
+}
+
+/* Attribution line under a figure taken from an external source. Kept out of
+   the outline (it is a `div`, not a heading). */
+.reveal .credit {
+  font-size: 0.62em;
+  opacity: 0.7;
+  text-align: center;
+  margin-top: 0.35em;
+}
+
+/* The deck has used `{.small}` and `{.muted}` for a while with no rule
+   behind them, so every one of those blocks has been rendering at full
+   size. The Sources & Licenses slide is the one that needs it: six dense
+   citations on one slide. */
+.reveal .small {
+  font-size: 0.68em;
+}
+
+.reveal .muted {
+  opacity: 0.7;
+}
+
 /* Non-heading labels.
    Chrome's presentation view builds its outline from every h1-h6 on the
    page, so repeating `##` on every slide filled the navigation pane with

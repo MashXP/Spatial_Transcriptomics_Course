@@ -1,0 +1,8 @@
+data/
+envs/
+star_tmp/
+align/
+star_index/
+*.ipynb_checkpoints/
+__pycache__/
+*.log
