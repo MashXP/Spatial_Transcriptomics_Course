@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# Run: ./serve 09
+#
+# Serve lecture-<NN>/lecture-<NN>_slides.qmd on the desktop's Tailscale address,
+# so the phone can open it: http://<tailscale-ip>:4200
+#
+# The default --host 127.0.0.1 only serves the desktop, so the phone gets no
+# route to the port. Override with QUARTO_HOST=... QUARTO_PORT=... .
+#
+# Each deck renders with embed-resources: true, so the phone's browser loads the
+# deck, reveal.js, its plugins, the PNGs and the CSS in one response. It
+# re-renders when the watcher notices a changed input file, and the phone
+# reloads on its own when the server announces a new render.
+#
+# R comes from the R_tutorial env only, so every quarto call here is wrapped in
+# `micromamba run -n R_tutorial`.
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+usage() {
+  echo "usage: ./serve <lecture>   (09, 9, lecture-09)" >&2
+  echo "available: $(ls -d lecture-*/ | sed 's|lecture-||; s|/||' | tr '\n' ' ')" >&2
+}
+
+ARG="${1:-}"
+if [[ -z "${ARG}" ]]; then
+  usage
+  exit 1
+fi
+
+NUM="${ARG#lecture-}"
+case "${NUM}" in
+  [0-9])     NUM=$(printf '%02d' "${NUM}") ;;
+  [0-9][0-9]) ;;
+  *)         usage; exit 1 ;;
+esac
+
+DECK="lecture-${NUM}/lecture-${NUM}_slides.qmd"
+if [[ ! -f "${DECK}" ]]; then
+  echo "no deck: ${DECK}" >&2
+  usage
+  exit 1
+fi
+
+HOST="${QUARTO_HOST:-$(tailscale ip -4 2>/dev/null | head -1)}"
+if [[ -z "${HOST}" ]]; then
+  echo "no Tailscale address found; set QUARTO_HOST=<ip>" >&2
+  exit 1
+fi
+
+PORT="${QUARTO_PORT:-4200}"
+
+echo "serving ${DECK} on http://${HOST}:${PORT}"
+exec micromamba run -n R_tutorial quarto preview "${DECK}" \
+  --host "${HOST}" --port "${PORT}" --no-browser --no-navigate

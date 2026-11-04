@@ -18,7 +18,7 @@ channels:
 
 dependencies:
   # Core Language & Jupyter Kernel
-  - r-base=4.3                # Base R statistical computing engine
+  - r-base=4.5                # Base R statistical computing engine (env is 4.5.3)
   - r-irkernel                # R Kernel for Jupyter Notebooks & VS Code
   - jupyter_client            # Jupyter protocol client to manage kernels
   - jupyter_core              # Core Jupyter filesystem and spec utilities
@@ -29,12 +29,16 @@ dependencies:
   # Course Module Dependencies
   - r-tibble                  # Enhanced modern data frames (Module 1b)
   - r-here                    # Path resolution (Module 5: Project Structure)
+  - r-dplyr                   # Data verbs: filter, mutate, summarise (Module 1b)
+  - r-tidyr                   # Long data reshaping, pivot_longer (Module 1c)
+  - r-ggplot2                 # Publication-grade data visualization (Module 1c)
+  - r-ggridges                # Density ridges and violins (Module 1c)
+  - r-matrix                  # Dense and sparse count matrices (Module 1b)
   # - r-data.table              # High-performance biological table I/O (Module 1b)
   # - r-reshape2                # Wide-to-long table reshaping (Module 1c)
-  # - r-ggplot2                 # Publication-grade data visualization (Module 1c)
-  # - r-matrix                  # Dense and sparse count matrices (Module 1b)
   # - r-roxygen2                # In-line function documentation (Module 3)
 
   # # Recommended Spatial Genomics Dependencies (Upstream / Downstream)
   # - r-seurat                  # Single-cell & Spatial transcriptomics toolkit
-  # - r-patchwork               # Multi-panel plot arrangement
+  - r-patchwork               # Multi-panel plot arrangement
+  - r-latex2exp               # LaTeX math rendered as plotmath expressions in R plots

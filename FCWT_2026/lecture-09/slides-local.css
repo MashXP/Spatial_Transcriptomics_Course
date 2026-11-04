@@ -1,0 +1,28 @@
+/* Lecture 9 local layout rules.
+   The deck's footer band sits inside the slide, so a callout that lands
+   at the bottom of a dense slide renders under the footer text. Reserve
+   the footer's height as bottom padding so content stops above it.
+   Local to lecture-09; the shared ../slides.css is untouched. */
+
+.reveal .slides > section,
+.reveal .slides > section > section {
+  padding-bottom: 48px !important;
+}
+
+/* The figures in this deck are drawn on the slide's dark background, so a
+   thin border keeps each panel readable as its own object. */
+.reveal .slides img {
+  border: 1px solid #2a2f45;
+  border-radius: 6px;
+}
+
+/* Display math. Quarto's revealjs renders `$$..$$` through MathJax, and the
+   display container comes out larger than the slide text around it. Bring it
+   down to just above body size so the sd formula reads as a line of the slide,
+   not a poster. Only the sd slide has display math, so this is scoped to
+   lecture-09. `.katex-display` is the matching target if the math engine is
+   ever switched to KaTeX. */
+.reveal mjx-container[display="true"],
+.reveal .katex-display {
+  font-size: 0.65em;
+}
