@@ -21,8 +21,8 @@ execute:
   eval: false
 # agenda.lua (one level up, shared by every lecture) turns each
 # ::: {.agenda data-section="N"} ::: into the list above.
-# merged: sections 2, 5, 8 of the statistics part are folded into their
-# neighbours, so 7 statistics sections + 7 graphics sections = 14.
+# merged: statistics sections are folded into their neighbours, and the
+# spatial / DE plot slides live inside The Common Plots, so 11 sections.
 sections:
   - Review from Lecture 8
   - Descriptive Statistics
@@ -30,10 +30,9 @@ sections:
   - p-value &amp; Statistical Tests
   - Correlation &amp; Regression
   - Statistics Practice
-  - How R Draws a Picture
+  - From Numbers to Figures
   - The Common Plots
   - Reading a ggplot2 Call
-  - Spatial &amp; DE Plots
   - Export for Publication
   - Graphics Practice
 filters:
@@ -2024,44 +2023,102 @@ The figure is the **deliverable** — that is what sections 7-12 are for.
 
 ---
 
-## 7. How R Draws a Picture
+## 7. From Numbers to Figures
 
 ::: {.agenda data-section="7"}
 :::
 
 ---
 
-### 🖼️ Every picture sits on a **device**
+### 🧾 We've done the statistics... What now? 
+
+| gene | Tumor | Control | log2FC | sd | p |
+|---|---|---|---|---|---|
+| `MKI67` | 482.5 | 3.0 | 7.33 | 25.1 | `7.8e-5` |
+| `CDKN2A` | 190.0 | 2.0 | 6.57 | 10.7 | `9.4e-5` |
+| `EPCAM` | 323.8 | 6.0 | 5.75 | 15.5 | `6.1e-5` |
+| `KRT19` | 209.0 | 4.0 | 5.71 | 9.6 | `5.0e-5` |
+| `CDH1` | 151.0 | 5.0 | 4.92 | 8.3 | `8.7e-5` |
+| `VIM` | 262.0 | 8.0 | 5.03 | 11.1 | `4.2e-5` |
+| `PTPRC` | 6.0 | 214.5 | `−5.16` | 0.8 | `3.6e-5` |
+| `CD3E` | 2.6 | 96.8 | `−5.22` | 0.5 | `2.7e-5` |
+| `CD8A` | 1.9 | 70.0 | `−5.24` | 0.3 | `6.0e-5` |
+| `GAPDH` | 997.8 | 1010.8 | `−0.02` | 27.6 | **1.0** |
+
+::: {.callout-important}
+**Raw data is meaningless**, and statistics on raw data **is still raw data.**
+:::
+
+---
+
+### 📊 Draw it — 10 genes, 2 groups, one glance {.compact}
 
 :::: {.columns}
 
-::: {.column width="55%"}
+::: {.column width="50%"}
 
-```{webr-r}
-png("qc.png", width = 900, height = 600)   # open
-plot(1:5, c(2, 4, 6, 8, 10), pch = 16)   # draw
-dev.off()   # close: the file is finished
-
-# ggsave() does the same three steps for one ggplot figure:
-# ggsave("volcano.pdf", p, width = 5.4, height = 3.4)
-```
+![](_assets/genes_heat.png){fig-align="center" width="100%"}
 
 :::
 
-::: {.column width="45%"}
+::: {.column width="50%"}
 
-- R draws on the **screen**, or into a **file**: `png()`, `pdf()`, `jpeg()`
-- the pattern is always the same: **open, draw, close**
-- `ggsave()` does all three for one ggplot figure
+- **up in tumor** — `MKI67`, `CDKN2A`, `EPCAM`, `KRT19`, `CDH1`, `VIM`: **30–54×**
+- **down in tumor** — `PTPRC`, `CD3E`, `CD8A`: **36–38× lower** — immune cells leave
+- **flat** — `GAPDH`, the housekeeping gene (`p` = **1.0**)
 
 :::
 
 ::::
 
-::: {.callout-note}
-An unclosed device gives an empty file. "My PNG is blank" almost always means
-a missing `dev.off()`.
+::: {.callout-important}
+Statistics says *something moved*. The figure says **what moved, and in which
+direction** — a pattern no p-value column can hold. That is why we draw.
+**The how starts here.**
 :::
+
+---
+
+### 🖼️ Every figure is code-generated
+
+The figure you just saw is a **file** on disk.
+
+```{webr-r}
+#| editor-font-scale: 0.35
+library(ggplot2)
+
+# TPM: mean of 4 tumor-core spots and 4 control spots, per gene
+wide <- data.frame(
+  gene    = c("MKI67", "CDKN2A", "EPCAM", "KRT19", "CDH1",
+             "VIM", "PTPRC", "CD3E", "CD8A", "GAPDH"),
+  Control = c(3.0, 2.0, 6.0, 4.0, 5.0, 8.0, 214.5, 96.8, 70.0, 1010.8),
+  Tumor   = c(482.5, 190.0, 323.8, 209.0, 151.0, 262.0, 6.0, 2.6, 1.9, 997.8)
+)
+
+long <- tidyr::pivot_longer(wide, cols = -gene,
+                            names_to = "condition", values_to = "tpm")
+long$gene      <- factor(long$gene, levels = rev(wide$gene))
+long$condition <- factor(long$condition, levels = c("Control", "Tumor"))
+
+p <- ggplot(long, aes(condition, gene, fill = tpm)) +
+  geom_tile() +
+  geom_text(aes(label = tpm), size = 3) +
+  scale_fill_viridis_c(trans = "log10", name = "TPM") +
+  labs(title = "10 genes, tumor vs control", x = NULL, y = NULL) +
+  theme_minimal()
+
+ggsave("_assets/genes_heat.png", p, width = 5.6, height = 3.2, dpi = 200)
+```
+
+---
+
+### ⚙️ Five perks of code-generated figures
+
+- **repeatable** — rerun the script, the same figure.
+- **editable** — change the data or one `aes()`, the figure redraws
+- **exact** — size, dpi, colours are numbers in code, not a mouse drag
+- **batchable** — one loop over 20 genes, one style for all 20
+- **trackable** — code is text, so `git` sees every change
 
 ---
 
@@ -2072,92 +2129,20 @@ a missing `dev.off()`.
 - **tidyr**: reshapes between wide and long
 - **ggridges**: ridgeline plots
 - **RColorBrewer**: colour palettes
+- ... depending on what you plan to do...
 
 ---
 
-### 📖 Read any plot call with 3 questions
-
-:::: {.columns}
-
-::: {.column width="45%"}
+### 📖 Ask yourself 3 questions before you draw.
 
 1. **what data?** — the first argument
 2. **what is drawn?** — the geometry: dots, lines, bars, boxes, tiles
 3. **what maps where?** — which column becomes x, y, colour, size
 
-:::
-
-::: {.column width="55%"}
-
-```{webr-r}
-ggplot(
-  spots,            # 1. data: 199 spots
-  aes(x = x, y = y, # 3. mapping: position, and
-  colour = expr)) + # colour = expression
-  geom_point(size = 2.8) # 2. geometry: dots
-```
-
-:::
-
-::::
-
 ::: {.callout-tip}
 You do not have to remember the syntax to read it. Every call states its own
 data, geometry, and mapping, in that order.
 :::
-
----
-
-### ⚡ Q1: 10 control spots and 10 tumor spots of one gene — is tumor higher?
-
-:::: {.columns}
-
-::: {.column width="55%"}
-
-```{webr-r}
-#| autorun: true
-
-umi    <- c(p1, p4)                              # 20 spots
-sample <- rep(c("control", "tumor"), each = 10)  # 10 + 10
-
-boxplot(umi ~ sample)   # boxes, UMI by sample
-```
-
-:::
-
-::: {.column width="45%"}
-
-- **what data?** — 20 spots, one gene
-- **what is drawn?** — boxes, one per group
-- **what maps where?** — UMI on y, sample on x
-
-:::
-
-::::
-
----
-
-### ✅ A1: control centre 28, tumor centre 17
-
-- **control**: centre line 28, box 27-29, whiskers 26-30
-- **tumor**: centre line 17, box 17-23, whiskers 17-29, and the spot at **35** outside the whisker
-- `~` reads **"by"**: the value on the left, split by the groups on the right
-
----
-
-### ⚡ Q2: You have never seen `geom_smooth()`. What can you guess?
-
-### ✅ A2: The name tells you the layer
-
-The verb prefixes are the whole vocabulary of ggplot2:
-
-- `geom_*` — what gets **drawn** (point, line, col, boxplot, violin, tile)
-- `scale_*` — how a **range** is set (limits, log axis, colour palette)
-- `coord_*` — how the **plane** is shaped (equal, flipped)
-- `facet_*` — how the figure is **split into panels**
-- `labs()` / `theme()` — labels, styling
-
-`geom_smooth()` draws a smoothed line. `scale_y_log10()` makes the y-axis log.
 
 ---
 
@@ -2168,57 +2153,140 @@ The verb prefixes are the whole vocabulary of ggplot2:
 
 ---
 
-### 📊 The plots you will read most
+### A. General plots
 
-| call | what you see | the question it answers |
-|---|---|---|
-| `plot(x, y)` | dots | does y move with x? |
-| `plot(x, y, type = "l")` | a line | how does y change across x? |
-| `hist(v)` | stacked bars of counts | how is v spread? |
-| `boxplot(v ~ g)` | boxes | centre and spread, per group |
-| `geom_col()` | bars | one value per category |
-| `geom_violin()` | violins | the whole distribution, per group |
-| `geom_tile()` | coloured cells | one value per pair of labels |
-| `geom_point()` + `coord_equal()` | a map | where values sit in space |
+- **scatter, line** — relationship and trend
+- **bar, box, histogram, density** — one column of numbers, and groups
+- **dot plot, stacked bars, Venn, UMAP/tSNE, correlation matrix** — composition,
+  overlap, and pairs of measures
 
 ::: {.callout-note}
-One table, eight plots. That covers most of what a transcriptomics paper
-shows you. The rest is decoration on top of these.
+One slide per plot type: the figure, the question it answers, and the numbers
+it is built from.
 :::
 
 ---
 
-### ⚪ Dots and lines: relationship and trend
+### 🧾 Base graphics: the four shapes you meet first
 
-::::: {.columns}
+:::: {.columns}
 
 ::: {.column width="50%"}
+
 ![](_assets/base_panel.png){fig-align="center" width="100%"}
+
 :::
 
 ::: {.column width="50%"}
 
-- **dots**: 5 spots, UMI 2, 4, 6, 8, 10 — does y move with x?
-- **line**: the same 5 numbers, joined. A line says *trend*, not *count*
-- base R labels an axis with **the code itself** when you say nothing, so the
-  second panel's y-axis would read `c(2, 4, 6, 8, 10)`. Say `ylab = "UMI"`
+- **scatter** — does y move with x?
+- **line** — how does y change across x?
+- **boxplot** — centre, spread, outliers, per group
+- **histogram** — how one column is spread
 
-```{webr-r}
-plot(1:5, c(2, 4, 6, 8, 10), pch = 16)          # dots
-plot(1:5, c(2, 4, 6, 8, 10), type = "b",
-     xlab = "spot", ylab = "UMI")                # dots + line
+:::
+
+::::
+
+---
+
+### ⚪ Scatter and line: relationship and trend
+
+::::: {.columns}
+
+::: {.column width="50%"}
+
+```r
+plot(1:5, c(2, 4, 6, 8, 10), type = "b")
 ```
+
+![](_assets/plot_pb.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="50%"}
+
+- **scatter → relationship**: one dot per pair, does y move with x
+- **line → trend**: the same dots joined in order, the shape is the trend
+- join only what is ordered: spot 1 → 5, time 1 → 12
+
+
 :::
 
 :::::
 
 ---
 
-### 📊 Bars, boxes, histograms: one column, and groups
+### 📊 Bar plots: one value per category
 
-- `hist()` — how one column is spread: the shape, the tails, the empty bins
-- `boxplot(v ~ g)` — centre, spread, and outliers **per group**
-- `geom_col()` / `barplot()` — one bar per category, height = the value
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](_assets/bar_plot.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="50%"}
+
+- **bar → one value per category**: the height **is** the value — say which (mean, median, count, sum)
+- The bar hides the spread behind it
+
+:::
+
+::::
+
+::: {.callout-note}
+Bar plots show one number per group. Ask what the number is: mean, median,
+count, sum. The caption has to say, and the axis label usually does not.
+:::
+
+---
+
+### 📊 Bars with error bars: the bar, plus the spread
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](_assets/bar_error.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="50%"}
+
+- **bar + error bar → one value per category, with its spread**: bar is the centre, arms are the spread (sd, SE, or CI — say which)
+- Overlapping arms mean the gap is not clean
+
+:::
+
+::::
+
+::: {.callout-note}
+An error bar is the smallest honest fix for a hidden spread. What it is —
+sd, standard error, confidence interval — has to be in the caption.
+:::
+
+---
+
+### 📊 Box plots: centre, spread, and outliers per group
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](_assets/box_plot.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="50%"}
+
+- **box → centre, spread, outliers**: one box per group, all on one axis
+- The box keeps the spread visible, per group
+
+:::
+
+::::
 
 ::: {.callout-note}
 Read the axis before the shape. A boxplot of UMI and a boxplot of p-values
@@ -2227,42 +2295,469 @@ look the same and mean nothing alike.
 
 ---
 
-### 🧪 Faceting: one panel per gene
+### 📊 Histograms: how one column is spread
 
-::::: {.columns}
+:::: {.columns}
 
-::: {.column width="52%"}
-![](_assets/facet.png){fig-align="center" width="100%"}
-:::
+::: {.column width="50%"}
 
-::: {.column width="48%"}
-
-- the strip labels say **which gene** each panel is
-- `scales = "free_y"` gives each panel its own y-axis: CDKN2A tops at **31**,
-  MKI67 at **58**
-- 3 genes × 3 samples = **9 bars** in one call
+![](_assets/hist_plot.png){fig-align="center" width="100%"}
 
 :::
 
-:::::
+::: {.column width="50%"}
+
+- **histogram → spread of one column**: binned — the bars are **counts**, not values
+- The shape shows where the mass sits
+
+:::
+
+::::
+
+::: {.callout-note}
+A histogram has one axis that is not the data: the y-axis is the bin count.
+Change `breaks` and the shape changes — the data did not.
+:::
 
 ---
 
-### ⚡ Q3: `ggplot(df, aes(x = sample, y = umi)) + geom_boxplot()` — what do you see?
+### 📈 Density and ridgeline: the shape, without bins
 
-### ✅ A3: One box per sample
+:::: {.columns}
 
-x = sample (categories), y = umi (values), geom_boxplot = boxes. Centre,
-spread, and the outliers, for every sample on one page.
+::: {.column width="50%"}
+
+![](_assets/density_ridge.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="50%"}
+
+- **density / ridgeline → shape without bins**: smoothed curve of one column; stacked when per group
+- The curve shows where the mass sits, not just the centre
+
+:::
+
+::::
+
+::: {.callout-note}
+A histogram depends on `breaks`, a density on the bandwidth. Both are choices
+about the picture, not properties of the data.
+:::
 
 ---
 
-### ⚡ Q4: `ggplot(heat, aes(x = sample, y = gene, fill = value)) + geom_tile()` — what do you see?
+### ⚪ Dot plot: every spot, one dot
 
-### ✅ A4: A grid of coloured cells — gene × sample
+:::: {.columns}
 
-`geom_tile()` draws one rectangle per row of the data. 5 genes × 3 samples =
-**15 cells**. `fill` is the value, so the picture is the matrix.
+::: {.column width="50%"}
+
+![](_assets/dot_plot.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="50%"}
+
+- **dot plot → every value, one dot**: one dot per observation, no bins
+- Works for tens of points; at thousands the dots blur into a curve
+
+:::
+
+::::
+
+::: {.callout-note}
+A dot plot is a histogram that refuses to bin. It works for tens of points; at
+thousands the pile becomes a curve.
+:::
+
+---
+
+### 📊 Stacked bars: composition inside one bar
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](_assets/stacked_bars.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="50%"}
+
+- **stacked bar → composition inside one bar**: one bar split by group; 100% stacked shows shares
+- Read both how tall the bar is and how the inside is split
+
+:::
+
+::::
+
+::: {.callout-note}
+Stacked bars show composition. Read two things: how tall the bar is, and how
+the inside is split. A tall bar and a large share are different claims.
+:::
+
+---
+
+### 🧇 Venn diagram: how much two sets share
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](_assets/venn.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="50%"}
+
+- **Venn → how much two or three sets share**: each region is a count of genes
+- Two sets are readable; three are the limit
+
+:::
+
+::::
+
+::: {.callout-note}
+A Venn answers "how much is shared". Two sets are readable; three are the
+limit, and four sets stop being a picture of the counts.
+:::
+
+---
+
+### 🧬 UMAP / tSNE: cells flattened to a plane
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](_assets/umap.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="50%"}
+
+- **UMAP / tSNE → cells flattened to a plane**: one dot per cell; position is learned similarity, colour is the label
+- Far apart means different expression profiles — not far apart in the tissue
+
+:::
+
+::::
+
+::: {.callout-note}
+UMAP and tSNE are dimension reduction: neighbourhood, not geography. A spot map
+keeps the real x and y; a UMAP does not.
+:::
+
+---
+
+### 🧮 Correlation matrix: r for every pair
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](_assets/corr_matrix.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="50%"}
+
+- **correlation matrix → r for every pair**: one cell per pair of genes, value is r
+- Read sign and size together; the diagonal is 1.00 by definition
+
+:::
+
+::::
+
+::: {.callout-note}
+Read sign and size together. The colours are a palette choice; the numbers are
+the claim, so read the matrix with the values in it.
+:::
+
+---
+
+### B. Spatial &amp; DE plots
+
+- **spot map** — real x, y in tissue, colour = expression
+- **violin** — the whole distribution, per sample
+- **volcano** — one dot per gene: effect size against significance
+- **heatmap** — gene × sample as coloured cells
+
+::: {.callout-note}
+The same shapes, on data that carries a gene name, a sample name, or a position
+in the tissue.
+:::
+
+---
+
+### 🗺️ Spot map: expression on a tissue
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](_assets/spot_map.png){fig-align="center" width="100%"}
+
+```r
+ggplot(spots, aes(x = x, y = y)) + geom_point(aes(colour = expr)) + coord_equal()
+```
+
+:::
+
+::: {.column width="50%"}
+
+- **spot map → expression on a tissue**: one dot per spot; x, y are positions, colour is expression
+- The map keeps real x, y in the tissue
+
+:::
+
+::::
+
+::: {.callout-note}
+`coord_equal()` makes 1 unit of x the same length as 1 unit of y, so a round
+tissue stays round.
+:::
+
+---
+
+### 🎻 Violin: the whole distribution, per group
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](_assets/violin.png){fig-align="center" width="100%"}
+
+```r
+ggplot(umi, aes(x = sample, y = umi, fill = sample)) +
+  geom_violin(trim = FALSE) + geom_boxplot(width = 0.12) + scale_y_log10()
+```
+
+:::
+
+::: {.column width="50%"}
+
+- **violin → whole distribution, per group**: mirrored density; width is how many sit at that value
+- The box inside is the boxplot, drawn inside the curve
+
+:::
+
+::::
+
+::: {.callout-note}
+A violin is a mirrored density. The box inside it is the boxplot from the box
+slide, drawn inside the curve.
+:::
+
+---
+
+### 🌋 Volcano: effect size against significance
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](_assets/volcano.png){fig-align="center" width="100%"}
+
+```r
+ggplot(de, aes(x = log2FC, y = -log10(padj), colour = state)) +
+  geom_point() + geom_hline(yintercept = -log10(0.05), linetype = "dashed") +
+  geom_vline(xintercept = c(-1, 1), linetype = "dashed")
+```
+
+:::
+
+::: {.column width="50%"}
+
+- **volcano → effect size against significance**: one dot per gene; x is effect, y is −log10(FDR)
+- The dashed lines are the thresholds the authors chose
+
+:::
+
+::::
+
+::: {.callout-note}
+A volcano has thresholds drawn on it. The dashed lines are the cut the authors
+chose, not a property of the data.
+:::
+
+---
+
+### 🟥 Heatmap: one cell per gene × sample
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](_assets/heatmap.png){fig-align="center" width="100%"}
+
+
+:::
+
+::: {.column width="50%"}
+
+```r
+ggplot(heat, aes(x = sample, y = gene, fill = value)) +
+  geom_tile() +
+  scale_fill_distiller(palette = "YlOrRd")
+```
+
+- **heatmap → one cell per gene × sample**: colour is the value
+- Read the colour scale bar with the matrix
+
+:::
+
+::::
+
+::: {.callout-note}
+A heatmap is a table painted on. One linear map turns values into colour, so
+the scale bar carries all the numbers.
+:::
+
+---
+
+### ⚡ Q1: Control vs tumor UMI — you want centre, spread, outliers per group. Which plot?
+
+:::: {.columns}
+
+::: {.column width="58%"}
+
+```{webr-r}
+#| autorun: true
+
+control <- c(5, 8, 12, 6, 9)
+tumor <- c(1, 2, 4, 2, 3)
+```
+
+:::
+
+::: {.column width="42%"}
+
+- **A.** bar
+- **B.** box plot
+- **C.** scatter
+- **D.** histogram
+
+:::
+
+::::
+
+---
+
+### ✅ **B** — box plot
+
+```{webr-r}
+#| autorun: true
+
+df <- data.frame(
+  group = rep(c("Control", "Tumor"), each = 5),
+  umi = c(control, tumor)
+)
+boxplot(umi ~ group, data = df)
+```
+
+- **A** one bar per group; the spread behind it is hidden.
+- **B** one box per group: centre, spread, outliers on one axis.
+- **C** needs two numbers per spot; here there are groups only.
+- **D** bins one column; it does not separate groups.
+
+One box per group, all on one axis.
+
+---
+
+### ⚡ Q2: 2000 genes, log2FC + FDR per gene. Which plot?
+
+:::: {.columns}
+
+::: {.column width="58%"}
+
+```{webr-r}
+#| autorun: true
+
+de <- data.frame(
+  gene = c("MKI67", "PTPRC"),
+  log2FC = c(4.9, -5.2),
+  padj = c(1e-5, 1e-6)
+)
+de
+```
+
+:::
+
+::: {.column width="42%"}
+
+- **A.** volcano
+- **B.** heatmap
+- **C.** violin
+- **D.** stacked bar
+
+:::
+
+::::
+
+---
+
+### ✅ **A** — volcano
+
+```r
+ggplot(de, aes(x = log2FC, y = -log10(padj))) + geom_point()
+```
+
+- **A** x is effect, y is significance — the two columns you have.
+- **B** needs genes by samples; here there are no samples.
+- **C** needs one value per group; here there are 2000 genes.
+- **D** shows shares in one bar; here there is no share.
+
+One dot per gene.
+
+---
+
+### ⚡ Q3: Expression values for genes by samples. Which plot?
+
+:::: {.columns}
+
+::: {.column width="58%"}
+
+```{webr-r}
+#| autorun: true
+
+heat <- data.frame(
+  gene = c("MKI67", "PTPRC"),
+  sample = c("Control", "Tumor"),
+  value = c(3.0, 482.5)
+)
+heat
+```
+
+:::
+
+::: {.column width="42%"}
+
+- **A.** volcano
+- **B.** violin
+- **C.** heatmap
+- **D.** Venn
+
+:::
+
+::::
+
+---
+
+### ✅ **C** — heatmap
+
+```r
+ggplot(heat, aes(x = sample, y = gene, fill = value)) +
+  geom_tile()
+```
+
+- **A** needs log2FC and FDR; here there is one value per pair.
+- **B** shows one distribution per group; here there are genes by samples.
+- **C** one cell per (gene, sample); colour is the value.
+- **D** shows shared counts between sets; here there are no sets.
+
+Read the scale bar with the matrix.
 
 ---
 
@@ -2273,20 +2768,123 @@ spread, and the outliers, for every sample on one page.
 
 ---
 
-### 🧱 Six layers, read top to bottom
 
-```{webr-r}
-ggplot(long, aes(x = sample, y = tpm, fill = sample))  # data + mapping
-  + geom_col()                            # what is drawn
-  + facet_wrap(~ gene, scales = "free_y")  # panels
-  + scale_fill_manual(values = cols)      # colour range
-  + coord_cartesian(ylim = c(0, 60))      # axis limits
-  + labs(title = "TPM", x = NULL)          # labels
-  + theme_minimal()                        # styling
+### 🧱 The problem: `long` — one row per gene × sample
+
+```r
+long <- data.frame(
+  gene = rep(c("MKI67", "CDKN2A", "EPCAM"), each = 3),
+  sample = rep(c("Tumor", "Adjacent", "Control"), 3),
+  tpm = c(58, 12, 4, 31, 9, 2, 44, 17, 6)
+)
 ```
 
-Each line adds one thing. Reading a figure's code is reading these lines,
-in order, and naming what each one contributes.
+- ggplot2 needs **long** data: one row per gene × sample, one column per variable. 3 genes × 3 samples = 9 rows.
+
+---
+
+### 🧱 Load the lib: ggplot2 + colours
+
+```r
+library(ggplot2)
+
+cols <- c(Tumor = "red", Adjacent = "orange", Control = "blue")
+```
+
+- `library(ggplot2)` loads the grammar; `cols` names one colour per sample for later.
+
+---
+
+### 🧱 `ggplot(long, aes(...))` — data and mapping, no drawing yet
+
+```r
+# run the two slides above first (long, ggplot2)
+ggplot(long, aes(x = sample, y = tpm, fill = sample))
+```
+
+- `ggplot()` names the data; `aes()` says which column is x, y, colour. No picture yet.
+
+---
+
+### 🧱 Step 2: + `geom_col()` — the bars
+
+```r
+# run the steps above first (long, ggplot2, cols)
+ggplot(long, aes(x = sample, y = tpm, fill = sample)) +
+  geom_col()
+```
+
+- `geom_*` is what is drawn: bars, height is `tpm`.
+
+---
+
+### 🧱 Step 3: + `facet_wrap()` — one panel per gene
+
+```r
+ggplot(long, aes(x = sample, y = tpm, fill = sample)) +
+  geom_col() +
+  facet_wrap(~ gene, scales = "free_y")
+```
+
+- Each panel is one gene; `free_y` gives each panel its own y-axis.
+
+---
+
+### 🧱 Step 4: + `scale_fill_manual()` — the colours
+
+```r
+ggplot(long, aes(x = sample, y = tpm, fill = sample)) +
+  geom_col() +
+  facet_wrap(~ gene, scales = "free_y") +
+  scale_fill_manual(values = cols)
+```
+
+- `scale_*` sets the colour range; here the three sample colours.
+
+---
+
+### 🧱 Step 5: + `coord_cartesian()` — the axis limits
+
+```r
+ggplot(long, aes(x = sample, y = tpm, fill = sample)) +
+  geom_col() +
+  facet_wrap(~ gene, scales = "free_y") +
+  scale_fill_manual(values = cols) +
+  coord_cartesian(ylim = c(0, 60))
+```
+
+- Fixes the y-axis to 0–60, so panels start at the same base.
+
+---
+
+### 🧱 Step 6: + `labs()` — the labels
+
+```r
+ggplot(long, aes(x = sample, y = tpm, fill = sample)) +
+  geom_col() +
+  facet_wrap(~ gene, scales = "free_y") +
+  scale_fill_manual(values = cols) +
+  coord_cartesian(ylim = c(0, 60)) +
+  labs(title = "TPM", x = NULL)
+```
+
+- Adds the title; no more x-label.
+
+---
+
+### 🧱 Step 7: + `theme_minimal()` — the whole call
+
+```r
+ggplot(long, aes(x = sample, y = tpm, fill = sample)) +
+  geom_col() +
+  facet_wrap(~ gene, scales = "free_y") +
+  scale_fill_manual(values = cols) +
+  coord_cartesian(ylim = c(0, 60)) +
+  labs(title = "TPM", x = NULL) +
+  theme_minimal()
+```
+
+- Styling only. Data, geometry, and mapping are the first three steps.
 
 ---
 
@@ -2322,10 +2920,10 @@ in order, and naming what each one contributes.
 
 :::::
 
-```{webr-r}
+```r
 tidyr::pivot_longer(wide, cols = -sample,
                     names_to = "gene", values_to = "tpm")
-# reads: 3 gene columns become one gene column and one value column, 9 rows
+# 3 gene columns become one gene column and one value column, 9 rows
 ```
 
 `aes()` maps **columns**. One column of gene names is what `facet_wrap`
@@ -2333,215 +2931,60 @@ splits on, and one column of values is what every gene shares.
 
 ---
 
-### 📐 Two scales you will read constantly
+### 👁️ Envision the plot first
 
-- `scale_y_log10()` — each decade gets the same space, so values from 1 to
-  1000 stay readable. UMI spans exactly that
-- `coord_equal()` — 1 unit of x is the same length as 1 unit of y. A round
-  tissue stays round; without it the same spot map becomes an ellipse
+- Name the plot before you code it: data, geometry, mapping.
+- Describe the vision in words — let AI draft the ggplot2 call.
+- Read each line against your vision, run it, adjust.
 
-::: {.callout-note}
-Both change **how you read the picture**, not what is drawn. The dots of the
-spot map are identical; the axis is honest.
-:::
+Understanding the code matters because AI writes layers for you.
 
 ---
 
-### ⚡ Q5: `ggplot(df, aes(x = gene, y = sample, fill = value)) + geom_tile() + scale_fill_distiller(palette = "YlOrRd")` — what does the `scale` line add?
-
-### ✅ A5: The colour ramp, nothing else
-
-What is drawn is fixed by `geom_tile()`. `scale_fill_distiller()` picks the
-yellow-to-red ramp, and the range it maps the values onto. Remove it and you
-get the same grid in ggplot2's default colours.
-
----
-
-### ⚡ Q6: What does `scales = "free_y"` say, reading it?
-
-### ✅ A6: "one panel per gene, each panel its own y-axis"
-
-`facet_wrap(~ gene)` → split by the gene column. `scales = "free_y"` → the
-y-axes are independent. Panel CDKN2A runs to 31, panel MKI67 to 58, so the
-small values in CDKN2A stay visible.
-
----
-
-## 10. Spatial &amp; DE Plots
+## 10. Export for Publication
 
 ::: {.agenda data-section="10"}
 :::
 
 ---
 
-### 🗺️ Spatial data keeps x and y
+### 💾 The problem: a figure on screen is not a file
 
-::::: {.columns}
+- What you see in R is temporary. Journals, slides, and collaborators need a saved file.
 
-::: {.column width="48%"}
-![](_assets/spot_map.png){fig-align="center" width="100%"}
-:::
+---
 
-::: {.column width="52%"}
-```{webr-r}
-ggplot(spots, aes(x = x, y = y)) +
-  geom_point(aes(colour = expr), size = 2.8) +
-  coord_equal() +
-  scale_colour_gradient(low = "white", high = "red")
+### 💾 `ggsave()` writes it
+
+```r
+ggsave("volcano.pdf", p_vol, width = 5.4, height = 3.4)
 ```
 
-- **199** spots, 1 dot each
-- **75** spots in the tumor core: mean expression **189.1**
-- **124** outside: mean **25.2**
-- overall mean **87**, median **35**, max **228**
-:::
-
-:::::
+- One line: the file, the plot object, the print size in inches.
 
 ---
 
-### 🎻 The violin: the whole distribution, per group
+### 💾 Why both PDF and PNG?
 
-::::: {.columns}
-
-::: {.column width="42%"}
-![](_assets/violin.png){fig-align="center" width="100%"}
-:::
-
-::: {.column width="58%"}
-```{webr-r}
-ggplot(umi, aes(x = sample, y = umi, fill = sample)) +
-  geom_violin(trim = FALSE) +
-  geom_boxplot(width = 0.12) +
-  scale_y_log10()
-```
-
-- **1200** spots per sample, **3600** in total
-- median UMI: **98** / **51** / **23** (Tumor / Adjacent / Control)
-- spots under 50 UMI: **204** / **581** / **950**
-
-:::
-
-:::::
-
----
-
-### 🌋 The volcano: effect size against significance
-
-::::: {.columns}
-
-::: {.column width="46%"}
-![](_assets/volcano.png){fig-align="center" width="100%"}
-:::
-
-::: {.column width="54%"}
-```{webr-r}
-ggplot(de, aes(x = log2FC, y = -log10(padj),
-              colour = state)) +
-  geom_point() +
-  geom_hline(yintercept = -log10(0.05),
-             linetype = "dashed") +
-  geom_vline(xintercept = c(-1, 1),
-             linetype = "dashed")
-```
-
-- **2000** genes: **321** pass raw p &lt; 0.05
-- **248** pass BH FDR &lt; 0.05 — **73** of them were noise
-- **224** pass FDR &lt; 0.05 **and** |log2FC| &gt; 1: **109 up**, **115 down**
-:::
-
-:::::
-
----
-
-### 🟥 The heatmap: log(count + 1)
-
-::::: {.columns}
-
-::: {.column width="40%"}
-![](_assets/heatmap.png){fig-align="center" width="100%"}
-:::
-
-::: {.column width="60%"}
-```{webr-r}
-heat$value <- log2(counts + 1)
-ggplot(heat, aes(x = sample, y = gene,
-                 fill = value)) +
-  geom_tile() +
-  scale_fill_distiller(palette = "YlOrRd")
-```
-
-- **15 cells**: 5 genes × 3 samples
-- raw counts run **4** to **1120**, 280× apart: one gene would own the colour
-  scale
-- `log2(count + 1)` runs **2.32** to **10.13**
-- the **+1** is for zeros: `log2(0)` is `-Inf`, and a real spatial matrix is
-  mostly zero
-:::
-
-:::::
-
----
-
-### ⚡ Q7: In the volcano, what is one dot, and what are the dashed lines?
-
-### ✅ A7: One dot = one gene; the dashes are the thresholds
-
-Vertical dashes: |log2FC| = 1. Horizontal dash: FDR = 0.05, because
-`-log10(0.05)` is 1.30. The interesting genes sit in the top corners: big
-effect **and** small FDR.
-
----
-
-### ⚡ Q8: In the heatmap, what is one cell?
-
-### ✅ A8: One gene in one sample
-
-The cell's colour is `log2(count + 1)` for that pair. A dark cell is a high
-count, a pale cell is a low count. The colour scale is the only thing turning
-numbers into colour, so read the scale bar with the matrix.
-
----
-
-## 11. Export for Publication
-
-::: {.agenda data-section="11"}
-:::
-
----
-
-### 💾 ggsave writes the file
-
-```{webr-r}
-ggsave("volcano.pdf",     p_vol, width = 5.4, height = 3.4)
+```r
+ggsave("volcano.pdf", p_vol, width = 5.4, height = 3.4)
 ggsave("volcano_300.png", p_vol, width = 5.4, height = 3.4, dpi = 300)
-ggsave("volcano_72.png",  p_vol, width = 5.4, height = 3.4, dpi = 72)
 ```
 
-Same picture, three files:
-
-| file | bytes |
-|---|---|
-| `volcano.pdf` | **119,518** |
-| `volcano_300.png` | **258,672** |
-| `volcano_72.png` | **39,038** |
-
-- 300 dpi is **6.6×** the 72 dpi file
-- the PDF is **2.2× smaller** than the 300 dpi PNG
-- **PNG** is pixels: 5.4 × 3.4 in is 389 × 245 px at 72 dpi, 1620 × 1020 px at
-  300 dpi. **PDF** stores commands, so it scales to any print size
+- **PDF** — vector: edit in Illustrator, lossless for publication.
+- **PNG** — pixels: easy preview everywhere; 300 dpi for print, 72 dpi for screen.
 
 ---
 
 ### ✅ Before a figure leaves your laptop
 
-- the figure is sized for **print** (5.4 in), not for the screen
-- every axis label carries **units**; every panel has a letter (A, B, C)
-- the legend states the test and the threshold: "FDR &lt; 0.05,
+- The figure is sized for **print** (5.4 in), not for the screen
+- Every axis label carries **units**; every panel has a letter (**A**, **B**, **C**)
+- The legend states the **test** and the **threshold**: "FDR &lt; 0.05,
   |log2FC| &gt; 1"
-- the palette is colourblind-safe, not red/green only
-- the **code and the data table** behind each figure are saved together
-- journals ask 300 dpi for photos, heatmaps, and spots; vector for line art
+- The palette is **colourblind-safe**, not red/green only
+- The **code** and the **data table** behind each figure must be saved together
+- Journals ask **300 dpi** for photos, heatmaps, and spots; **vector** for line art
 
 ::: {.callout-important}
 A figure is a claim. If you cannot rebuild it from the code, you cannot
@@ -2550,112 +2993,30 @@ defend it.
 
 ---
 
-### ⚡ Q9: What changes between `dpi = 72` and `dpi = 300`?
+## 11. Graphics Practice
 
-### ✅ A9: Pixels per inch, and the file size
-
-The figure content is identical. Pixels grow **17.4×** (the square of the dpi
-ratio), bytes grow **6.6×** because flat areas compress well. A 72 dpi figure
-printed at journal size is blurry; 300 dpi is the usual ask.
-
----
-
-## 12. Graphics Practice
-
-::: {.agenda data-section="12"}
+::: {.agenda data-section="11"}
 :::
 
 ---
 
-### ✍️ Exercise 1: Read the code
+### 🖥️ Graphics Practice — in the notebook
 
-This is the code for the spot map:
+The practice moved to **`lecture-09_r_statistics_graphics_practice.ipynb`**:
 
-```{webr-r}
-p <- ggplot(spots, aes(x = x, y = y)) +
-  geom_point(aes(colour = expr), size = 2.8) +
-  coord_equal() +
-  scale_colour_gradient(low = "#f5efdc", high = "#e0507a", name = "MKI67") +
-  labs(title = "Spot map", x = NULL, y = NULL) +
-  theme_minimal()
-ggsave("spot_map.png", p, width = 5.4, height = 3.4, dpi = 300)
-```
+- Volcano — PC9 Apatinib: effect vs BH p, 2 hits.
+- Heatmap — top 6 genes × PC9 samples.
 
-1. what data, and what is drawn?
-2. what becomes colour?
-3. what does `coord_equal()` do?
-4. what does `ggsave()` add?
-
-::: {.slide-kicker}
-Your Turn!
-:::
-
----
-
-### ✅ Exercise 1: Answers
-
-1. **data**: `spots`, 199 rows. **geometry**: dots (`geom_point`), size 2.8
-2. **colour**: the `expr` column, from pale `#f5efdc` to `#e0507a`. The
-   `scale_colour_gradient()` line only sets that ramp
-3. **`coord_equal()`**: keeps 1 unit of x equal to 1 unit of y, so the tissue
-   keeps its shape
-4. **`ggsave()`**: writes the file at 5.4 × 3.4 in, 300 dpi, and closes the
-   device
-
-The numbers behind the picture: **199** spots, **75** in the core (mean
-**189.1**), **124** outside (mean **25.2**). The figure is 109,988 bytes at
-200 dpi.
-
----
-
-### ✍️ Exercise 2: Read the caption, not the picture
-
-A paper says:
-
-> Volcano plot, tumor vs adjacent. **248** genes pass BH-adjusted FDR
-> &lt; 0.05; **224** also pass |log2FC| &gt; 1 (**109** up, **115** down).
-> Dashed lines mark FDR = 0.05 and |log2FC| = 1.
-
-1. how many genes were tested?
-2. what did FDR remove?
-3. where do the "interesting" genes sit on the figure?
-4. export this figure for print, in the format that scales.
-
-::: {.slide-kicker}
-Your Turn!
-:::
-
----
-
-### ✅ Exercise 2: Answers
-
-1. **2000** genes were tested, so 100 of them pass raw p &lt; 0.05 by chance
-2. BH kept **248**; **73** of the raw winners were noise
-3. in the **top corners**: |log2FC| &gt; 1 **and** low FDR — **109** up
-   (log2FC &gt; 1), **115** down (log2FC &lt; -1)
-4. `ggsave("volcano.pdf", p_vol, width = 5.4, height = 3.4)` — vector,
-   **119,518 bytes**
-
-The counts in the caption are the claim. The figure is the evidence.
+Open the notebook and Run All — real matrix, no mock figures.
 
 ---
 
 ## 🧠 Recap
 
-- **descriptive**: mean, median, sd, IQR — report centre and spread;
-  **mean and median together** tell you the shape
-- **Shapiro-Wilk**: p &gt; 0.05 = normal, p ≤ 0.05 = use ranks
-- **the test is a decision, not a default**: t / Wilcoxon / ANOVA / KW /
-  Fisher / χ²
-- **p** = how surprising the data is, assuming no effect
-- **20,000 genes** → Bonferroni or BH, every time
-- **correlation ≠ causation**, spatial data is not independent
-- **name the test** in the figure legend
-- **read a plot call with 3 questions**: data, geometry, mapping
-- **8 plots cover most papers**; verb prefixes name the job: `geom_*` draws,
-  `scale_*` ranges, `coord_*` shape, `facet_*` panels, `labs`/`theme` labels
-- **a device is a file**: `png()` needs `dev.off()`, `ggsave()` closes for you;
-  export for print: 5.4 in, 300 dpi raster, PDF for line art
+- **the verb names the job**: `geom_*` draws, `scale_*` ranges, `coord_*` shape, `facet_*` panels
+- **read a call in 3 questions**: data, geometry, mapping — envision first, draft with AI, read the code
+- **the shapes**: scatter, line, bar, box, histogram, density, Venn, UMAP, then volcano, heatmap, violin, spot map
+- **export**: PDF for publication (vector), PNG for preview (300 dpi)
 
 ---
 
@@ -2674,6 +3035,7 @@ The full pipeline, end to end: counts → QC → statistics → figure.
 ---
 
 ### 📚 Sources & Licenses
+::: {.small}
 
 - R Core Team, **R 4.5.3** — base stats: `mean`, `median`, `sd`, `quantile`,
   `summary`, `t.test`, `wilcox.test`, `kruskal.test`, `aov`, `chisq.test`,
@@ -2692,12 +3054,14 @@ The full pipeline, end to end: counts → QC → statistics → figure.
 - **Gulls on a bent railing** (section 5, "Correlation is not causation") — photo via
   X: [pbs.twimg.com/media/FAW2hMeWEAAfcvm](https://pbs.twimg.com/media/FAW2hMeWEAAfcvm?format=webp&name=large)
 - Deck: Quarto 1.10.19 · revealjs · `slides.css`
+:::
 
 ---
 
 ## Thank You! {.center style="text-align: center; margin-top: 1.2em;"}
 
 ::: {.quote}
-The job is not to make the numbers big.
-It is to make the claim defensible.
-:::
+A reviewer sees your **figures** before your **statistics**.
+
+Make both tell the same **true story**.
+::: 
