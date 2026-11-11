@@ -1,0 +1,24 @@
+# generated QC reports — rebuild with: bash 01_raw_fastqc.sh
+data/qc_raw/
+
+# generated figures and tables — rebuild with: Rscript 02_analyse.R
+results/
+
+# unpacked by script 1 from the archive below
+data/raw_fastq/
+data/gtf/
+data/ref/
+
+# big input archive: unpack it, do not store it in git
+lecture-08-data.tar.gz
+
+# counts table: downloaded from GEO, not stored in git
+data/counts/counts.tsv
+
+# scratch: experiments that are not part of the pipeline
+scratch/
+
+# editor and OS noise
+.Rhistory
+.ipynb_checkpoints/
+.DS_Store

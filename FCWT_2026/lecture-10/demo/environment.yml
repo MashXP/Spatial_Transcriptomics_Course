@@ -1,0 +1,15 @@
+name: demo
+channels:
+  - conda-forge
+  - bioconda
+  # - defaults
+dependencies:
+  # create with: micromamba create -f environment.yml
+  # then: micromamba activate mdd
+
+  # QC: used by 01_raw_fastqc.sh
+  - fastqc=0.12.1
+
+  # R stack: used by 02_analyse.R (read.table + ggplot2 only)
+  - r-base=4.4.1
+  - r-ggplot2=4.0.3
