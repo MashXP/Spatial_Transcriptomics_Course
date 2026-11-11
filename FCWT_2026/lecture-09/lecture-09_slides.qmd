@@ -2030,6 +2030,24 @@ The figure is the **deliverable** — that is what sections 7-12 are for.
 
 ---
 
+### 🎬 Previously on statistics...
+
+::: {.small}
+
+- **Center & spread**: `median` resists outliers, `mean` absorbs them; report `mean ± sd`, keep `var` for models.
+- **Check shape first**: `shapiro.test()` & Q-Q plot decide the test — normal $\rightarrow$ parametric, skewed $\rightarrow$ rank test.
+- **Test biological units**: compare patients, not pooled spots (no pseudoreplication) — $t$ / ANOVA vs Wilcoxon / Kruskal.
+- **Multiple testing**: 20,000 genes give $\sim 1,000$ fluke hits at $p < 0.05 \rightarrow$ control FDR with **Benjamini-Hochberg (BH)**.
+- **Associate & model**: Pearson $r$ (linear) vs Spearman $\rho$ (ranks); `lm()` gives the slope and fit ($R^2$).
+
+::: {.callout-tip}
+Statistics tells us *something moved* — figures show **what moved and in which direction**.
+:::
+
+:::
+
+---
+
 ### 🧾 We've done the statistics... What now? 
 
 | gene | Tumor | Control | log2FC | sd | p |
@@ -2647,9 +2665,11 @@ tumor <- c(1, 2, 4, 2, 3)
 
 ### ✅ **B** — box plot
 
-```{webr-r}
-#| autorun: true
+:::: {.columns}
 
+::: {.column width="58%"}
+
+```{webr-r}
 df <- data.frame(
   group = rep(c("Control", "Tumor"), each = 5),
   umi = c(control, tumor)
@@ -2657,12 +2677,20 @@ df <- data.frame(
 boxplot(umi ~ group, data = df)
 ```
 
+:::
+
+::: {.column width="42%"}
+
 - **A** one bar per group; the spread behind it is hidden.
 - **B** one box per group: centre, spread, outliers on one axis.
 - **C** needs two numbers per spot; here there are groups only.
 - **D** bins one column; it does not separate groups.
 
 One box per group, all on one axis.
+
+:::
+
+::::
 
 ---
 
@@ -3022,15 +3050,10 @@ Open the notebook and Run All — real matrix, no mock figures.
 
 ## 🚀 What's Next?
 
-**Module III — Single-cell RNA-seq**
+**Lecture 10 — Version Control, Environments & Good Coding Practices**
 
-- the same statistics on **10,000+ cells** instead of 3 samples: QC
-  thresholds, distributions, batch effects
-- the same plots on bigger objects: UMI distributions, gene-by-cell maps,
-  cluster marker figures
-- spatial spots keep their x, y — the figure is the readout
-
-The full pipeline, end to end: counts → QC → statistics → figure.
+- the same reproducible habits: Git checkpoints, a numbered project, and clean code
+- Colab + `environment.yml` so the exact toolbox rebuilds anywhere.
 
 ---
 
