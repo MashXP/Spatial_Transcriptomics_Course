@@ -2,7 +2,7 @@
 ## BÀI 05: NỀN TẢNG LẬP TRÌNH R (R PROGRAMMING FUNDAMENTALS) – CÚ PHÁP, KIỂU DỮ LIỆU & LOGIC TÍNH TOÁN
 
 > 🚀 **Notebook tương tác trên Google Colab:** [lecture-05_r_fundamentals_practice.ipynb](./lecture-05_r_fundamentals_practice.ipynb)  
-> 💡 **Thiết lập môi trường:** Hướng dẫn cài đặt R cục bộ với Micromamba và VS Code, xem tại [Environment_Setup.md](../Environment_Setup.md).
+> 💡 **Thiết lập môi trường:** Hướng dẫn cài đặt R cục bộ với Micromamba và VS Code, xem tại [Environment_Setup.md](../../02_Programming/06_Environment_Setup.md).
 >
 > 🤖 **Cách sử dụng AI trong khóa học này:**  
 > Bạn hoàn toàn có thể dùng AI như một gia sư để giải thích những dòng code khó hiểu hoặc làm rõ các thông báo lỗi. Tuy nhiên, xin **không** dùng AI để sao chép đáp án cho các bài tập. Bạn học lập trình bằng cách tự gõ và tự giải quyết vấn đề!
